@@ -37,8 +37,17 @@ export default function Cell({dataset, data, index, macron}) {
 
   return (
     <div className={macron ? (pire ? "worst" : "same") : ""}>
-      {macron ? (pire ? "pire - " : "iso - ") : ""}
-      { possible ? (tauxPlein ? (surcote ? `Surcote +${surcote}` : "TP") : `Décote -${decote}`) : "Impossible" }
+      { possible ? (
+        <>
+          <img src="yes.svg"/>
+          { tauxPlein ? (surcote ? `surcote +${surcote}` : "taux plein") : `décote -${decote}`}
+        </>
+      ) : (
+        <>
+          <img src="no.svg"/>
+          retraite interdite
+        </>
+      ) }
     </div>
   )
 }

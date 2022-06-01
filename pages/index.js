@@ -91,7 +91,7 @@ export default function Home() {
             <tbody>
             { result.map((r, i) => (
               <tr key={r.AgeLiq}>
-                <td>{r.AgeLiq}</td>
+                <td className="age">{r.AgeLiq} ans</td>
                 <td><Cell dataset={result} index={i}/></td>
                 <td><Cell dataset={result} index={i} macron/></td>
               </tr>
