@@ -1,10 +1,34 @@
 html,
 body {
   padding: 0em;
-  margin: 1em;
+  margin: 0em;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: #f9f9f7;
+  background-color: #f9f9f7;
+}
+
+header {
+  background-color: #FFB3B7;
+  padding: 1em;
+  color:#505D75; /*#6B81A0;*/
+}
+
+article {
+  padding: 1em;
+}
+
+header h1 {
+  margin: 0;
+}
+
+table {
+  border-spacing: 5px;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5em;
 }
 
 th {
@@ -20,7 +44,7 @@ td.age {
 }
 
 td div {
-/*  background-color: red;*/
+  background-color: white;
   vertical-align: center;
 }
 

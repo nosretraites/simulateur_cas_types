@@ -36,16 +36,16 @@ export default function Cell({dataset, data, index, macron}) {
   pire = macron ? pire : false
 
   return (
-    <div className={macron ? (pire ? "worst" : "same") : ""}>
+    <div className={`cell ${macron ? (pire ? "worst" : "same") : ""}`}>
       { possible ? (
         <>
           <img src="yes.svg"/>
-          { tauxPlein ? (surcote ? `surcote +${surcote}` : "taux plein") : `décote -${decote}`}
+          <div>{ tauxPlein ? (surcote ? `surcote +${surcote}` : "taux plein") : `décote -${decote}`}</div>
         </>
       ) : (
         <>
           <img src="no.svg"/>
-          retraite interdite
+          <div>retraite interdite</div>
         </>
       ) }
     </div>

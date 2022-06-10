@@ -25,7 +25,6 @@ export default function Home() {
       return response.text()
     })
     .then(body => {
-      console.log(body)
       csv()
       .fromString(body)
       .then((data) => {
@@ -55,51 +54,58 @@ export default function Home() {
 
   return (
     <>
-      <h1>Simulateur</h1>
-      <div>
+      <header>
+        <h1>Simulateur retraite</h1>
         <div>
-          <label htmlFor="naissance">Année de naissance</label>
-          <input id="naissance" min="1900" max="2100" type="number" value={naissance} onChange={handleNaissanceChange} />
+        du Collectif Nos retraites
         </div>
+      </header>
+      <article>
         <div>
-          <label htmlFor="ageDebutCarriere">Âge de début de carrière</label>
-          <input id="ageDebutCarriere" min="12" max="40" type="number" value={ageDebutCarriere} onChange={handleAgeDebutCarriereChange} />
-        </div>
-        <div>
-          <label htmlFor="sexe">Sexe</label>
-          <select onChange={handleSexeChange}>
-            <option value="féminin">Féminin</option>
-            <option value="masculin">Masculin</option>
-          </select>
+          <div>
+            <label htmlFor="naissance">Année de naissance</label>
+            <input id="naissance" min="1900" max="2100" type="number" value={naissance} onChange={handleNaissanceChange} />
+          </div>
+          <div>
+            <label htmlFor="ageDebutCarriere">Âge de début de carrière</label>
+            <input id="ageDebutCarriere" min="12" max="40" type="number" value={ageDebutCarriere} onChange={handleAgeDebutCarriereChange} />
+          </div>
+          <div>
+            <label htmlFor="sexe">Sexe</label>
+            <select onChange={handleSexeChange}>
+              <option value="féminin">Féminin</option>
+              <option value="masculin">Masculin</option>
+            </select>
 
+          </div>
+          <div>
+            <label htmlFor="nombreEnfants">Nombre d&lsquo;enfants</label>
+            <input id="nombreEnfants" min="0" max="20" type="number" value={nombreEnfants} onChange={handleNombreEnfantsChange} />
+          </div>
         </div>
         <div>
-          <label htmlFor="nombreEnfants">Nombre d&lsquo;enfants</label>
-          <input id="nombreEnfants" min="0" max="20" type="number" value={nombreEnfants} onChange={handleNombreEnfantsChange} />
+          <div className="profil">
+            <div>Né{sexe == "féminin" ? "e" : ""} en {naissance}{nombreEnfants > 0 ? (nombreEnfants == 1 ? " - 1 enfant" : ` - ${nombreEnfants} enfants`) : ""}</div>
+            <div>Début de carrière : {ageDebutCarriere} ans</div>
+          </div>
+          <div className="resultats">
+            <table>
+              <thead>
+                <tr><th>La retraite à</th><th>Avec la loi actuelle</th><th>Avec le projet Macron</th></tr>
+              </thead>
+              <tbody>
+              { result.map((r, i) => (
+                <tr key={r.AgeLiq}>
+                  <td className="age">{r.AgeLiq} ans</td>
+                  <td><Cell dataset={result} index={i}/></td>
+                  <td><Cell dataset={result} index={i} macron/></td>
+                </tr>
+              ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-      <div>
-        <div className="profil">
-          <div>Né{sexe == "féminin" ? "e" : ""} en {naissance}{nombreEnfants > 0 ? (nombreEnfants == 1 ? " - 1 enfant" : ` - ${nombreEnfants} enfants`) : ""}</div>
-          <div>Début de carrière : {ageDebutCarriere} ans</div>
-        </div>
-        <div className="resultats">
-          <table>
-            <thead>
-              <tr><th>La retraite à</th><th>Loi actuelle</th><th>Macron</th></tr>
-            </thead>
-            <tbody>
-            { result.map((r, i) => (
-              <tr key={r.AgeLiq}>
-                <td className="age">{r.AgeLiq} ans</td>
-                <td><Cell dataset={result} index={i}/></td>
-                <td><Cell dataset={result} index={i} macron/></td>
-              </tr>
-            ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      </article>
     </>
   )
 }
