@@ -39,12 +39,12 @@ export default function Cell({dataset, data, index, macron}) {
     <div className={`cell ${macron ? (pire ? "worst" : "same") : ""}`}>
       { possible ? (
         <>
-          <img src="yes.svg"/>
+          <img src={`yes${macron ? (pire ? "-worst" : "") : ""}.svg`}/>
           <div>{ tauxPlein ? (surcote ? `surcote +${surcote}` : "taux plein") : `décote -${decote}`}</div>
         </>
       ) : (
         <>
-          <img src="no.svg"/>
+          <img src={`no${macron ? (pire ? "-worst" : "") : ""}.svg`}/>
           <div>retraite interdite</div>
         </>
       ) }
