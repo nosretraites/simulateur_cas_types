@@ -83,10 +83,10 @@ export default function Home() {
             <input id="careerStartAge" min="12" max="40" type="number" value={careerStartAge} onChange={handleCareerStartAgeChange} />
           </div>
           <div>
-            <label htmlFor="gender">Sexe</label>
+            <label htmlFor="gender">Vous êtes le parent qui a accouché de vos enfants ou pris le plus long congé d'adoption</label>
             <select onChange={handleGenderChange}>
-              <option value={2}>Féminin</option>
-              <option value={1}>Masculin</option>
+              <option value={2}>Oui</option>
+              <option value={1}>Non</option>
             </select>
 
           </div>
