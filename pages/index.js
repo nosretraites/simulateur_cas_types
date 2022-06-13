@@ -1,4 +1,4 @@
-import {useState, useCallback, useEffect} from 'react'
+import { useState, useEffect } from 'react';
 import * as csv from "csvtojson"
 import fetch from 'isomorphic-unfetch'
 
@@ -6,87 +6,99 @@ import fetch from 'isomorphic-unfetch'
 import Cell from '../components/cell'
 
 export default function Home() {
-  const [naissance, setNaissance] = useState(1969)
-  const [ageDebutCarriere, setAgeDebutCarriere] = useState(21)
-  const [sexe, setSexe] = useState('féminin')
-  const [nombreEnfants, setNombreEnfants] = useState(0)
+  const [birthDate, setBirthDate] = useState(1969);
+  const [careerStartAge, setCareerStartAge] = useState(21);
+  const [gender, setGender] = useState(2);
+  const [numberOfChildren, setNumberOfChildren] = useState(0);
 
-  const [result, setResult] = useState([])
+  const [cellArray, setCellArray] = useState([]);
 
-  const handleNaissanceChange = e => setNaissance(e.target.value)
-  const handleAgeDebutCarriereChange = e => setAgeDebutCarriere(e.target.value)
-  const handleSexeChange = e => setSexe(e.target.value)
-  const handleNombreEnfantsChange = e => setNombreEnfants(e.target.value)
+  const handleNaissanceChange = e => setBirthDate(e.target.value)
+  const handleCareerStartAgeChange = e => setCareerStartAge(e.target.value)
+  const handleGenderChange = e => setGender(e.target.value)
+  const handleNumberOfChildrenChange = e => setNumberOfChildren(e.target.value);
 
+  async function fetchDatas() {
+    const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${birthDate}.csv`;
+    const response = await fetch(apiUrl);
+
+    if (response.status === 200) {
+
+      const body = await response.text();
+
+      return csv().fromString(body).then((data) => {
+
+        const reducer = data.reduce((acc, val) => {
+          const {
+            Naissance,
+            Debut,
+            Sexe,
+            Enfants
+          } = val;
+
+          const birthDateArray = acc[Naissance] || {};
+          const careerStartArray = birthDateArray[Debut] || {};
+          const genderArray = careerStartArray[Sexe] || {};
+          const numberOfChildrenArray = genderArray[Enfants] || [];
+
+          numberOfChildrenArray.push(val);
+
+          genderArray[Enfants] = numberOfChildrenArray;
+          careerStartArray[Sexe] = genderArray
+          birthDateArray[Debut] = careerStartArray
+          acc[Naissance] = birthDateArray;
+          return acc
+        }, {});
+
+        const slice = reducer[birthDate] && reducer[birthDate][careerStartAge] && reducer[birthDate][careerStartAge][gender] && reducer[birthDate][careerStartAge][gender][numberOfChildren];
+
+        setCellArray(slice || [])
+      });
+
+    }
+
+  }
 
   useEffect(() => {
-    fetch(`https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${naissance}.csv`)
-    .then(response => {
-      return response.text()
-    })
-    .then(body => {
-      csv()
-      .fromString(body)
-      .then((data) => {
-        const map = data.reduce((accum, value) => {
-          const naissanceMap = accum[value.Naissance] || {}
-          const debutMap = naissanceMap[value.Debut] || {}
-          const sexeMap = debutMap[value.Sexe] || {}
-          const nombreEnfantsMap = sexeMap[value.Enfants] || []
+    fetchDatas();
+  }, [birthDate, careerStartAge, gender, numberOfChildren])
 
-          nombreEnfantsMap.push(value)
-
-          sexeMap[value.Enfants] = nombreEnfantsMap
-          debutMap[value.Sexe] = sexeMap
-          naissanceMap[value.Debut] = debutMap
-          accum[value.Naissance] = naissanceMap
-          return accum
-        }, {})
-
-        const sexeKey = sexe == "féminin" ? 2 : 1
-        const slice = map[naissance] && map[naissance][ageDebutCarriere] && map[naissance][ageDebutCarriere][sexeKey] && map[naissance][ageDebutCarriere][sexeKey][nombreEnfants]
-        console.log(slice)
-        setResult(slice || [])
-      })
-    })
-
-  }, [naissance, ageDebutCarriere, sexe, nombreEnfants])
 
   return (
     <>
       <header>
         <h1>Simulateur retraite</h1>
         <div>
-        du Collectif Nos retraites
+          du Collectif Nos retraites
         </div>
       </header>
       <article>
         <div>
           <div>
-            <label htmlFor="naissance">Année de naissance</label>
-            <input id="naissance" min="1900" max="2100" type="number" value={naissance} onChange={handleNaissanceChange} />
+            <label htmlFor="birthDate">Année de naissance</label>
+            <input id="birthDate" min="1900" max="2100" type="number" value={birthDate} onChange={handleNaissanceChange} />
           </div>
           <div>
-            <label htmlFor="ageDebutCarriere">Âge de début de carrière</label>
-            <input id="ageDebutCarriere" min="12" max="40" type="number" value={ageDebutCarriere} onChange={handleAgeDebutCarriereChange} />
+            <label htmlFor="careerStartAge">Âge de début de carrière</label>
+            <input id="careerStartAge" min="12" max="40" type="number" value={careerStartAge} onChange={handleCareerStartAgeChange} />
           </div>
           <div>
-            <label htmlFor="sexe">Sexe</label>
-            <select onChange={handleSexeChange}>
-              <option value="féminin">Féminin</option>
-              <option value="masculin">Masculin</option>
+            <label htmlFor="gender">Sexe</label>
+            <select onChange={handleGenderChange}>
+              <option value={2}>Féminin</option>
+              <option value={1}>Masculin</option>
             </select>
 
           </div>
           <div>
-            <label htmlFor="nombreEnfants">Nombre d&lsquo;enfants</label>
-            <input id="nombreEnfants" min="0" max="20" type="number" value={nombreEnfants} onChange={handleNombreEnfantsChange} />
+            <label htmlFor="numberOfChildren">Nombre d&lsquo;enfants</label>
+            <input id="numberOfChildren" min="0" max="20" type="number" value={numberOfChildren} onChange={handleNumberOfChildrenChange} />
           </div>
         </div>
         <div>
           <div className="profil">
-            <div>Né{sexe == "féminin" ? "e" : ""} en {naissance}{nombreEnfants > 0 ? (nombreEnfants == 1 ? " - 1 enfant" : ` - ${nombreEnfants} enfants`) : ""}</div>
-            <div>Début de carrière : {ageDebutCarriere} ans</div>
+            <div>Né{gender == 2 && "e"} en {birthDate}{numberOfChildren > 0 ? (numberOfChildren == 1 ? " - 1 enfant" : ` - ${numberOfChildren} enfants`) : ""}</div>
+            <div>Début de carrière : {careerStartAge} ans</div>
           </div>
           <div className="resultats">
             <table>
@@ -94,13 +106,13 @@ export default function Home() {
                 <tr><th>La retraite à</th><th>Avec la loi actuelle</th><th>Avec le projet Macron</th></tr>
               </thead>
               <tbody>
-              { result.map((r, i) => (
-                <tr key={r.AgeLiq}>
-                  <td className="age">{r.AgeLiq} ans</td>
-                  <td><Cell dataset={result} index={i}/></td>
-                  <td><Cell dataset={result} index={i} macron/></td>
-                </tr>
-              ))}
+                {cellArray.map((r, i) => (
+                  <tr key={r.AgeLiq}>
+                    <td className="age">{r.AgeLiq} ans</td>
+                    <td><Cell dataset={cellArray} index={i} /></td>
+                    <td><Cell dataset={cellArray} index={i} macron /></td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
