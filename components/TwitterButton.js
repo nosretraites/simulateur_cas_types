@@ -32,7 +32,7 @@ export default function TwitterButton(props) {
     return (
         <div className={styles.SharedButton}>
             <span className={styles.SharedText}>Partagez vos résultats </span><a href={`https://twitter.com/intent/tweet?text=${twitterContentGenerator()}`}
-                data-size="large" target="_blank"><Image src={TwitterShareIcon} width={"100px"} /></a>
+                data-size="large" target="_blank" rel="noreferrer"><Image src={TwitterShareIcon} width={"100px"} /></a>
         </div>
     )
 }
