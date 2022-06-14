@@ -1,0 +1,17 @@
+.Container {
+    display: flex;
+    column-gap: 25px;
+}
+
+.Name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.InformationBox {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    font-size: 18px;
+    padding-bottom: 25px;
+}

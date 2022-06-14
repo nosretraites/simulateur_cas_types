@@ -3,7 +3,8 @@ import styles from '../styles/form.module.scss';
 import * as csv from "csvtojson"
 import fetch from 'isomorphic-unfetch';
 import TwitterButton from '../components/TwitterButton.js';
-import Cell from '../components/Cell.js'
+import Cell from '../components/Cell.js';
+import ProfileCard from '../components/ProfileCard.js';
 
 export default function Home() {
   const [birthDate, setBirthDate] = useState(1969);
@@ -129,7 +130,8 @@ export default function Home() {
   else if (pageState === 'RESULT') {
     return (
       <div>
-        <table>
+        <ProfileCard gender={gender} birthDate={birthDate} numberOfChildren={numberOfChildren} careerStartAge={careerStartAge} data={cellArray} />
+        <table width={"100%"}>
           <thead>
             <tr>
               <th className={styles.Box}>La retraite à</th>
@@ -143,7 +145,11 @@ export default function Home() {
             ))}
           </tbody>
         </table>
-        <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} gender={gender} />
+
+        <div className={styles.SharedIcon}>
+
+          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} gender={gender} />
+        </div>
 
       </div>
 
