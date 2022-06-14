@@ -1,5 +1,3 @@
-import TwitterShareIcon from './assets/TwitterShareIcon.svg';
-import Image from 'next/image';
 import styles from './TwitterButton.module.scss';
 import { useEffect, useState } from 'react';
 
@@ -32,7 +30,7 @@ export default function TwitterButton(props) {
     return (
         <div className={styles.SharedButton}>
             <span className={styles.SharedText}>Partagez vos résultats </span><a href={`https://twitter.com/intent/tweet?text=${twitterMessage}`}
-                data-size="large" target="_blank" rel="noreferrer"><Image src={TwitterShareIcon} width={"100px"} alt={"Partage Twitter"} /></a>
+                data-size="large" target="_blank" rel="noreferrer"><img src={'TwitterShareIcon.svg'} width={"100px"} alt={"Partage Twitter"} /></a>
         </div>
     )
 }
