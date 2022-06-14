@@ -69,7 +69,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    fetchDatas()
+    return fetchDatas()
   }, [])
 
 
@@ -139,8 +139,8 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {cellArray.map((cellData, i) => (
-              <Cell data={cellData} />
+            {cellArray.map((cellData, i ) => (
+              <Cell data={cellData} key={i}/>
             ))}
           </tbody>
         </table>

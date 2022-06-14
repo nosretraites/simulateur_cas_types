@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import  styles from "./Cell.module.scss";
 
-export function Cell({ key, data }) {
+export function Cell({ data }) {
 
   const noRetirment = <span className={styles.RedMark}>❌ Retraite interdite</span>;
   const allowRetirment = <span className={styles.GreenMark}>✅ Taux plein</span>;
