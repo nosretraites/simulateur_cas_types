@@ -37,7 +37,7 @@ export default function Cell({ data }) {
       }
 
       if (dataToDisplay.macron.isFullTime) {
-        displayMessageMacron = allowRetirment
+        setDisplayMacronMessage(allowRetirment)
 
         if (dataToDisplay.macron.isSurcote !== 0 && dataToDisplay.macron.isSurcote) {
           setDisplayMacronMessage(surcoteMessage(dataToDisplay.macron.isSurcote))

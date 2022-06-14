@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from '../style/form.module.scss';
+import styles from '../styles/form.module.scss';
 import * as csv from "csvtojson"
 import fetch from 'isomorphic-unfetch';
 import TwitterButton from '../components/TwitterButton.js';
