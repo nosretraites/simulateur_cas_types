@@ -1,0 +1,115 @@
+.formElement{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    text-align: left;
+
+    .modalButton{
+        border: none;
+        font: inherit;
+        cursor: pointer;
+        text-align: left;
+        background-color: transparent;
+        
+        display: inline-block;
+        padding: 5px;
+        color: var(--gray-dark-color);
+        text-decoration: underline;
+        margin-top: 15px;
+    }
+
+
+    .submitButton{
+        border: none;
+        font: inherit;
+        cursor: pointer;
+
+        margin-top: 40px;
+        padding: 10px 15px;
+        background-color: var(--gray-dark-color);
+        color: white;
+        font-weight: 500;
+
+        transition: background-color .3s;
+
+        &:focus,&:hover{
+        background-color: var(--gray-light-color);
+        }
+    }
+}
+
+.inputElement{
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    gap: 20px;
+
+    align-items: flex-start;
+
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    &:focus-within{
+        label{
+            color: var(--text-color);
+        }
+
+        input,select{
+            outline-color: var(--text-color);
+        }
+    }
+
+    label,input,select{
+        display: inline-block;
+        &::placeholder{
+            color: var(--gray-light-color);
+            font-style: italic;
+        }
+    }
+    input,select{
+        padding: 5px 10px;
+        width: 200px;
+    }
+    label{
+        font-weight: 500;
+        max-width: 300px;
+    }
+
+}
+
+@media screen and (max-width: 640px) {
+    .inputElement{
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+        input, select{
+            width: auto;
+            min-width: 200px;
+            margin: 0 auto;
+        }
+    }
+
+    .formElement{
+        .modalButton{
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (min-width: 640px) and  (max-width: 1080px) {
+
+    
+}
+
+@media screen and (min-width: 1080px) {
+    .inputElement{
+        label{
+            width: 300px;
+        }
+    }
+    
+}

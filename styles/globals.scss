@@ -9,20 +9,47 @@ body {
 }
 body{
   background-color: var(--bg-color);
-  color: var(--text-color);
+  color: var(--gray-dark-color);
 }
 
 
-
-header {
-  background-color: var(--bg-color);
-  padding: 1em;
-  color:var(--title-color);
+.globalHeader{
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-article {
-  padding: 1em;
+.globalMain{
+  width: fit-content;
+  margin: 0 auto;
+  padding: 60px 80px;
+  background: white;
+
+  box-shadow: 0px 5px 15px -10px rgba(black,0.5);
 }
+
+@media screen and (max-width: 640px) {
+  .globalMain{
+      padding: 20px 10px;
+  }
+}
+
+@media screen and (min-width: 640px) and  (max-width: 1080px) {
+  .globalMain{
+      padding: 30px 50px;
+  }
+  
+}
+
+
+// header {
+//   background-color: var(--bg-color);
+//   padding: 1em;
+//   color:var(--title-color);
+// }
+
+// article {
+//   padding: 1em;
+// }
 
 
 
