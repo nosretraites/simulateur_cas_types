@@ -1,53 +1,78 @@
-export default function Cell({dataset, data, index, macron}) {
-  const row = data || (dataset && dataset[index])
+import React, { useEffect, useState } from 'react';
+import styles from "./Cell.module.scss";
 
-  const possibleBase = parseFloat(row.Possible)
-  const possibleMacron = parseFloat(row.Possible_Mac)
-  const possible = macron ? possibleMacron : possibleBase
+export default function Cell({ data }) {
 
-  const tauxPleinBase = parseFloat(row.Tauxplein)
-  const tauxPleinMacron = parseFloat(row.Tauxplein_Mac)
-  const tauxPlein = macron ? tauxPleinMacron : tauxPleinBase
+  const [displayBaseMessage, setDisplayBaseMessage] = useState("");
+  const [displayMacronMessage, setDisplayMacronMessage] = useState("");
+  const [age, setAge] = useState("")
 
-  const decoteBase = parseFloat(row.Decote)
-  const decoteMacron = parseFloat(row.Decote_Mac)
-  const decote = macron ? decoteMacron : decoteBase
+  useEffect(() => {
+    const noRetirment = <span className={styles.RedMark}>❌ Retraite interdite</span>;
+    const allowRetirment = <span className={styles.GreenMark}>✅ Taux plein</span>;
+    const decoteMessage = (value) => <span className={styles.GreenMark}>✅ decote -{value}%</span>;
+    const surcoteMessage = (value) => <span className={styles.GreenMark}>✅ surcote +{value}%</span>;
+    setAge(`${data.AgeLiq} ans`)
 
-  const surcoteBase = parseFloat(row.Surcote)
-  const surcoteMacron = parseFloat(row.Surcote_Mac)
-  const surcote = macron ? surcoteMacron : surcoteBase
-
-  let pire = false
-  // Évitement d'une succession de ternaires car les messages
-  // sont à conditionner avec les mêmes critères 
-  if (!possibleMacron && possibleBase) {
-    pire = true
-  } else if (possibleMacron && possibleBase) {
-    if (!tauxPleinMacron && tauxPleinBase) {
-      pire = true
-    } else if (decoteMacron > decoteBase) {
-      pire = true
-    } else if (tauxPleinMacron && tauxPleinBase) {
-      if (surcoteMacron < surcoteBase) {
-        pire = true
+    const dataToDisplay = {
+      base: {
+        isPossible: parseFloat(data.Possible) ? true : false,
+        isFullTime: parseFloat(data.Tauxplein) ? true : false,
+        isDecote: parseFloat(data.Decote),
+        isSurcote: parseFloat(data.Surcote),
+      },
+      macron: {
+        isPossible: parseFloat(data.Possible_Mac) ? true : false,
+        isFullTime: parseFloat(data.Tauxplein_Mac) ? true : false,
+        isDecote: parseFloat(data.Decote_Mac),
+        isSurcote: parseFloat(data.Surcote_Mac),
       }
     }
-  }
-  pire = macron ? pire : false
+
+    if (dataToDisplay.macron.isPossible) {
+      if (!dataToDisplay.macron.isFullTime) {
+        if (dataToDisplay.macron.isDecote !== 0 && dataToDisplay.macron.isDecote) {
+          setDisplayMacronMessage(decoteMessage(dataToDisplay.macron.isDecote))
+        }
+      }
+
+      if (dataToDisplay.macron.isFullTime) {
+        displayMessageMacron = allowRetirment
+
+        if (dataToDisplay.macron.isSurcote !== 0 && dataToDisplay.macron.isSurcote) {
+          setDisplayMacronMessage(surcoteMessage(dataToDisplay.macron.isSurcote))
+        }
+      }
+    } else {
+      setDisplayMacronMessage(noRetirment)
+    }
+
+    if (dataToDisplay.base.isPossible) {
+      if (!dataToDisplay.base.isFullTime) {
+        if (dataToDisplay.base.isDecote !== 0 && dataToDisplay.base.isDecote) {
+          setDisplayBaseMessage(decoteMessage(dataToDisplay.base.isDecote))
+        }
+      }
+
+      if (dataToDisplay.base.isFullTime) {
+        setDisplayBaseMessage(allowRetirment)
+
+        if (dataToDisplay.base.isSurcote !== 0 && dataToDisplay.base.isSurcote) {
+          setDisplayBaseMessage(surcoteMessage(dataToDisplay.base.isSurcote))
+        }
+      }
+    } else {
+      setDisplayBaseMessage(noRetirment)
+    }
+  }, [data])
+
+
 
   return (
-    <div className={`cell ${macron ? (pire ? "worst" : "same") : ""}`}>
-      { possible ? (
-        <>
-          <img src={`yes${macron ? (pire ? "-worst" : "") : ""}.svg`}/>
-          <div>{ tauxPlein ? (surcote ? `surcote +${surcote}` : "taux plein") : `décote -${decote}`}</div>
-        </>
-      ) : (
-        <>
-          <img src={`no${macron ? (pire ? "-worst" : "") : ""}.svg`}/>
-          <div>retraite interdite</div>
-        </>
-      ) }
-    </div>
+    <tr>
+      <td className={styles.BoxCenter}>{age}</td>
+      <td className={styles.Box}>{displayBaseMessage}</td>
+      <td className={styles.Box}>{displayMacronMessage}</td>
+    </tr>
   )
 }
