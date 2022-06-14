@@ -27,6 +27,37 @@
 
 }
 
+.blockButton{
+  border: none;
+  font: inherit;
+  cursor: pointer;
+
+  margin: 20px 0 10px 0;
+  padding: 10px 15px;
+  background-color: var(--gray-dark-color);
+  color: white;
+  font-weight: 500;
+
+  transition: background-color .3s;
+
+  &:focus,&:hover{
+  background-color: var(--gray-light-color);
+  }
+}
+.inlineButton{
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  margin: 10px 0;
+  text-align: left;
+  background-color: transparent;
+  
+  display: inline-block;
+  padding: 5px;
+  color: var(--gray-dark-color);
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 640px) {
   .title{
     font-size: 1.5rem;
