@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import styles from './form.module.scss';
 import * as csv from "csvtojson"
 import fetch from 'isomorphic-unfetch';
-// import TwitterButton from '../components/TwitterButton.js';
-import { Cell } from './component/Cell'
+import TwitterButton from './components/TwitterButton.js';
+import Cell from './components/Cell.js'
 
 export default function Home() {
   const [birthDate, setBirthDate] = useState(1969);
@@ -69,7 +69,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    return fetchDatas()
+    fetchDatas()
   }, [])
 
 
@@ -128,7 +128,6 @@ export default function Home() {
   }
   else if (pageState === 'RESULT') {
     return (
-
       <div>
         <table>
           <thead>
@@ -139,11 +138,13 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {cellArray.map((cellData, i ) => (
-              <Cell data={cellData} key={i}/>
+            {cellArray.map((cellData, i) => (
+              <Cell data={cellData} key={i} />
             ))}
           </tbody>
         </table>
+        <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} gender={gender} />
+
       </div>
 
     )

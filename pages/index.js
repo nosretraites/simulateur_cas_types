@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as csv from "csvtojson"
 import fetch from 'isomorphic-unfetch';
-import TwitterButton from './form/component/TwitterButton.js';
+import TwitterButton from './form/components/TwitterButton.js';
 import Cell from '../components/cell'
 
 export default function Home() {
@@ -117,7 +117,6 @@ export default function Home() {
           </div>
 
         </div>
-          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} gender={gender}/>
       </article>
     </>
   )
