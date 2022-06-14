@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as csv from "csvtojson"
 import fetch from 'isomorphic-unfetch';
-import TwitterButton from '../components/TwitterButton.js';
+import TwitterButton from './form/component/TwitterButton.js';
 
 
 import Cell from '../components/cell'
