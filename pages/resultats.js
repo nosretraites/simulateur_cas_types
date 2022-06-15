@@ -5,25 +5,18 @@ import fetch from 'isomorphic-unfetch';
 import TwitterButton from '../components/TwitterButton.js';
 import Cell from '../components/Cell.js';
 import ProfileCard from '../components/ProfileCard.js';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 export default function Resultats() {
   const router = useRouter();
-  const {query, isReady} = router;
-    const [birthDate, setBirthDate] = useState(1969);
+  const { query, isReady } = router;
+  const [birthDate, setBirthDate] = useState(1969);
   const [careerStartAge, setCareerStartAge] = useState(21);
   const [gender, setGender] = useState(1);
   const [numberOfChildren, setNumberOfChildren] = useState(0);
   const [cellArray, setCellArray] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const goBackToForm = e => {
-    router.push({
-      pathname:'/',
-      query : { birthDate, careerStartAge, gender, numberOfChildren }
-    }) 
-  };
 
   async function fetchDatas() {
     const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${birthDate}.csv`;
@@ -58,7 +51,6 @@ export default function Resultats() {
         }, {});
 
         const slice = reducer[birthDate] && reducer[birthDate][careerStartAge] && reducer[birthDate][careerStartAge][gender] && reducer[birthDate][careerStartAge][gender][numberOfChildren];
-
         setCellArray(slice || [])
         setIsLoaded(true)
       });
@@ -67,41 +59,60 @@ export default function Resultats() {
 
   }
 
-  const initFromQueryParams = ()=>{
+  const initFromQueryParams = () => {
     const { birthDate, careerStartAge, gender, numberOfChildren } = query;
 
-    if(birthDate !== undefined){
+    if (birthDate !== undefined) {
       setBirthDate(birthDate);
     }
-    if(careerStartAge !== undefined){
+    if (careerStartAge !== undefined) {
       setCareerStartAge(careerStartAge);
     }
-    if(gender !== undefined){
+    if (gender !== undefined) {
       setGender(gender);
     }
-    if(numberOfChildren !== undefined){
+    if (numberOfChildren !== undefined) {
       setNumberOfChildren(numberOfChildren);
     }
   }
 
   useEffect(() => {
-    if(isReady){
+    if (isReady) {
       initFromQueryParams();
       fetchDatas();
     }
-  }, [query])  
+  }, [query]);
+
+  const [selectedName, setSelectedName] = useState("");
+  const [selectedPicto, setSelectedPicto] = useState("");
+
+  const listOfNamesMan = ["Nathan", "Lucas", "Léo", "Gabriel", "Timéo", "Enzo", "Louis", "Raphaël", "Arthur", "Hugo", "Jules", "Ethan", "Adam", "Nolan", "Tom", "Noah", "Théo", "Sacha", "Maël", "Mathis", "Abdela", "Mohamed", "Yassin", "Jean-Karim", "Björn"];
+  const listOfNamesWoman = ["Emma", "Lola", "Chloé", "Inès", "Léa", "Manon", "Jade", "Louise", "Léna", "Lina", "Zoé", "Lilou", "Camille", "Sarah", "Eva", "Alice", "Maëlys", "Louna", "Romane", "Juliette", "Sophie", "Inaya", "Aliya", "Noûr", "Elodie"];
+  const listOfPictosMan = ["m1.png", "m2.png", "m3.png", "m4.png", "m5.png", "m6.png", "m7.png"];
+  const listOfPictosWoman = ["w1.png", "w2.png", "w3.png", "w4.png", "w5.png", "w6.png", "w7.png", "w8.png", "w9.png", "w10.png", "w11.png"];
+
+  function pickAWinner() {
+    if (gender === "1") {
+      let nameNumberMan = Math.floor(Math.random() * listOfNamesMan.length);
+      setSelectedName(listOfNamesMan[nameNumberMan]);
+      const numberPicto = Math.floor(Math.random() * listOfPictosMan.length);
+      setSelectedPicto(listOfPictosMan[numberPicto])
+    } else {
+      let nameNumberWoman = Math.floor(Math.random() * listOfNamesWoman.length);
+      setSelectedName(listOfNamesWoman[nameNumberWoman]);
+      const numberPicto = Math.floor(Math.random() * listOfPictosWoman.length);
+      setSelectedPicto(listOfPictosWoman[numberPicto])
+    }
+  }
 
   useEffect(() => {
-    if(isReady){
-      initFromQueryParams();
-      fetchDatas();
-    }
-  }, [])  
+    pickAWinner();
+  }, [gender])
 
-  if(isLoaded){
+  if (isLoaded) {
     return (
       <div>
-        <ProfileCard gender={gender} birthDate={birthDate} numberOfChildren={numberOfChildren} careerStartAge={careerStartAge} data={cellArray} />
+        <ProfileCard selectedName={selectedName} selectedPicto={selectedPicto} gender={gender} birthDate={birthDate} numberOfChildren={numberOfChildren} careerStartAge={careerStartAge} data={cellArray} />
         <table width={"100%"}>
           <thead>
             <tr>
@@ -122,7 +133,7 @@ export default function Resultats() {
 
         <div className={styles.SharedIcon}>
 
-          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} gender={gender} />
+          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} gender={gender} selectedName={selectedName} numberOfChildren={numberOfChildren}/>
         </div>
 
       </div>
