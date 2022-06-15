@@ -8,7 +8,13 @@ import ProfileCard from '../components/ProfileCard.js';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+const listOfNamesMan = ["Nathan", "Lucas", "Léo", "Gabriel", "Timéo", "Enzo", "Louis", "Raphaël", "Arthur", "Hugo", "Jules", "Ethan", "Adam", "Nolan", "Tom", "Noah", "Théo", "Sacha", "Maël", "Mathis", "Abdela", "Mohamed", "Yassin", "Jean-Karim", "Björn"];
+const listOfNamesWoman = ["Emma", "Lola", "Chloé", "Inès", "Léa", "Manon", "Jade", "Louise", "Léna", "Lina", "Zoé", "Lilou", "Camille", "Sarah", "Eva", "Alice", "Maëlys", "Louna", "Romane", "Juliette", "Sophie", "Inaya", "Aliya", "Noûr", "Elodie"];
+const listOfPictosMan = ["m1.png", "m2.png", "m3.png", "m4.png", "m5.png", "m6.png", "m7.png"];
+const listOfPictosWoman = ["w1.png", "w2.png", "w3.png", "w4.png", "w5.png", "w6.png", "w7.png", "w8.png", "w9.png", "w10.png", "w11.png"];
+
 export default function Resultats() {
+
   const router = useRouter();
   const { query, isReady } = router;
   const [birthDate, setBirthDate] = useState(1969);
@@ -17,9 +23,36 @@ export default function Resultats() {
   const [numberOfChildren, setNumberOfChildren] = useState(0);
   const [cellArray, setCellArray] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [selectedName, setSelectedName] = useState("");
+  const [selectedPicto, setSelectedPicto] = useState("");
 
-  async function fetchDatas() {
-    const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${birthDate}.csv`;
+
+  const initFromQueryParams = () => {
+    const { birthDate, careerStartAge, gender, numberOfChildren } = query;
+    if (birthDate !== undefined) {
+      setBirthDate(birthDate);
+    }
+    if (careerStartAge !== undefined) {
+      setCareerStartAge(careerStartAge);
+    }
+    if (gender !== undefined) {
+      setGender(gender);
+    }
+    if (numberOfChildren !== undefined) {
+      setNumberOfChildren(numberOfChildren);
+    }
+    fetchDatas(birthDate);
+  }
+
+  useEffect(() => {
+      if (isReady) {
+        initFromQueryParams();
+      }
+  }, [query]);
+
+  async function fetchDatas(date) {
+    const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${date.toString()}.csv`;
+    console.log(apiUrl)
     const response = await fetch(apiUrl);
 
     if (response.status === 200) {
@@ -50,46 +83,17 @@ export default function Resultats() {
           return acc
         }, {});
 
-        const slice = reducer[birthDate] && reducer[birthDate][careerStartAge] && reducer[birthDate][careerStartAge][gender] && reducer[birthDate][careerStartAge][gender][numberOfChildren];
+        const slice = reducer[date] && reducer[date][careerStartAge] && reducer[date][careerStartAge][gender] && reducer[date][careerStartAge][gender][numberOfChildren];
         setCellArray(slice || [])
+      }).then(() => {
         setIsLoaded(true)
+
       });
 
     }
 
   }
 
-  const initFromQueryParams = () => {
-    const { birthDate, careerStartAge, gender, numberOfChildren } = query;
-
-    if (birthDate !== undefined) {
-      setBirthDate(birthDate);
-    }
-    if (careerStartAge !== undefined) {
-      setCareerStartAge(careerStartAge);
-    }
-    if (gender !== undefined) {
-      setGender(gender);
-    }
-    if (numberOfChildren !== undefined) {
-      setNumberOfChildren(numberOfChildren);
-    }
-  }
-
-  useEffect(() => {
-    if (isReady) {
-      initFromQueryParams();
-      fetchDatas();
-    }
-  }, [query]);
-
-  const [selectedName, setSelectedName] = useState("");
-  const [selectedPicto, setSelectedPicto] = useState("");
-
-  const listOfNamesMan = ["Nathan", "Lucas", "Léo", "Gabriel", "Timéo", "Enzo", "Louis", "Raphaël", "Arthur", "Hugo", "Jules", "Ethan", "Adam", "Nolan", "Tom", "Noah", "Théo", "Sacha", "Maël", "Mathis", "Abdela", "Mohamed", "Yassin", "Jean-Karim", "Björn"];
-  const listOfNamesWoman = ["Emma", "Lola", "Chloé", "Inès", "Léa", "Manon", "Jade", "Louise", "Léna", "Lina", "Zoé", "Lilou", "Camille", "Sarah", "Eva", "Alice", "Maëlys", "Louna", "Romane", "Juliette", "Sophie", "Inaya", "Aliya", "Noûr", "Elodie"];
-  const listOfPictosMan = ["m1.png", "m2.png", "m3.png", "m4.png", "m5.png", "m6.png", "m7.png"];
-  const listOfPictosWoman = ["w1.png", "w2.png", "w3.png", "w4.png", "w5.png", "w6.png", "w7.png", "w8.png", "w9.png", "w10.png", "w11.png"];
 
   function pickAWinner() {
     if (gender === "1") {
@@ -112,7 +116,7 @@ export default function Resultats() {
   if (isLoaded) {
     return (
       <div>
-        <ProfileCard selectedName={selectedName} selectedPicto={selectedPicto} gender={gender} birthDate={birthDate} numberOfChildren={numberOfChildren} careerStartAge={careerStartAge} data={cellArray} />
+       <ProfileCard selectedName={selectedName} selectedPicto={selectedPicto} gender={gender} birthDate={query.birthDate} numberOfChildren={numberOfChildren} careerStartAge={careerStartAge} data={cellArray} />
         <table width={"100%"}>
           <thead>
             <tr>
