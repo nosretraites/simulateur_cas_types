@@ -79,7 +79,7 @@ export default function Home() {
         </div>
         : ""}
 
-      <button className={`blockButton ${styles.submitButton}`} type="submit">Je calcule ma situation</button>
+      <button className={`blockButton ${styles.submitButton}`} type="submit">Je calcule l&apos;effet de la réforme</button>
 
       <Link href="/informations">
         <a className={`inlineButton ${styles.informationButton}`} >Plus d&apos;informations sur le simulateur</a>

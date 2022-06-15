@@ -6,6 +6,7 @@ import TwitterButton from '../components/TwitterButton.js';
 import Cell from '../components/Cell.js';
 import ProfileCard from '../components/ProfileCard.js';
 import {useRouter} from 'next/router';
+import Link from 'next/link';
 
 export default function Resultats() {
   const router = useRouter();
@@ -115,6 +116,9 @@ export default function Resultats() {
             ))}
           </tbody>
         </table>
+        <Link href="/informations">
+          <a className={`inlineButton`} >Précisions sur les calculs</a>
+        </Link>
 
         <div className={styles.SharedIcon}>
 

@@ -48,7 +48,7 @@ export default function ProfileCard({ gender, birthDate, numberOfChildren, caree
                 <span className={styles.Name}>{selectedName}</span>
                 <span>Né{gender !== 1 ? "e" : ""} en {birthDate} {numberOfChildren !== 0 ? numberOfChildren === 1 ? "- 1 enfant" : "- " + numberOfChildren + " enfants" : ""}</span>
                 <span>Durée requise avec la loi actuelle : {yearsWithBase} annuités</span>
-                <span>Durée requise avec Macron : {yearsWithMacron} annuités</span>
+                {/* <span>Durée requise avec Macron : {yearsWithMacron} annuités</span> */}
                 <span>Début de carrière {careerStartAge} ans</span>
                 <Link href={{pathname:'/',query : { birthDate, careerStartAge, gender, numberOfChildren }}}>
                     <a className="inlineButton">Retourner au formulaire</a>
