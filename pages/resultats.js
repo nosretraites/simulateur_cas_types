@@ -52,7 +52,6 @@ export default function Resultats() {
 
   async function fetchDatas(date) {
     const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${date.toString()}.csv`;
-    console.log(apiUrl)
     const response = await fetch(apiUrl);
 
     if (response.status === 200) {
