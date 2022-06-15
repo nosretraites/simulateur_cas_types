@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ProfileCard.module.scss';
+import Link from 'next/link';
 
 
 const listOfNamesMan = ["Nathan", "Lucas", "Léo", "Gabriel", "Timéo", "Enzo", "Louis", "Raphaël", "Arthur", "Hugo", "Jules", "Ethan", "Adam", "Nolan", "Tom", "Noah", "Théo", "Sacha", "Maël", "Mathis", "Abdela", "Mohamed", "Yassin", "Jean-Karim", "Björn"];
@@ -49,6 +50,9 @@ export default function ProfileCard({ gender, birthDate, numberOfChildren, caree
                 <span>Durée requise avec la loi actuelle : {yearsWithBase} annuités</span>
                 <span>Durée requise avec Macron : {yearsWithMacron} annuités</span>
                 <span>Début de carrière {careerStartAge} ans</span>
+                <Link href={{pathname:'/',query : { birthDate, careerStartAge, gender, numberOfChildren }}}>
+                    <a className="inlineButton">Retourner au formulaire</a>
+                </Link>
             </div>
         </div>
     )

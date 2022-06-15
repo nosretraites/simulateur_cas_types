@@ -1,0 +1,128 @@
+import { useEffect, useState } from 'react';
+import styles from '../styles/form.module.scss';
+import * as csv from "csvtojson"
+import fetch from 'isomorphic-unfetch';
+import TwitterButton from '../components/TwitterButton.js';
+import Cell from '../components/Cell.js';
+import ProfileCard from '../components/ProfileCard.js';
+import {useRouter} from 'next/router';
+
+export default function Resultats() {
+  const router = useRouter();
+  const {query, isReady} = router;
+    const [birthDate, setBirthDate] = useState(1969);
+  const [careerStartAge, setCareerStartAge] = useState(21);
+  const [gender, setGender] = useState(1);
+  const [numberOfChildren, setNumberOfChildren] = useState(0);
+  const [cellArray, setCellArray] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const goBackToForm = e => {
+    router.push({
+      pathname:'/',
+      query : { birthDate, careerStartAge, gender, numberOfChildren }
+    }) 
+  };
+
+  async function fetchDatas() {
+    const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${birthDate}.csv`;
+    const response = await fetch(apiUrl);
+
+    if (response.status === 200) {
+
+      const body = await response.text();
+
+      return csv().fromString(body).then((data) => {
+
+        const reducer = data.reduce((acc, val) => {
+          const {
+            Naissance,
+            Debut,
+            Sexe,
+            Enfants
+          } = val;
+
+          const birthDateArray = acc[Naissance] || {};
+          const careerStartArray = birthDateArray[Debut] || {};
+          const genderArray = careerStartArray[Sexe] || {};
+          const numberOfChildrenArray = genderArray[Enfants] || [];
+
+          numberOfChildrenArray.push(val);
+
+          genderArray[Enfants] = numberOfChildrenArray;
+          careerStartArray[Sexe] = genderArray
+          birthDateArray[Debut] = careerStartArray
+          acc[Naissance] = birthDateArray;
+          return acc
+        }, {});
+
+        const slice = reducer[birthDate] && reducer[birthDate][careerStartAge] && reducer[birthDate][careerStartAge][gender] && reducer[birthDate][careerStartAge][gender][numberOfChildren];
+
+        setCellArray(slice || [])
+        setIsLoaded(true)
+      });
+
+    }
+
+  }
+
+  const initFromQueryParams = ()=>{
+    const { birthDate, careerStartAge, gender, numberOfChildren } = query;
+
+    if(birthDate !== undefined){
+      setBirthDate(birthDate);
+    }
+    if(careerStartAge !== undefined){
+      setCareerStartAge(careerStartAge);
+    }
+    if(gender !== undefined){
+      setGender(gender);
+    }
+    if(numberOfChildren !== undefined){
+      setNumberOfChildren(numberOfChildren);
+    }
+  }
+
+  useEffect(() => {
+    if(isReady){
+      initFromQueryParams();
+      fetchDatas();
+    }
+  }, [query])  
+
+  useEffect(() => {
+    if(isReady){
+      initFromQueryParams();
+      fetchDatas();
+    }
+  }, [])  
+
+  if(isLoaded){
+    return (
+      <div>
+        <ProfileCard gender={gender} birthDate={birthDate} numberOfChildren={numberOfChildren} careerStartAge={careerStartAge} data={cellArray} />
+        <table width={"100%"}>
+          <thead>
+            <tr>
+              <th className={styles.Box}>La retraite à</th>
+              <th className={styles.Box}>Avec la loi actuelle</th>
+              <th className={styles.Box}>Avec le projet Macron</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cellArray.map((cellData, i) => (
+              <Cell data={cellData} key={i} />
+            ))}
+          </tbody>
+        </table>
+
+        <div className={styles.SharedIcon}>
+
+          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} gender={gender} />
+        </div>
+
+      </div>
+
+    )
+  }
+}
