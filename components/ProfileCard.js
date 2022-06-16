@@ -8,9 +8,7 @@ export default function ProfileCard({ selectedName, selectedPicto, gender, birth
     const [yearsWithBase, setYearWithBase] = useState(0);
 
     useEffect(() => {
-        const index = data.findIndex((element) => (element.Possible_Mac !== "0" || element.Possible_Mac));
-        const years = data[index];
-        setYearWithBase(years.AOD - careerStartAge);
+        setYearWithBase(data[0].DTP/4);
     }, []);
 
     return (
