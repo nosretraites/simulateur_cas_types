@@ -13,7 +13,7 @@ export default function TwitterButton(props) {
     function twitterContentGenerator() {
 
         let finalStr = "Âge | Avant | Après\n"
-        let string = `J'ai simulé la réforme des retraites Macron.\n${props.selectedName} ${props.numberOfChildren === "0" ? "🧓" : props.numberOfChildren === "1" ? "👩‍👧" : "👩‍👦‍👦"} né${props.gender === "2" ? "e" : ""} en ${props.birthDate}, début de carrière ${props.careerStartAge} ans:\n\n`
+        let string = `J'ai simulé la réforme des retraites Macron.\n ${props.numberOfChildren === "0" ? "🧓" : props.numberOfChildren === "1" ? "👩‍👧" : "👩‍👦‍👦"} né${props.gender === "2" ? "e" : ""} en ${props.birthDate}, début de carrière ${props.careerStartAge} ans:\n\n`
         let mention = "\n@nosretraites";
         for (let index = 0; index < props.result.length; index++) {
             const element = props.result[index];
