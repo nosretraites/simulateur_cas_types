@@ -41,7 +41,7 @@ export default function Resultats() {
     if (numberOfChildren !== undefined) {
       setNumberOfChildren(numberOfChildren);
     }
-    fetchDatas(birthDate);
+    fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren });
   }
 
   useEffect(() => {
@@ -50,8 +50,8 @@ export default function Resultats() {
       }
   }, [isReady, query]);
 
-  async function fetchDatas(date) {
-    const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${date.toString()}.csv`;
+  async function fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren }) {
+    const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${birthDate.toString()}.csv`;
     const response = await fetch(apiUrl);
 
     if (response.status === 200) {
@@ -82,7 +82,7 @@ export default function Resultats() {
           return acc
         }, {});
 
-        const slice = reducer[date] && reducer[date][careerStartAge] && reducer[date][careerStartAge][gender] && reducer[date][careerStartAge][gender][numberOfChildren];
+        const slice = reducer[birthDate] && reducer[birthDate][careerStartAge] && reducer[birthDate][careerStartAge][gender] && reducer[birthDate][careerStartAge][gender][numberOfChildren];
         setCellArray(slice || [])
       }).then(() => {
         setIsLoaded(true)

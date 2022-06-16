@@ -49,7 +49,7 @@ export default function Home() {
     if (isReady) {
       return initFromQueryParams();
     }
-  }, [query])
+  }, [isReady, query])
 
 
   return (
@@ -74,9 +74,9 @@ export default function Home() {
         {numberOfChildren > 0 ?
           <div className={styles.inputElement}>
             <label htmlFor="gender">Vous êtes le parent qui a accouché de vos enfants ou pris le plus long congé d&apos;adoption</label>
-            <select required onChange={handleGenderChange}>
-              <option value={1}>Non</option>
-              <option value={2}>Oui</option>
+            <select required value={gender} onChange={handleGenderChange}>
+              <option value="1">Non</option>
+              <option value="2">Oui</option>
             </select>
           </div>
           : ""}
