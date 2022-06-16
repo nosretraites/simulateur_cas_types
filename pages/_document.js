@@ -21,7 +21,7 @@ export default function Document() {
           <Main />
           <NextScript />
         </main>
-        <div className='twitter-div'>Suivez nous sur <a href='https://twitter.com/nosretraites' target="_blank" rel="noreferrer"><img src="twitter-icon.svg" width={"50px"} /></a></div>
+        <div className='twitter-div'><a href='https://twitter.com/nosretraites' target="_blank" rel="noreferrer">Suivez nous sur <img src="twitter-icon.svg" width={"50px"} /></a></div>
         <div className='twitter-div'><a href='https://blogs.mediapart.fr/collectif-nos-retraites/blog/110622/retraite-65-ans-quest-ce-qui-changerait-avec-le-projet-macron' target="_blank" rel="noreferrer">Retrouvez nos cas-types commentés sur notre blog médiapart</a></div>
       </body>
     </Html>
