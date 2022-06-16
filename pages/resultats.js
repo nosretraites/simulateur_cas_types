@@ -48,7 +48,7 @@ export default function Resultats() {
       if (isReady) {
         initFromQueryParams();
       }
-  }, [query]);
+  }, [isReady, query]);
 
   async function fetchDatas(date) {
     const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${date.toString()}.csv`;
