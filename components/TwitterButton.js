@@ -33,7 +33,7 @@ export default function TwitterButton(props) {
             
             //Cell Macron
             //finalStr += `${((parseFloat(element.Tauxplein_Mac) > 0 && parseFloat(element.Tauxplein_Mac) && !(parseFloat(element.Surcote_Mac) !== 0 ) && !(parseFloat(element.Decote_Mac) !== 0 ))) ? '✅🥳' : (parseFloat(element.Surcote_Mac) > 0 && parseFloat(element.Surcote_Mac)) ? "✅💰" : (parseFloat(element.Decote_Mac) > 0 && parseFloat(element.Decote_Mac)) ? "✅😑" : '❌😣'}`
-            finalStr += `${(!base.isPossible) ? '❌😣' : (macron.worst ? '✅=' : '✅📉')}`
+            finalStr += `${(!macron.isPossible) ? '❌😣' : (macron.worst ? '✅📉' : '✅=')}`
 
         }
 
