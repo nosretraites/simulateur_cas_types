@@ -13,7 +13,7 @@ export default function TwitterButton(props) {
     function twitterContentGenerator() {
 
         let finalStr = "Âge | Avant | Après\n"
-        let string = `J'ai simulé la réforme des retraites Macron.\n ${props.numberOfChildren === "0" ? "🧓" : props.numberOfChildren === "1" ? "👩‍👧" : "👩‍👦‍👦"} né${props.gender === "2" ? "e" : ""} en ${props.birthDate}, début de carrière ${props.careerStartAge} ans:\n\n`
+        let string = `J'ai simulé la réforme des retraites Macron.\n${props.numberOfChildren === "0" ? "🧓" : props.numberOfChildren === "1" ? "👩‍👧" : "👩‍👦‍👦"} né${props.gender === "2" ? "e" : ""} en ${props.birthDate}, début de carrière ${props.careerStartAge} ans:\n\n`
         let mention = "\n@nosretraites";
         for (let index = 0; index < props.result.length; index++) {
             const element = props.result[index];
@@ -44,7 +44,7 @@ export default function TwitterButton(props) {
         <div className={styles.SharedButton}>
             <span className={styles.SharedText}>Partagez vos résultats </span><a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterMessage)}`}
                 data-size="large" target="_blank" rel="noreferrer"><img src={'TwitterShareIcon.svg'} width={"100px"} alt={"Partage Twitter"} /></a>
-                <pre>{twitterMessage}</pre>
+            <pre>{twitterMessage}</pre>
         </div>
     )
 }
