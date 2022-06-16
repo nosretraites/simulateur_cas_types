@@ -29,12 +29,10 @@ export default function TwitterButton(props) {
             const { base, macron } = computeData(element);
             
             //Cell Base
-            finalStr += `${(!base.isPossible) ? '❌😣' : (base.isDecote) ? '✅😑' : (base.isFullTime ? '✅😏' : '✅😎')}|`;
+            finalStr += `${(!base.isPossible) ? '❌😣' : (base.isDecote) ? '✅😕' : (base.isFullTime ? '✅🙂' : '✅🙂')}|`;
             
             //Cell Macron
-            //finalStr += `${((parseFloat(element.Tauxplein_Mac) > 0 && parseFloat(element.Tauxplein_Mac) && !(parseFloat(element.Surcote_Mac) !== 0 ) && !(parseFloat(element.Decote_Mac) !== 0 ))) ? '✅🥳' : (parseFloat(element.Surcote_Mac) > 0 && parseFloat(element.Surcote_Mac)) ? "✅💰" : (parseFloat(element.Decote_Mac) > 0 && parseFloat(element.Decote_Mac)) ? "✅😑" : '❌😣'}`
-            finalStr += `${(!macron.isPossible) ? '❌😣' : (macron.worst ? '✅📉' : '✅=')}`
-
+            finalStr += `${(!macron.isPossible) ? (macron.worst ? '❌😨' : '❌😣') : ((base.isDecote) ? '✅😕' : ((macron.worst) ? '✅😑' : '✅🙂'))}`;
         }
 
         string += finalStr += mention += "\nhttps://nosretraites-simulateur-cas-types.netlify.app"

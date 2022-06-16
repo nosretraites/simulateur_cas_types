@@ -26,7 +26,7 @@ export default function computeData(element) {
       } else if (data.macron.isDecote > data.base.isDecote) {
           worst = true
       } else if (data.macron.isFullTime && data.base.isFullTime) {
-          if (data.macron.isSurcote < data.macron.isSurcote) {
+          if (data.macron.isSurcote < data.base.isSurcote) {
             worst = true
         }
       }
