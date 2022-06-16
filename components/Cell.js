@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./Cell.module.scss";
+import computeData from './computeData';
 
 export default function Cell({ data }) {
 
@@ -14,20 +15,7 @@ export default function Cell({ data }) {
     const surcoteMessage = (value) => <span className={styles.GreenMark}>✅ surcote +{value}%</span>;
     setAge(`${data.AgeLiq} ans`)
 
-    const dataToDisplay = {
-      base: {
-        isPossible: parseFloat(data.Possible) ? true : false,
-        isFullTime: parseFloat(data.Tauxplein) ? true : false,
-        isDecote: parseFloat(data.Decote),
-        isSurcote: parseFloat(data.Surcote),
-      },
-      macron: {
-        isPossible: parseFloat(data.Possible_Mac) ? true : false,
-        isFullTime: parseFloat(data.Tauxplein_Mac) ? true : false,
-        isDecote: parseFloat(data.Decote_Mac),
-        isSurcote: parseFloat(data.Surcote_Mac),
-      }
-    }
+    const dataToDisplay = computeData(data);
 
     if (dataToDisplay.macron.isPossible) {
       if (!dataToDisplay.macron.isFullTime) {
