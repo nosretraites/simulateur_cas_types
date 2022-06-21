@@ -41,7 +41,7 @@ export default function Resultats() {
     if (numberOfChildren !== undefined) {
       setNumberOfChildren(numberOfChildren);
     }
-    fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren });
+    // fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren });
   }
 
   useEffect(() => {
@@ -91,6 +91,11 @@ export default function Resultats() {
 
     }
 
+  }
+
+  function computeResults(){
+    // setCellArray()
+    // setIsLoaded(true)
   }
 
 
