@@ -7,6 +7,7 @@ import Cell from '../components/Cell.js';
 import ProfileCard from '../components/ProfileCard.js';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { computeSituation } from '../utils/calculationUtils';
 
 const listOfNamesMan = ["Nathan", "Lucas", "Léo", "Gabriel", "Timéo", "Enzo", "Louis", "Raphaël", "Arthur", "Hugo", "Jules", "Ethan", "Adam", "Nolan", "Tom", "Noah", "Théo", "Sacha", "Maël", "Mathis", "Abdela", "Mohamed", "Yassin", "Jean-Karim", "Björn"];
 const listOfNamesWoman = ["Emma", "Lola", "Chloé", "Inès", "Léa", "Manon", "Jade", "Louise", "Léna", "Lina", "Zoé", "Lilou", "Camille", "Sarah", "Eva", "Alice", "Maëlys", "Louna", "Romane", "Juliette", "Sophie", "Inaya", "Aliya", "Noûr", "Elodie"];
@@ -42,6 +43,8 @@ export default function Resultats() {
       setNumberOfChildren(numberOfChildren);
     }
     // fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren });
+    computeResults();
+    
   }
 
   useEffect(() => {
@@ -94,8 +97,9 @@ export default function Resultats() {
   }
 
   function computeResults(){
-    // setCellArray()
-    // setIsLoaded(true)
+    const results = computeSituation( {birthDate, careerStartAge, gender, numberOfChildren} );
+    setCellArray(results);
+    setIsLoaded(true)
   }
 
 
