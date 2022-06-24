@@ -18,17 +18,17 @@ export default function Cell({ data }) {
     const dataToDisplay = computeData(data);
 
     if (dataToDisplay.macron.isPossible) {
-      if (!dataToDisplay.macron.isFullTime) {
-        if (dataToDisplay.macron.isDecote !== 0 && dataToDisplay.macron.isDecote) {
-          setDisplayMacronMessage(decoteMessage(dataToDisplay.macron.isDecote))
+      if (!dataToDisplay.macron.isTauxPlein) {
+        if (dataToDisplay.macron.decote !== 0 && dataToDisplay.macron.decote) {
+          setDisplayMacronMessage(decoteMessage(dataToDisplay.macron.decote))
         }
       }
 
-      if (dataToDisplay.macron.isFullTime) {
+      if (dataToDisplay.macron.isTauxPlein) {
         setDisplayMacronMessage(allowRetirment)
 
-        if (dataToDisplay.macron.isSurcote !== 0 && dataToDisplay.macron.isSurcote) {
-          setDisplayMacronMessage(surcoteMessage(dataToDisplay.macron.isSurcote))
+        if (dataToDisplay.macron.surcote !== 0 && dataToDisplay.macron.surcote) {
+          setDisplayMacronMessage(surcoteMessage(dataToDisplay.macron.surcote))
         }
       }
     } else {
@@ -36,17 +36,17 @@ export default function Cell({ data }) {
     }
 
     if (dataToDisplay.base.isPossible) {
-      if (!dataToDisplay.base.isFullTime) {
-        if (dataToDisplay.base.isDecote !== 0 && dataToDisplay.base.isDecote) {
-          setDisplayBaseMessage(decoteMessage(dataToDisplay.base.isDecote))
+      if (!dataToDisplay.base.isTauxPlein) {
+        if (dataToDisplay.base.decote !== 0 && dataToDisplay.base.decote) {
+          setDisplayBaseMessage(decoteMessage(dataToDisplay.base.decote))
         }
       }
 
-      if (dataToDisplay.base.isFullTime) {
+      if (dataToDisplay.base.isTauxPlein) {
         setDisplayBaseMessage(allowRetirment)
 
-        if (dataToDisplay.base.isSurcote !== 0 && dataToDisplay.base.isSurcote) {
-          setDisplayBaseMessage(surcoteMessage(dataToDisplay.base.isSurcote))
+        if (dataToDisplay.base.surcote !== 0 && dataToDisplay.base.surcote) {
+          setDisplayBaseMessage(surcoteMessage(dataToDisplay.base.surcote))
         }
       }
     } else {

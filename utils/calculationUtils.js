@@ -5,10 +5,10 @@ export function computeSituation(userInputs) {
     // MANQUE CES ARGUMENTS
     // Public
     // Interrupt
-    // Enfants_pre2004
-    const interruptedCareer = 0;
-    const publicCareer = 0;
-    const Enfants_pre2004 = 0;
+    // countOfChildrenBefore2004
+    const isInterruptedCareer = 0;
+    const isPublicCareer = 0;
+    const countOfChildrenBefore2004 = 0;
 
     const situationArray = [];
 
@@ -23,7 +23,7 @@ export function computeSituation(userInputs) {
 
 
     // Retour les possibilités de retraite pour les deux législations (actuel & Macron) pour un age de départ donné
-    const returnResultsForRetirementAge = (AgeLiquid) => {
+    const returnResultsForRetirementAge = (retirementAge) => {
         // VARIABLES INTERMÉDIAIRES DE CALCUL
         // * DC: durée de cotisation
         // * DV: durée d'assurance validée  qui peut être supérieure à DC en cas de majoration
@@ -32,7 +32,7 @@ export function computeSituation(userInputs) {
 
         // La durée cotisée est égal à l'âge de liquidation moins l'âge de début de carrière moins les années d'interruption (sans aucune validation)
         // ATTENTION on multiplie par 4 ici pour exprimer les durées en trimestres (alors que les âges sont en années)
-        DC = (AgeLiquid - careerStartAge - interruptedCareer) * 4;
+        DC = (retirementAge - careerStartAge - isInterruptedCareer) * 4;
         DV = DC;
 
         // *Le départ pour carrière longue est autorisé si l'age de début de carrière est de 19 ans et si la durée de cotisation est supérieure à la durée pour taux plein
@@ -42,11 +42,11 @@ export function computeSituation(userInputs) {
         // Privé et Public
         // Dans le privé on donne 8 trimestres de validation suplémentaire par enfants, mais il ne compte que si la durée validée est inférieure ou égale à DTP. Dans le public c'est deux trimestres par enfants nés après 2004
         if (gender = 2 && DV <= parameters.DTP) {
-            if (publicCareer = 0) {
+            if (isPublicCareer = 0) {
                 DV = DC + (8 * numberOfChildren);
             }
             else {
-                DV = DC + (2 * (numberOfChildren - Enfants_pre2004));
+                DV = DC + (2 * (numberOfChildren - countOfChildrenBefore2004));
             }
         }
 
@@ -56,63 +56,57 @@ export function computeSituation(userInputs) {
         }
 
         // Ensuite on donne pour chaque âge une réponse pour les 4 variables de sorties, dans les deux législations
-        let Possible, Tauxplein, Decote, Surcote = 0;
-        let Possible_Mac, Tauxplein_Mac, Decote_Mac, Surcote_Mac = 0;
         // Autorisé à partir si l'âge de liquidation est supérieur à l'AOD ou si carrière longue et âge supérieur à l'âge carrière longue avec un cas spé pour carrière démarrée avant 16 ans
 
         const computeForLegislation = (DC, DV, CL, isCurrentLegislation = false) => {
-            let [Possible, Tauxplein, Decote, Surcote] = Array(4).fill(0);;
+            let isPossible = false;
+            let isTauxPlein = false;
+            let decote = 0;
+            let surcote = 0;
 
             const suffix = isCurrentLegislation ? 'now' : 'mac';
 
             // Décote
-            if (AgeLiquid < parameters[`AOD_${suffix}`]) {
-                Possible = 0;
+            if (retirementAge < parameters[`AOD_${suffix}`]) {
+                isPossible = false;
             }
             else {
-                Possible = 1;
+                isPossible = true;
             }
-            if (CL === 1 && AgeLiquid >= parameters[`AgeCL_${suffix}`]) {
-                Possible = 1;
+            if (CL === 1 && retirementAge >= parameters[`AgeCL_${suffix}`]) {
+                isPossible = true;
             }
-            if (CL === 1 && careerStartAge < 16 && AgeLiquid > parameters[`AgeCL_${suffix}`] - 1) {
-                Possible = 1;
+            if (CL === 1 && careerStartAge < 16 && retirementAge > parameters[`AgeCL_${suffix}`] - 1) {
+                isPossible = true;
             }
             // Décote
-            if (Possible) {
-                Decote = Math.min(parameters.DTP - DV, (parameters.ATP - AgeLiquid) * 4, 12);
-                if (Decote < 0) Decote = 0;
+            if (isPossible) {
+                decote = Math.min(parameters.DTP - DV, (parameters.ATP - retirementAge) * 4, 12);
+                if (decote < 0) decote = 0;
             }
 
-            // Surcote
-            if (Possible) {
-                Surcote = Math.min(DC - parameters.DTP, (AgeLiquid - parameters[`AOD_${suffix}`]) * 4);
-                if (Surcote < 0) Surcote = 0;
+            // surcote
+            if (isPossible) {
+                surcote = Math.min(DC - parameters.DTP, (retirementAge - parameters[`AOD_${suffix}`]) * 4);
+                if (surcote < 0) surcote = 0;
             }
 
             // Taux plein
-            if (Possible) {
-                if (Decote === 0 ) {
-                    Tauxplein = 1;
+            if (isPossible) {
+                if (decote === 0) {
+                    isTauxPlein = true;
                 }
             }
 
-            return { Possible, Tauxplein, Decote, Surcote };
+            return { isPossible, isTauxPlein, decote, surcote };
 
         }
 
-        // Calcul des résultats pour les 2 législations
-        const results_now = computeForLegislation(DC, DV, CL, true);
-        const results_Mac = computeForLegislation(DC, DV, CL, false);
 
         const returnObj = {};
-
-        for (let variableKey in results_now) {
-            returnObj[`${variableKey}`] = results_now[variableKey];
-        }
-        for (let variableKey in results_Mac) {
-            returnObj[`${variableKey}_Mac`] = results_Mac[variableKey];
-        }
+        // Calcul des résultats pour les 2 législations
+        returnObj.base = computeForLegislation(DC, DV, CL, true);
+        returnObj.macron = computeForLegislation(DC, DV, CL, false);
 
         return returnObj;
     }
