@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/form.module.scss';
-import * as csv from "csvtojson"
-import fetch from 'isomorphic-unfetch';
 import TwitterButton from '../components/TwitterButton.js';
 import Cell from '../components/Cell.js';
 import ProfileCard from '../components/ProfileCard.js';
@@ -51,49 +49,6 @@ export default function Resultats() {
   useEffect(() => {
     computeResults();  
 }, [birthDate, careerStartAge, gender, numberOfChildren]);
-
-  async function fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren }) {
-    const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${birthDate.toString()}.csv`;
-    const response = await fetch(apiUrl);
-
-    if (response.status === 200) {
-
-      const body = await response.text();
-
-      return csv().fromString(body).then((data) => {
-
-        const reducer = data.reduce((acc, val) => {
-          const {
-            Naissance,
-            Debut,
-            Sexe,
-            Enfants
-          } = val;
-
-          const birthDateArray = acc[Naissance] || {};
-          const careerStartArray = birthDateArray[Debut] || {};
-          const genderArray = careerStartArray[Sexe] || {};
-          const numberOfChildrenArray = genderArray[Enfants] || [];
-
-          numberOfChildrenArray.push(val);
-
-          genderArray[Enfants] = numberOfChildrenArray;
-          careerStartArray[Sexe] = genderArray
-          birthDateArray[Debut] = careerStartArray
-          acc[Naissance] = birthDateArray;
-          return acc
-        }, {});
-
-        const slice = reducer[birthDate] && reducer[birthDate][careerStartAge] && reducer[birthDate][careerStartAge][gender] && reducer[birthDate][careerStartAge][gender][numberOfChildren];
-        setCellArray(slice || [])
-      }).then(() => {
-        setIsLoaded(true)
-
-      });
-
-    }
-
-  }
 
   function computeResults(){
     const results = computeSituation( {birthDate, careerStartAge, gender, numberOfChildren} );

@@ -8,7 +8,7 @@ export default function TwitterButton(props) {
 
     useEffect(() => {
         twitterContentGenerator()
-    }, [])
+    }, [props])
 
     function twitterContentGenerator() {
 

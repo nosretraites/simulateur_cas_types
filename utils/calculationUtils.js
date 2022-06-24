@@ -93,7 +93,7 @@ export function computeSituation(userInputs) {
 
             // Taux plein
             if (isPossible) {
-                if (decote === 0) {
+                if (decote === 0 && surcote === 0) {
                     isTauxPlein = true;
                 }
             }
