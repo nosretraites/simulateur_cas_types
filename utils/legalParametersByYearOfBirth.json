@@ -158,5 +158,37 @@
         "DTP": 170,
         "AOD_mac": 65,
         "AgeCL_mac": 62
+    },
+    "1970": {
+        "AOD_now": 62,
+        "AgeCL_now": 62,
+        "ATP": 67,
+        "DTP": 171,
+        "AOD_mac": 65,
+        "AgeCL_mac": 62
+    },
+    "1971": {
+        "AOD_now": 62,
+        "AgeCL_now": 62,
+        "ATP": 67,
+        "DTP": 171,
+        "AOD_mac": 65,
+        "AgeCL_mac": 62
+    },
+    "1972": {
+        "AOD_now": 62,
+        "AgeCL_now": 62,
+        "ATP": 67,
+        "DTP": 171,
+        "AOD_mac": 65,
+        "AgeCL_mac": 62
+    },
+    "1973": {
+        "AOD_now": 62,
+        "AgeCL_now": 62,
+        "ATP": 67,
+        "DTP": 172,
+        "AOD_mac": 65,
+        "AgeCL_mac": 62
     }
 }

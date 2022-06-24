@@ -13,7 +13,7 @@ export function computeSituation(userInputs) {
     const situationArray = [];
 
     // Au dessus d'une année de naissance 1969, toutes les valeurs sont similaires
-    const referenceBirthDate = birthDate >= 1970 ? 1969 : birthDate;
+    const referenceBirthDate = birthDate >= 1974 ? 1973 : birthDate;
 
     // On ne garde que les paramètres liés à l'année de naissance
     const parameters = legalParameters[referenceBirthDate];
@@ -21,6 +21,8 @@ export function computeSituation(userInputs) {
     //On crée un tableau avec tous les âges de liquidations possibles de 58 à 67
     const possibleRetirementAges = [60, 61, 62, 63, 64, 65, 66, 67];
 
+
+    // Retour les possibilités de retraite pour les deux législations (actuel & Macron) pour un age de départ donné
     const returnResultsForRetirementAge = (AgeLiquid) => {
         // VARIABLES INTERMÉDIAIRES DE CALCUL
         // * DC: durée de cotisation
@@ -98,6 +100,8 @@ export function computeSituation(userInputs) {
             return { Possible, Tauxplein, Decote, Surcote };
 
         }
+
+        // Calcul des résultats pour les 2 législations
         const results_now = computeForLegislation(DC, DV, CL, true);
         const results_Mac = computeForLegislation(DC, DV, CL, false);
 

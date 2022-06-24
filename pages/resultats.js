@@ -29,22 +29,18 @@ export default function Resultats() {
 
 
   const initFromQueryParams = () => {
-    const { birthDate, careerStartAge, gender, numberOfChildren } = query;
-    if (birthDate !== undefined) {
-      setBirthDate(birthDate);
+    if (query.birthDate !== undefined) {
+      setBirthDate(query.birthDate);
     }
-    if (careerStartAge !== undefined) {
-      setCareerStartAge(careerStartAge);
+    if (query.careerStartAge !== undefined) {
+      setCareerStartAge(query.careerStartAge);
     }
-    if (gender !== undefined) {
-      setGender(gender);
+    if (query.gender !== undefined) {
+      setGender(query.gender);
     }
-    if (numberOfChildren !== undefined) {
-      setNumberOfChildren(numberOfChildren);
+    if (query.numberOfChildren !== undefined) {
+      setNumberOfChildren(query.numberOfChildren);
     }
-    // fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren });
-    computeResults();
-    
   }
 
   useEffect(() => {
@@ -52,6 +48,9 @@ export default function Resultats() {
         initFromQueryParams();
       }
   }, [isReady, query]);
+  useEffect(() => {
+    computeResults();  
+}, [birthDate, careerStartAge, gender, numberOfChildren]);
 
   async function fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren }) {
     const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${birthDate.toString()}.csv`;
