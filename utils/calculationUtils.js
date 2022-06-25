@@ -1,13 +1,14 @@
 import legalParameters from './legalParametersByYearOfBirth.json';
 
 export function computeSituation(userInputs) {
-    const { birthDate, careerStartAge, gender, numberOfChildren } = userInputs;
+    let { birthDate, careerStartAge, gender, numberOfChildren } = userInputs;
+    
     // MANQUE CES ARGUMENTS
     // Public
     // Interrupt
     // countOfChildrenBefore2004
     const isInterruptedCareer = 0;
-    const isPublicCareer = 0;
+    const isPublicCareer = true;
     const countOfChildrenBefore2004 = 0;
 
     const situationArray = [];
@@ -36,13 +37,13 @@ export function computeSituation(userInputs) {
         DV = DC;
 
         // *Le départ pour carrière longue est autorisé si l'age de début de carrière est de 19 ans et si la durée de cotisation est supérieure à la durée pour taux plein
-        CL = careerStartAge < 20 && DC >= parameters.DTP ? 1 : 0;
+        CL = careerStartAge < 20 && DC >= parameters.DTP;
 
         // CALCUL DE LA MAJORATION DE DURÉE D'ASSURANCE POUR ENFANT
         // Privé et Public
         // Dans le privé on donne 8 trimestres de validation suplémentaire par enfants, mais il ne compte que si la durée validée est inférieure ou égale à DTP. Dans le public c'est deux trimestres par enfants nés après 2004
-        if (gender = 2 && DV <= parameters.DTP) {
-            if (isPublicCareer = 0) {
+        if (gender === 2 && DV <= parameters.DTP) {
+            if (isPublicCareer) {
                 DV = DC + (8 * numberOfChildren);
             }
             else {
@@ -58,7 +59,7 @@ export function computeSituation(userInputs) {
         // Ensuite on donne pour chaque âge une réponse pour les 4 variables de sorties, dans les deux législations
         // Autorisé à partir si l'âge de liquidation est supérieur à l'AOD ou si carrière longue et âge supérieur à l'âge carrière longue avec un cas spé pour carrière démarrée avant 16 ans
 
-        const computeForLegislation = (DC, DV, CL, isCurrentLegislation = false) => {
+        const computeForLegislation = (isCurrentLegislation = false) => {
             let isPossible = false;
             let isTauxPlein = false;
             let decote = 0;
@@ -66,17 +67,17 @@ export function computeSituation(userInputs) {
 
             const suffix = isCurrentLegislation ? 'now' : 'mac';
 
-            // Décote
+            // isPossible
             if (retirementAge < parameters[`AOD_${suffix}`]) {
                 isPossible = false;
             }
             else {
                 isPossible = true;
             }
-            if (CL === 1 && retirementAge >= parameters[`AgeCL_${suffix}`]) {
+            if (CL && retirementAge >= parameters[`AgeCL_${suffix}`]) {
                 isPossible = true;
             }
-            if (CL === 1 && careerStartAge < 16 && retirementAge > parameters[`AgeCL_${suffix}`] - 1) {
+            if (CL && careerStartAge < 16 && retirementAge > parameters[`AgeCL_${suffix}`] - 1) {
                 isPossible = true;
             }
             // Décote
@@ -105,8 +106,8 @@ export function computeSituation(userInputs) {
 
         const returnObj = {};
         // Calcul des résultats pour les 2 législations
-        returnObj.base = computeForLegislation(DC, DV, CL, true);
-        returnObj.macron = computeForLegislation(DC, DV, CL, false);
+        returnObj.base = computeForLegislation(true);
+        returnObj.macron = computeForLegislation( false);
 
         return returnObj;
     }

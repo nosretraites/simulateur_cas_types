@@ -28,16 +28,16 @@ export default function Resultats() {
 
   const initFromQueryParams = () => {
     if (query.birthDate !== undefined) {
-      setBirthDate(query.birthDate);
+      setBirthDate(Number(query.birthDate));
     }
     if (query.careerStartAge !== undefined) {
-      setCareerStartAge(query.careerStartAge);
+      setCareerStartAge(Number(query.careerStartAge));
     }
     if (query.gender !== undefined) {
-      setGender(query.gender);
+      setGender(Number(query.gender));
     }
     if (query.numberOfChildren !== undefined) {
-      setNumberOfChildren(query.numberOfChildren);
+      setNumberOfChildren(Number(query.numberOfChildren));
     }
   }
 
