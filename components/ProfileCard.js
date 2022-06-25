@@ -9,7 +9,7 @@ export default function ProfileCard({ selectedName, selectedPicto, gender, birth
 
     useEffect(() => {
         setYearWithBase(data[0].DTP/4);
-    }, []);
+    }, [selectedName, selectedPicto, gender, birthDate, numberOfChildren, careerStartAge, data]);
 
     return (
         <div className={styles.Container}>
