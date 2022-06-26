@@ -58,7 +58,7 @@ export default function Resultats() {
 
 
   function pickAWinner() {
-    if (gender === "1") {
+    if (gender === 1) {
       let nameNumberMan = Math.floor(Math.random() * listOfNamesMan.length);
       setSelectedName(listOfNamesMan[nameNumberMan]);
       const numberPicto = Math.floor(Math.random() * listOfPictosMan.length);
