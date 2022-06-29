@@ -1,5 +1,6 @@
 {
     "1950": {
+        "Naissance": 1950,
         "AOD_now": 60,
         "AgeCL_now": 60,
         "ATP": 65,
@@ -8,6 +9,7 @@
         "AgeCL_mac": 60
     },
     "1951": {
+        "Naissance": 1951,
         "AOD_now": 60.3,
         "AgeCL_now": 60,
         "ATP": 65.3,
@@ -16,6 +18,7 @@
         "AgeCL_mac": 60
     },
     "1952": {
+        "Naissance": 1952,
         "AOD_now": 60.8,
         "AgeCL_now": 60,
         "ATP": 65.8,
@@ -24,6 +27,7 @@
         "AgeCL_mac": 60
     },
     "1953": {
+        "Naissance": 1953,
         "AOD_now": 61.2,
         "AgeCL_now": 60,
         "ATP": 66.2,
@@ -32,6 +36,7 @@
         "AgeCL_mac": 60
     },
     "1954": {
+        "Naissance": 1954,
         "AOD_now": 61.6,
         "AgeCL_now": 60,
         "ATP": 66.6,
@@ -40,6 +45,7 @@
         "AgeCL_mac": 60
     },
     "1955": {
+        "Naissance": 1955,
         "AOD_now": 62,
         "AgeCL_now": 60,
         "ATP": 67,
@@ -48,6 +54,7 @@
         "AgeCL_mac": 60
     },
     "1956": {
+        "Naissance": 1956,
         "AOD_now": 62,
         "AgeCL_now": 60,
         "ATP": 67,
@@ -56,6 +63,7 @@
         "AgeCL_mac": 60
     },
     "1957": {
+        "Naissance": 1957,
         "AOD_now": 62,
         "AgeCL_now": 60,
         "ATP": 67,
@@ -64,6 +72,7 @@
         "AgeCL_mac": 60
     },
     "1958": {
+        "Naissance": 1958,
         "AOD_now": 62,
         "AgeCL_now": 60,
         "ATP": 67,
@@ -72,6 +81,7 @@
         "AgeCL_mac": 60
     },
     "1959": {
+        "Naissance": 1959,
         "AOD_now": 62,
         "AgeCL_now": 60,
         "ATP": 67,
@@ -80,6 +90,7 @@
         "AgeCL_mac": 60
     },
     "1960": {
+        "Naissance": 1960,
         "AOD_now": 62,
         "AgeCL_now": 60,
         "ATP": 67,
@@ -88,106 +99,92 @@
         "AgeCL_mac": 60
     },
     "1961": {
+        "Naissance": 1961,
         "AOD_now": 62,
-        "AgeCL_now": 60.3,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 168,
         "AOD_mac": 62.33,
         "AgeCL_mac": 60.25
     },
     "1962": {
+        "Naissance": 1962,
         "AOD_now": 62,
-        "AgeCL_now": 60.5,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 168,
         "AOD_mac": 62.67,
         "AgeCL_mac": 60.5
     },
     "1963": {
+        "Naissance": 1963,
         "AOD_now": 62,
-        "AgeCL_now": 60.8,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 168,
         "AOD_mac": 63,
         "AgeCL_mac": 60.75
     },
     "1964": {
+        "Naissance": 1964,
         "AOD_now": 62,
-        "AgeCL_now": 61,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 169,
         "AOD_mac": 63.33,
         "AgeCL_mac": 61
     },
     "1965": {
+        "Naissance": 1965,
         "AOD_now": 62,
-        "AgeCL_now": 61.3,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 169,
         "AOD_mac": 63.67,
         "AgeCL_mac": 61.25
     },
     "1966": {
+        "Naissance": 1966,
         "AOD_now": 62,
-        "AgeCL_now": 61.5,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 169,
         "AOD_mac": 64,
         "AgeCL_mac": 61.5
     },
     "1967": {
+        "Naissance": 1967,
         "AOD_now": 62,
-        "AgeCL_now": 61.8,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 170,
         "AOD_mac": 64.33,
         "AgeCL_mac": 61.75
     },
     "1968": {
+        "Naissance": 1968,
         "AOD_now": 62,
-        "AgeCL_now": 62,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 170,
         "AOD_mac": 64.67,
         "AgeCL_mac": 62
     },
     "1969": {
+        "Naissance": 1969,
         "AOD_now": 62,
-        "AgeCL_now": 62,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 170,
         "AOD_mac": 65,
         "AgeCL_mac": 62
     },
     "1970": {
+        "Naissance": 1970,
         "AOD_now": 62,
-        "AgeCL_now": 62,
+        "AgeCL_now": 60,
         "ATP": 67,
         "DTP": 171,
-        "AOD_mac": 65,
-        "AgeCL_mac": 62
-    },
-    "1971": {
-        "AOD_now": 62,
-        "AgeCL_now": 62,
-        "ATP": 67,
-        "DTP": 171,
-        "AOD_mac": 65,
-        "AgeCL_mac": 62
-    },
-    "1972": {
-        "AOD_now": 62,
-        "AgeCL_now": 62,
-        "ATP": 67,
-        "DTP": 171,
-        "AOD_mac": 65,
-        "AgeCL_mac": 62
-    },
-    "1973": {
-        "AOD_now": 62,
-        "AgeCL_now": 62,
-        "ATP": 67,
-        "DTP": 172,
         "AOD_mac": 65,
         "AgeCL_mac": 62
     }
