@@ -18,8 +18,12 @@ export default function Resultats() {
   const { query, isReady } = router;
   const [birthDate, setBirthDate] = useState(1969);
   const [careerStartAge, setCareerStartAge] = useState(21);
-  const [gender, setGender] = useState(1);
   const [numberOfChildren, setNumberOfChildren] = useState(0);
+  const [isMainParent, setMainParent] = useState(false);
+  const [yearOfCareerInterruption, setYearOfCareerInterruption] = useState(0);
+  const [isPublicCareer, setIsPublicCareer] = useState('');
+  const [countOfChildrenBefore2004, setCountOfChildrenBefore2004] = useState(0);
+
   const [cellArray, setCellArray] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedName, setSelectedName] = useState("");
@@ -33,32 +37,49 @@ export default function Resultats() {
     if (query.careerStartAge !== undefined) {
       setCareerStartAge(Number(query.careerStartAge));
     }
-    if (query.gender !== undefined) {
-      setGender(Number(query.gender));
+    if (query.numberOfChildren !== undefined) {
+      setNumberOfChildren(Number(query.numberOfChildren));
+    }
+    if (query.isMainParent !== undefined) {
+      setMainParent(Boolean(query.isMainParent));
     }
     if (query.numberOfChildren !== undefined) {
       setNumberOfChildren(Number(query.numberOfChildren));
     }
+
+    if (query.yearOfCareerInterruption !== undefined) {
+      setYearOfCareerInterruption(Number(query.yearOfCareerInterruption));
+    }
+
+    if (query.isPublicCareer !== undefined) {
+      setIsPublicCareer(Boolean(query.isPublicCareer));
+    }
+
+    if (query.countOfChildrenBefore2004 !== undefined) {
+      setCountOfChildrenBefore2004(Number(query.countOfChildrenBefore2004));
+    }
   }
 
   useEffect(() => {
-      if (isReady) {
-        initFromQueryParams();
-      }
+    if (isReady) {
+      initFromQueryParams();
+    }
   }, [isReady, query]);
   useEffect(() => {
-    computeResults();  
-}, [birthDate, careerStartAge, gender, numberOfChildren]);
+    if (isReady) {
+      computeResults();
+    }
+  }, [isReady, birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004]);
 
-  function computeResults(){
-    const results = computeSituation( {birthDate, careerStartAge, gender, numberOfChildren} );
+  function computeResults() {
+    const results = computeSituation({ birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004 });
     setCellArray(results);
     setIsLoaded(true)
   }
 
 
   function pickAWinner() {
-    if (gender === 1) {
+    if (!isMainParent) {
       let nameNumberMan = Math.floor(Math.random() * listOfNamesMan.length);
       setSelectedName(listOfNamesMan[nameNumberMan]);
       const numberPicto = Math.floor(Math.random() * listOfPictosMan.length);
@@ -73,12 +94,21 @@ export default function Resultats() {
 
   useEffect(() => {
     pickAWinner();
-  }, [gender])
+  }, [isMainParent])
 
   if (isLoaded) {
     return (
       <div>
-       <ProfileCard selectedName={selectedName} selectedPicto={selectedPicto} gender={gender} birthDate={query.birthDate} numberOfChildren={numberOfChildren} careerStartAge={careerStartAge} data={cellArray} />
+        <ProfileCard selectedName={selectedName}
+          selectedPicto={selectedPicto}
+          isMainParent={isMainParent}
+          birthDate={birthDate}
+          numberOfChildren={numberOfChildren}
+          careerStartAge={careerStartAge}
+          yearOfCareerInterruption={yearOfCareerInterruption}
+          isPublicCareer={isPublicCareer}
+          countOfChildrenBefore2004={countOfChildrenBefore2004}
+          data={cellArray} />
         <table width={"100%"}>
           <thead>
             <tr>
@@ -99,7 +129,7 @@ export default function Resultats() {
 
         <div className={styles.SharedIcon}>
 
-          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} gender={gender} selectedName={selectedName} numberOfChildren={numberOfChildren}/>
+          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} isMainParent={isMainParent} selectedName={selectedName} numberOfChildren={numberOfChildren} />
         </div>
 
       </div>

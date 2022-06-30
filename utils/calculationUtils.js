@@ -1,15 +1,15 @@
 import legalParameters from './legalParametersByYearOfBirth.json';
 
 export function computeSituation(userInputs) {
-    let { birthDate, careerStartAge, gender, numberOfChildren } = userInputs;
+    let { birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004} = userInputs;
     
     // MANQUE CES ARGUMENTS
     // Public
     // Interrupt
     // countOfChildrenBefore2004
-    const isInterruptedCareer = 0;
-    const isPublicCareer = true;
-    const countOfChildrenBefore2004 = 0;
+    // const yearOfCareerInterruption = 0;
+    // const isPublicCareer = true;
+    // const countOfChildrenBefore2004 = 0;
 
     const situationArray = [];
 
@@ -33,7 +33,7 @@ export function computeSituation(userInputs) {
 
         // La durée cotisée est égal à l'âge de liquidation moins l'âge de début de carrière moins les années d'interruption (sans aucune validation)
         // ATTENTION on multiplie par 4 ici pour exprimer les durées en trimestres (alors que les âges sont en années)
-        DC = (retirementAge - careerStartAge - isInterruptedCareer) * 4;
+        DC = (retirementAge - careerStartAge - yearOfCareerInterruption) * 4;
         DV = DC;
 
         // *Le départ pour carrière longue est autorisé si l'age de début de carrière est de 19 ans et si la durée de cotisation est supérieure à la durée pour taux plein
@@ -42,7 +42,7 @@ export function computeSituation(userInputs) {
         // CALCUL DE LA MAJORATION DE DURÉE D'ASSURANCE POUR ENFANT
         // Privé et Public
         // Dans le privé on donne 8 trimestres de validation suplémentaire par enfants, mais il ne compte que si la durée validée est inférieure ou égale à DTP. Dans le public c'est deux trimestres par enfants nés après 2004
-        if (gender === 2 && DV <= parameters.DTP) {
+        if (isMainParent && DV <= parameters.DTP) {
             if (isPublicCareer) {
                 DV = DC + (8 * numberOfChildren);
             }
