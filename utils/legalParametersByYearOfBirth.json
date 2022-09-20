@@ -187,5 +187,32 @@
         "DTP": 171,
         "AOD_mac": 65,
         "AgeCL_mac": 62
+    },
+    "1971": {
+        "Naissance": 1970,
+        "AOD_now": 62,
+        "AgeCL_now": 60,
+        "ATP": 67,
+        "DTP": 171,
+        "AOD_mac": 65,
+        "AgeCL_mac": 62
+    },
+    "1972": {
+        "Naissance": 1970,
+        "AOD_now": 62,
+        "AgeCL_now": 60,
+        "ATP": 67,
+        "DTP": 171,
+        "AOD_mac": 65,
+        "AgeCL_mac": 62
+    },
+    "1973": {
+        "Naissance": 1970,
+        "AOD_now": 62,
+        "AgeCL_now": 60,
+        "ATP": 67,
+        "DTP": 172,
+        "AOD_mac": 65,
+        "AgeCL_mac": 62
     }
 }
