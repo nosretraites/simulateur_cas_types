@@ -36,7 +36,6 @@ export default function Home() {
 
   const initFromQueryParams = () => {
     const { birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004 } = query;
-    console.log('query', query);
 
     if (birthDate !== undefined) {
       setBirthDate(birthDate);
@@ -108,7 +107,7 @@ export default function Home() {
       </div>
 
       <div className={styles.inputElement}>
-        <label htmlFor="yearOfCareerInterruption">Nombre d&lsquo;années d&lsquo;interruption de carrière</label>
+        <label htmlFor="yearOfCareerInterruption">Nombre d&lsquo;années non validées</label>
         <input id="yearOfCareerInterruption" required min="0" max="40" type="number" value={yearOfCareerInterruption} onChange={handleCareerInterruptionChange} />
       </div>
 
@@ -128,7 +127,7 @@ export default function Home() {
         : ""}
       {isMainParent === 'true' ?
         <fieldset className={styles.fieldsetElement} required onChange={handlePublicCareerChange}>
-          <legend>Êtes vous employé de la Fonction Publique ?</legend>
+          <legend>Êtes vous fonctionnaire ?</legend>
           <input type="radio" id="isPublicCareer-true" defaultChecked={isPublicCareer == "true"} name="isPublicCareer" value="true"></input>
           <label htmlFor="isPublicCareer-true">Oui</label>
           <input type="radio" id="isPublicCareer-false" defaultChecked={isPublicCareer == "false"} name="isPublicCareer" value="false"></input>

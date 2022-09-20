@@ -4,8 +4,9 @@ import Link from 'next/link';
 
 
 
-export default function ProfileCard({ selectedName, selectedPicto, birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004, data }) {
+export default function ProfileCard(props) {
     const [yearsWithBase, setYearWithBase] = useState(0);
+    const {selectedName, selectedPicto, birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004, data}= props;
 
     useEffect(() => {
         setYearWithBase(data[0].DTP/4);

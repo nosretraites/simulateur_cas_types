@@ -10,10 +10,8 @@ export default function computeData(data) {
           worst = true
       } else if (data.macron.decote > data.base.decote) {
           worst = true
-      } else if (data.macron.isTauxPlein && data.base.isTauxPlein) {
-          if (data.macron.surcote < data.base.surcote) {
+      } else if (data.macron.surcote < data.base.surcote) {
             worst = true
-        }
       }
   }
   data.macron.worst = worst;
