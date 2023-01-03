@@ -3,6 +3,7 @@ import styles from '../styles/form.module.scss';
 import TwitterButton from '../components/TwitterButton.js';
 import Cell from '../components/Cell.js';
 import ProfileCard from '../components/ProfileCard.js';
+import Summary from '../components/Summary';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { computeSituation } from '../utils/calculationUtils';
@@ -23,6 +24,7 @@ export default function Resultats() {
   const [yearOfCareerInterruption, setYearOfCareerInterruption] = useState(0);
   const [isPublicCareer, setIsPublicCareer] = useState('');
   const [countOfChildrenBefore2004, setCountOfChildrenBefore2004] = useState(0);
+  const [seeMore, setSeeMore] = useState(false);
 
   const [cellArray, setCellArray] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -92,6 +94,10 @@ export default function Resultats() {
     }
   }
 
+  function toggleSeeMoreButton() {
+    setSeeMore(!seeMore);
+  }
+
   useEffect(() => {
     pickAWinner();
   }, [isMainParent])
@@ -109,28 +115,36 @@ export default function Resultats() {
           isPublicCareer={isPublicCareer}
           countOfChildrenBefore2004={countOfChildrenBefore2004}
           data={cellArray} />
-        <table width={"100%"}>
-          <thead>
-            <tr>
-              <th className={styles.Box}>La retraite à</th>
-              <th className={styles.Box}>Avec la loi actuelle</th>
-              <th className={styles.Box}>Avec le projet Macron</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cellArray.map((cellData, i) => (
-              <Cell data={cellData} key={i} />
-            ))}
-          </tbody>
-        </table>
-        <Link href="/informations">
-          <a className={`inlineButton`} >Précisions sur les calculs</a>
-        </Link>
+        <Summary data={cellArray} selectedName={selectedName}></Summary>
+        <button type="button" className={'inlineButton'} onClick={toggleSeeMoreButton}>{seeMore ? 'Voir moins de détails' : 'Voir plus de détails'}</button>
+        {seeMore ?
+          <>
+            <table width={"100%"}>
+              <thead>
+                <tr>
+                  <th className={styles.Box}>La retraite à</th>
+                  <th className={styles.Box}>Avec la loi actuelle</th>
+                  <th className={styles.Box}>Avec le projet Macron</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cellArray.map((cellData, i) => (
+                  <Cell data={cellData} key={i} />
+                ))}
+              </tbody>
+            </table>
+            <Link href="/informations">
+              <a className={`inlineButton`} >Précisions sur les calculs</a>
+            </Link>
+          </>
+          : <></>}
+
 
         <div className={styles.SharedIcon}>
 
           <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} isMainParent={isMainParent} selectedName={selectedName} numberOfChildren={numberOfChildren} />
         </div>
+
 
       </div>
 
