@@ -3,7 +3,7 @@ import styles from './Summary.module.scss';
 
 
 export default function Summary(props) {
-    const REFORM_AGE = 64;
+    const REFORM_AGE = 65;
 
     const [possibleRetirementNowData, setPossibleRetirementNowData] = useState();
     const [fullRetirementNowData, setFullRetirementNowData] = useState();
