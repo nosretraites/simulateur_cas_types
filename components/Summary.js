@@ -16,7 +16,6 @@ export default function Summary(props) {
 
     useEffect(() => {
         async function init() {
-            console.log('DATA SUMMARY', data);
             await setVariables(data);
         }
         init();

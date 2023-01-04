@@ -54,7 +54,7 @@ export default function Resultats() {
     }
 
     if (query.isPublicCareer !== undefined) {
-      setIsPublicCareer(Boolean(query.isPublicCareer));
+      setIsPublicCareer(Boolean(query.isPublicCareer==="true"));
     }
 
     if (query.countOfChildrenBefore2004 !== undefined) {
