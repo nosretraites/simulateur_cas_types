@@ -9,6 +9,7 @@ export default function ProfileCard(props) {
     const {selectedName, selectedPicto, birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004, data}= props;
 
     useEffect(() => {
+        console.log("setYearWithBase",data)
         setYearWithBase(data[0].DTP/4);
     }, [data]);
 

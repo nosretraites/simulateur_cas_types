@@ -45,7 +45,7 @@ export function computeSituation(userInputs) {
         // CALCUL DE LA MAJORATION DE DURÉE D'ASSURANCE POUR ENFANT
         // Privé et Public
         // Dans le privé on donne 8 trimestres de validation suplémentaire par enfants, mais il ne compte que si la durée validée est inférieure ou égale à DTP. Dans le public c'est deux trimestres par enfants nés après 2004
-        if (isMainParent && DV <= parameters.DTP) {
+        if (isMainParent) {
             if (isPublicCareer) {
                 DV = DC;
                 // Les enfants nés avant 2004 donnent à la mère 4 trimestres considérés comme cotisés
@@ -91,13 +91,13 @@ export function computeSituation(userInputs) {
 
             // Décote
             if (isPossible) {
-                decote = Math.min(parameters[`DTP_${suffix}`] - DV, (parameters.ATP - retirementAge) * 4, 12);
+                decote = Math.min(parameters[`DTP_${suffix}`] - DV, (parameters.ATP - retirementAge) * 4, 12) *1.25;
                 if (decote < 0) decote = 0;
             }
 
             // surcote
             if (isPossible) {
-                surcote = Math.min(DV - parameters[`DTP_${suffix}`], (retirementAge - parameters[`AOD_${suffix}`]) * 4);
+                surcote = Math.min(DV - parameters[`DTP_${suffix}`], (retirementAge - parameters[`AOD_${suffix}`]) * 4) * 1.25;
                 if (surcote < 0) surcote = 0;
             }
 
