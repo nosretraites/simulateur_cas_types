@@ -6,6 +6,7 @@ export default function Cell({ data }) {
 
   const [displayBaseMessage, setDisplayBaseMessage] = useState("");
   const [displayMacronMessage, setDisplayMacronMessage] = useState("");
+  const [displayMixteMessage, setDisplayMixteMessage] = useState("");
   const [age, setAge] = useState("")
 
   const displayTwoDecimalsMax = (number) => {
@@ -13,47 +14,40 @@ export default function Cell({ data }) {
   }
 
   useEffect(() => {
+    // Different types of cell content
     const noRetirment = <span className={styles.RedMark}>❌ Retraite interdite</span>;
     const allowRetirment = <span className={styles.GreenMark}>✅ Taux plein</span>;
     const decoteMessage = (value) => <span className={styles.GreenMark}>✅ decote -{displayTwoDecimalsMax(value)}%</span>;
     const surcoteMessage = (value) => <span className={styles.GreenMark}>✅ surcote +{displayTwoDecimalsMax(value)}%</span>;
+
+    // Init age text
     setAge(`${data.AgeLiq} ans`)
 
     const dataToDisplay = computeData(data);
 
-    if (dataToDisplay.macron.isPossible) {
-      if (dataToDisplay.macron.decote !== 0 && dataToDisplay.macron.decote) {
-        setDisplayMacronMessage(decoteMessage(dataToDisplay.macron.decote))
+    // Get the corresponding cell content for a specific reform
+    function getReformCellContent(reformName){
+      if (dataToDisplay[reformName].isPossible) {
+        if (dataToDisplay[reformName].decote !== 0 && dataToDisplay[reformName].decote) {
+          return decoteMessage(dataToDisplay[reformName].decote);
+        }
+  
+        if (dataToDisplay[reformName].surcote !== 0 && dataToDisplay[reformName].surcote) {
+          return surcoteMessage(dataToDisplay[reformName].surcote);
+        }
+  
+        if (dataToDisplay[reformName].isTauxPlein) {
+          return allowRetirment
+        }
+      } else {
+        return noRetirment
       }
-
-      if (dataToDisplay.macron.surcote !== 0 && dataToDisplay.macron.surcote) {
-        setDisplayMacronMessage(surcoteMessage(dataToDisplay.macron.surcote))
-      }
-
-      if (dataToDisplay.macron.isTauxPlein) {
-        setDisplayMacronMessage(allowRetirment)
-      }
-    } else {
-      setDisplayMacronMessage(noRetirment)
     }
 
-    if (dataToDisplay.base.isPossible) {
-
-      if (dataToDisplay.base.decote !== 0 && dataToDisplay.base.decote) {
-        setDisplayBaseMessage(decoteMessage(dataToDisplay.base.decote))
-      }
-
-      if (dataToDisplay.base.surcote !== 0 && dataToDisplay.base.surcote) {
-        setDisplayBaseMessage(surcoteMessage(dataToDisplay.base.surcote))
-      }
-
-      if (dataToDisplay.base.isTauxPlein) {
-        setDisplayBaseMessage(allowRetirment)
-      }
-
-    } else {
-      setDisplayBaseMessage(noRetirment)
-    }
+    // Compute the cell content for all reforms
+    setDisplayMacronMessage(getReformCellContent("macron"));
+    setDisplayBaseMessage(getReformCellContent("base"));
+    setDisplayMixteMessage(getReformCellContent("mix"));
   }, [data])
 
 
@@ -63,6 +57,7 @@ export default function Cell({ data }) {
       <td className={styles.BoxCenter}>{age}</td>
       <td className={styles.Box}>{displayBaseMessage}</td>
       <td className={styles.Box}>{displayMacronMessage}</td>
+      <td className={styles.Box}>{displayMixteMessage}</td>
     </tr>
   )
 }

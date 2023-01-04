@@ -85,7 +85,7 @@ export default function Summary(props) {
         const getSurcoteDecoteString = (data) => {
             const delta = data.surcote - data.decote;
             if (delta === 0) return <>n'aurait pas de décote ni de surcote.</>
-            return delta > 0 ? <>aurait une surcote de {delta}%.</> : <>aurait une décote de {Math.abs(delta)}%.</>
+            return delta > 0 ? <>aurait une surcote de {delta}%.</> : <>aurait  une décote de {Math.abs(delta)}%.</>
         }
         const getSurcoteDecoteMacronString = (data) => {
             const delta = data.surcote - data.decote;

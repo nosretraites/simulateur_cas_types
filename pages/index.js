@@ -22,6 +22,7 @@ export default function Home() {
   const handleCareerInterruptionChange = e => setYearOfCareerInterruption(e.target.value)
   const handleChild2004Change = e => setCountOfChildrenBefore2004(e.target.value)
 
+
   const onSubmitForm = e => {
     e.preventDefault();
     openResultsPage();
@@ -73,7 +74,7 @@ export default function Home() {
     if (isMainParent !== 'true') {
       setIsPublicCareer('true');
     }
-    if (isPublicCareer !== 'false') {
+    if (isPublicCareer === 'false') {
       setCountOfChildrenBefore2004(0);
     }
   }
@@ -135,7 +136,7 @@ export default function Home() {
         </fieldset>
         : ""}
 
-      {numberOfChildren > 0 && isMainParent === 'true' && isPublicCareer === 'false' ?
+      {numberOfChildren > 0 && isMainParent === 'true' && isPublicCareer === 'true' ?
         <div className={styles.inputElement}>
           <label htmlFor="children2004">Nombre d&lsquo;enfants nés avant 2004</label>
           <input id="children2004" required min="0" max={numberOfChildren} type="number" value={countOfChildrenBefore2004} onChange={handleChild2004Change} />
