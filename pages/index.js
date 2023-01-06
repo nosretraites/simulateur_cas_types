@@ -10,7 +10,7 @@ export default function Home() {
   const [careerStartAge, setCareerStartAge] = useState(21);
   const [isMainParent, setMainParent] = useState("false");
   const [yearOfCareerInterruption, setYearOfCareerInterruption] = useState(0);
-  const [isPublicCareer, setIsPublicCareer] = useState('');
+  const [isPublicCareer, setIsPublicCareer] = useState("false");
   const [numberOfChildren, setNumberOfChildren] = useState(0);
   const [countOfChildrenBefore2004, setCountOfChildrenBefore2004] = useState(0);
 
@@ -72,7 +72,7 @@ export default function Home() {
     }
 
     if (isMainParent !== 'true') {
-      setIsPublicCareer('true');
+      setIsPublicCareer('false');
     }
     if (isPublicCareer === 'false') {
       setCountOfChildrenBefore2004(0);
