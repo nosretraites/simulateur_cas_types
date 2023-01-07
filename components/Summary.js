@@ -21,10 +21,27 @@ export default function Summary(props) {
         init();
     }, [data]);
 
+    function getAgeAndMonthString(year){
+        const string = `${Math.floor(year)} ans`
+        if (year % 1 === 0) {
+            return string;
+        }
+        else {
+            // Convert the digits into number of months
+            const months = Math.round(year % 1 * 12);
+            return `${string} et ${months} mois`
+        }
+    }
+
     // Compare the differences between the actual and the next reform
     async function setVariables(data) {
         //TMP variables to prevent waiting for the useState hool
-        let possibleRetirementNowDataTmp, fullRetirementNowDataTmp, possibleRetirementMacDataTmp, fullRetirementMacDataTmp, reformAgeTmp;
+        let possibleRetirementNowDataTmp;
+        let fullRetirementNowDataTmp;
+        let possibleRetirementMacDataTmp;
+        let fullRetirementMacDataTmp;
+        let reformAgeTmp;
+
         for (let row of data) {
             if (!possibleRetirementNowDataTmp && row.base.isPossible) {
                 possibleRetirementNowDataTmp = row;
@@ -53,30 +70,36 @@ export default function Summary(props) {
         setLoaded(true);
     }
 
-    function generateFirstSentence() {
+    function FirstSentence() {
         // Départ à la retraite possible actuel
         let strings = [];
-        strings.push(<span>Actuellement, {selectedName} pourrait partir à la retraite dès {possibleRetirementNowData.AgeLiq} ans.</span>);
+
+        const currentDepartureAge =  possibleRetirementNowData.base.isCarriereLongue ? possibleRetirementNowData.AgeCL_now: possibleRetirementNowData.AOD_now;
+        const currentDepartureAgeString =  getAgeAndMonthString(currentDepartureAge);
+        const macDepartureAge =  possibleRetirementMacData.base.isCarriereLongue ? possibleRetirementMacData.AgeCL_mac: possibleRetirementMacData.AOD_mac;
+        const macDepartureAgeString =  getAgeAndMonthString(macDepartureAge);
+
+        strings.push(<span>Actuellement, {selectedName} pourrait partir à la retraite dès {currentDepartureAgeString}.</span>);
 
         // Si différence d'année de départ avec la réforme, l'afficher
-        if (possibleRetirementNowData.AgeLiq < possibleRetirementMacData.AgeLiq) {
-            strings.push(<span>Avec la réforme Macron , <strong>elle devrait attendre jusqu'à {possibleRetirementMacData.AgeLiq} ans pour avoir le droit de partir.</strong></span>);
+        if (currentDepartureAge < macDepartureAge) {
+            strings.push(<span>Avec la réforme Macron , <strong>elle devrait attendre jusqu'à {macDepartureAgeString} pour avoir le droit de partir.</strong></span>);
         }
         // Sinon, afficher la potentiel différence de surcote/décôte
         else {
             const { base, macron } = possibleRetirementMacData;
             const delta = (base.surcote - base.decote) - (macron.surcote - macron.decote);
             if (delta > 0) {
-                strings.push(<span> <strong> Avec la réforme Macron , elle pourra partir au même âge mais perdra {Math.round(delta)}% de surcôte (bonus).</strong></span>);
+                strings.push(<span> <strong> Avec la réforme Macron, elle pourra partir au même âge mais perdra {Math.round(delta)}% de surcôte (bonus).</strong></span>);
             }
         }
         return <p>{strings}</p>;
     }
 
-    function generateSecondSentence() {
+    function SecondSentence() {
         let strings = [];
 
-        const deltaSurcote = (reformAgeData.base.surcote - reformAgeData.base.decote) - (reformAgeData.macron.isPossible ? reformAgeData.macron.surcote - reformAgeData.macron.decote:-100);
+        const deltaSurcote = (reformAgeData.base.surcote - reformAgeData.base.decote) - (reformAgeData.macron.isPossible ? reformAgeData.macron.surcote - reformAgeData.macron.decote : -100);
 
         // Si aucune différence de sur/décote à l'age de départ, on n'affiche pas cette phrase
         if (deltaSurcote <= 0) return <></>;
@@ -98,7 +121,7 @@ export default function Summary(props) {
             strings.push(<span> <strong> Avec la réforme Macron, elle {getSurcoteDecoteMacronString(reformAgeData.macron)}</strong></span>);
         }
         // Si on peut pas partir
-        else{
+        else {
             strings.push(<span> <strong> Avec la réforme Macron, elle ne pourra pas partir avant {possibleRetirementMacData.AgeLiq} ans.</strong></span>);
         }
 
@@ -110,8 +133,8 @@ export default function Summary(props) {
     if (loaded) {
         return (
             <div className={styles.Summary}>
-                {generateFirstSentence()}
-                {generateSecondSentence()}
+                <FirstSentence/>
+                <SecondSentence/>
             </div>
         )
     }

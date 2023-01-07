@@ -70,6 +70,7 @@ export function computeSituation(userInputs) {
         const computeForLegislation = (suffix = 'now') => {
             let isPossible = false;
             let isTauxPlein = false;
+            let isCarriereLongue = false;
             let decote = 0;
             let surcote = 0;
 
@@ -82,6 +83,7 @@ export function computeSituation(userInputs) {
             }
             if (CL[suffix] && retirementAge >= parameters[`AgeCL_${suffix}`]) {
                 isPossible = true;
+                isCarriereLongue = true;
             }
             //////////// PAs  sur de ce que dit cette condition on peut l'enlever je pense
             // if (CL[suffix] && careerStartAge < 15 && retirementAge > parameters[`AgeCL_${suffix}`] - 1) {
@@ -108,7 +110,7 @@ export function computeSituation(userInputs) {
                 }
             }
 
-            return { isPossible, isTauxPlein, decote, surcote };
+            return { isPossible, isTauxPlein, isCarriereLongue, decote, surcote };
 
         }
 
