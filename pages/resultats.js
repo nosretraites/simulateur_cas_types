@@ -143,7 +143,7 @@ export default function Resultats() {
 
         <div className={styles.SharedIcon}>
 
-          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} isMainParent={isMainParent} selectedName={selectedName} numberOfChildren={numberOfChildren} />
+          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} isMainParent={isMainParent} selectedName={selectedName} selectedPicto={selectedPicto}numberOfChildren={numberOfChildren} />
         </div>
 
 

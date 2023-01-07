@@ -3,7 +3,7 @@ body {
   padding: 0em;
   margin: 0em;
   font-family: 'Roboto', sans-serif;
-  background-color: #f9f9f7;
+  background-color: white;
 }
 body{
   min-width: 100vw;
@@ -25,7 +25,7 @@ body{
   max-width: min(1000px, 100%);
   margin: 0 auto;
   padding: 60px 80px;
-  background: rgb(235, 234, 234);
+  background: white;
 
   box-shadow: 0px 5px 15px -10px rgba(black,0.5);
   border-radius: 4px;
@@ -44,19 +44,6 @@ body{
   
 }
 
-.twitter-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 25px;
-  gap: 25px;
-  color: black;
-  font-weight: bold;
-  font-size: large;
-  text-decoration: underline;
-}
-
-
 // header {
 //   background-color: var(--bg-color);
 //   padding: 1em;
@@ -70,7 +57,8 @@ body{
 
 
 table {
-  border-spacing: 5px;
+  border-spacing: 0px;
+  border-collapse: collapse;
 }
 
 .cell {
@@ -80,7 +68,8 @@ table {
 }
 
 th {
-  background-color: #d4dce6;
+  // background-color: #d4dce6;
+  background-color: rgb(214, 223, 230);
   font-weight: unset;
   padding: 0.2em 0.5em;
   text-align: center;
