@@ -94,6 +94,7 @@ export default function Home() {
 
 
   return (
+    <article>
     <form className={styles.formElement} onSubmit={onSubmitForm}>
       <h2>Quel effet aurait la retraite à 65 ans (réforme Macron) ?</h2>
       <br />
@@ -149,5 +150,6 @@ export default function Home() {
         <a className={`inlineButton ${styles.informationButton}`} >Plus d&apos;informations sur le simulateur</a>
       </Link>
     </form>
+    </article>
   )
 }

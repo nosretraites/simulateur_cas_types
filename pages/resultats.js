@@ -54,7 +54,7 @@ export default function Resultats() {
     }
 
     if (query.isPublicCareer !== undefined) {
-      setIsPublicCareer(Boolean(query.isPublicCareer==="true"));
+      setIsPublicCareer(Boolean(query.isPublicCareer === "true"));
     }
 
     if (query.countOfChildrenBefore2004 !== undefined) {
@@ -105,46 +105,51 @@ export default function Resultats() {
   if (isLoaded) {
     return (
       <div>
-        <ProfileCard selectedName={selectedName}
-          selectedPicto={selectedPicto}
-          isMainParent={isMainParent}
-          birthDate={birthDate}
-          numberOfChildren={numberOfChildren}
-          careerStartAge={careerStartAge}
-          yearOfCareerInterruption={yearOfCareerInterruption}
-          isPublicCareer={isPublicCareer}
-          countOfChildrenBefore2004={countOfChildrenBefore2004}
-          data={cellArray} />
-        <Summary data={cellArray} selectedName={selectedName}></Summary>
-        <button type="button" className={'inlineButton'} onClick={toggleSeeMoreButton}>{seeMore ? 'Voir moins de détails' : 'Voir plus de détails'}</button>
-        {seeMore ?
-          <>
-            <table width={"100%"}>
-              <thead>
-                <tr>
-                  <th className={styles.Box}>La retraite à</th>
-                  <th className={styles.Box}>Avec la loi actuelle</th>
-                  <th className={styles.Box}>Avec le projet Macron</th>
-                  <th className={styles.Box}>Avec un projet mixte</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cellArray.map((cellData, i) => (
-                  <Cell data={cellData} key={i} />
-                ))}
-              </tbody>
-            </table>
-            <Link href="/informations">
-              <a className={`inlineButton`} >Précisions sur les calculs</a>
-            </Link>
-          </>
-          : <></>}
+        <article>
+          <ProfileCard selectedName={selectedName}
+            selectedPicto={selectedPicto}
+            isMainParent={isMainParent}
+            birthDate={birthDate}
+            numberOfChildren={numberOfChildren}
+            careerStartAge={careerStartAge}
+            yearOfCareerInterruption={yearOfCareerInterruption}
+            isPublicCareer={isPublicCareer}
+            countOfChildrenBefore2004={countOfChildrenBefore2004}
+            data={cellArray} />
+          <Summary data={cellArray} selectedName={selectedName}></Summary>
+          <button type="button" className={'inlineButton'} onClick={toggleSeeMoreButton}>{seeMore ? 'Voir moins de détails' : 'Voir plus de détails'}</button>
+          {seeMore ?
+            <>
+              <table width={"100%"}>
+                <thead>
+                  <tr>
+                    <th className={styles.Box}>La retraite à</th>
+                    <th className={styles.Box}>Avec la loi actuelle</th>
+                    <th className={styles.Box}>Avec le projet Macron</th>
+                    <th className={styles.Box}>Avec un projet mixte</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cellArray.map((cellData, i) => (
+                    <Cell data={cellData} key={i} />
+                  ))}
+                </tbody>
+              </table>
+              <Link href="/informations">
+                <a className={`inlineButton`} >Précisions sur les calculs</a>
+              </Link>
+            </>
+            : <></>}
+
+        </article>
 
 
-        <div className={styles.SharedIcon}>
+        <TwitterButton birthDate={birthDate}
+          result={cellArray}
+          careerStartAge={careerStartAge} isMainParent={isMainParent}
+           selectedName={selectedName} selectedPicto={selectedPicto}
+          numberOfChildren={numberOfChildren} />
 
-          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} isMainParent={isMainParent} selectedName={selectedName} selectedPicto={selectedPicto}numberOfChildren={numberOfChildren} />
-        </div>
 
 
       </div>

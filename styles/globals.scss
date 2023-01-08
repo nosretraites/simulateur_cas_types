@@ -1,3 +1,13 @@
+html {
+  /* 1rem = 10px */
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+  position: absolute;
+
+}
+
 html,
 body {
   padding: 0em;
@@ -10,6 +20,8 @@ body{
   min-height: 100vh;
   overflow-x: hidden;
   padding: 30px 0 50px 0;
+  padding-bottom: 15rem;
+
   background-color: var(--bg-color);
   color: var(--gray-dark-color);
 }
@@ -24,11 +36,14 @@ body{
   width: fit-content;
   max-width: min(1000px, 100%);
   margin: 0 auto;
-  padding: 60px 80px;
-  background: white;
 
-  box-shadow: 0px 5px 15px -10px rgba(black,0.5);
-  border-radius: 4px;
+  article{
+    padding: 60px 80px;
+    background: white;
+  
+    box-shadow: 0px 5px 15px -10px rgba(black,0.5);
+    border-radius: 4px;
+  }
 }
 
 @media screen and (max-width: 640px) {

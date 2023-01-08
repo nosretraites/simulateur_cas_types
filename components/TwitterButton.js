@@ -74,21 +74,26 @@ export default function TwitterButton(props) {
 
     return (
         <div className={styles.mockupTweetWrapper}>
-            <span className={styles.title}>Partagez vos résultats</span>
+                <svg className={styles.topLeft} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+                <svg className={styles.botRight} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+
+            <h3 className={styles.title}>
+                <span>Je partage mes résultats<br/>sur Twitter</span>
+            </h3>
             <div className={styles.mockupTweet}>
                 <img src={props.selectedPicto} width={"48px"} />
 
                 <div className={styles.mockupTweetContent}>
-                    <p  className={styles.header}>
+                    <p className={styles.header}>
                         <span className={styles.profileName}>{props.selectedName}</span><span className={styles.profileHandle}>@{props.selectedName} · 1min</span>
-                        </p>
+                    </p>
                     <FormattedTwitterMessage />
                 </div>
             </div>
             <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterMessage)}`}
-                    className={styles.shareButton} data-size="large" target="_blank" rel="noreferrer">
-                    Partager sur Twitter
-                </a>
+                className={styles.shareButton} data-size="large" target="_blank" rel="noreferrer">
+                Partager sur Twitter
+            </a>
         </div>
     )
 }
