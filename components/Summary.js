@@ -79,11 +79,11 @@ export default function Summary(props) {
         const macDepartureAge =  possibleRetirementMacData.base.isCarriereLongue ? possibleRetirementMacData.AgeCL_mac: possibleRetirementMacData.AOD_mac;
         const macDepartureAgeString =  getAgeAndMonthString(macDepartureAge);
 
-        strings.push(<p>Actuellement, {selectedName} pourrait partir à la retraite dès {currentDepartureAgeString}.</p>);
+        strings.push(<p>Actuellement, {selectedName} peut partir à la retraite dès {currentDepartureAgeString}.</p>);
 
         // Si différence d'année de départ avec la réforme, l'afficher
         if (currentDepartureAge < macDepartureAge) {
-            strings.push(<p>Avec la réforme Macron , <strong>elle devrait attendre jusqu'à {macDepartureAgeString} pour avoir le droit de partir.</strong></p>);
+            strings.push(<p>Avec la réforme Macron , <strong>elle devra attendre jusqu'à {macDepartureAgeString} pour avoir le droit de partir.</strong></p>);
         }
         // Sinon, afficher la potentiel différence de surcote/décôte
         else {
@@ -106,13 +106,13 @@ export default function Summary(props) {
 
         const getSurcoteDecoteString = (data) => {
             const delta = data.surcote - data.decote;
-            if (delta === 0) return <>n'aurait pas de décote ni de surcote.</>
-            return delta > 0 ? <>aurait une surcote de {Math.round(delta)}%.</> : <>aurait  une décote de {Math.round(Math.abs(delta))}%.</>
+            if (delta === 0) return <>n'a pas de décote ni de surcote.</>
+            return delta > 0 ? <>a une surcote de {Math.round(delta)}%.</> : <>a une décote de {Math.round(Math.abs(delta))}%.</>
         }
         const getSurcoteDecoteMacronString = (data) => {
             const delta = data.surcote - data.decote;
-            if (delta === 0) return <>perd cette surcote.</>
-            return delta > 0 ? <>aurait une surcote de {Math.round(delta)}%.</> : <>aurait une décote de {Math.round(Math.abs(delta))}%.</>
+            if (delta === 0) return <>perdra cette surcote.</>
+            return delta > 0 ? <>n'aura une surcote que de {Math.round(delta)}%.</> : <>aura une décote de {Math.round(Math.abs(delta))}%.</>
         }
         // Décote surcote actuelle
         strings.push(<span>Actuellement, si {selectedName} travaille jusqu'à {REFORM_AGE} ans, elle {getSurcoteDecoteString(reformAgeData.base)}</span>);

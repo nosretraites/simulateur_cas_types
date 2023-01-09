@@ -99,7 +99,7 @@ export function computeSituation(userInputs) {
 
             // surcote
             if (isPossible) {
-                surcote = Math.min(DV - parameters[`DTP_${suffix}`], (retirementAge - parameters[`AOD_${suffix}`]) * 4) * 1.25;
+                surcote = Math.min(DV - parameters[`DTP_${suffix}`], Math.floor((retirementAge - parameters[`AOD_${suffix}`]) * 4)) * 1.25;
                 if (surcote < 0) surcote = 0;
             }
 

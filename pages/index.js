@@ -129,7 +129,7 @@ export default function Home() {
         : ""}
       {isMainParent === 'true' ?
         <fieldset className={styles.fieldsetElement} required onChange={handlePublicCareerChange}>
-          <legend>Êtes vous fonctionnaire ?</legend>
+          <legend>Êtes vous employé de la Fonction publique d'État?</legend>
           <input type="radio" id="isPublicCareer-true" defaultChecked={isPublicCareer == "true"} name="isPublicCareer" value="true"></input>
           <label htmlFor="isPublicCareer-true">Oui</label>
           <input type="radio" id="isPublicCareer-false" defaultChecked={isPublicCareer == "false"} name="isPublicCareer" value="false"></input>
