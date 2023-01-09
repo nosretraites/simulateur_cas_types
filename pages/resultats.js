@@ -43,7 +43,7 @@ export default function Resultats() {
       setNumberOfChildren(Number(query.numberOfChildren));
     }
     if (query.isMainParent !== undefined) {
-      setMainParent(Boolean(query.isMainParent));
+      setMainParent(query.isMainParent === "true");
     }
     if (query.numberOfChildren !== undefined) {
       setNumberOfChildren(Number(query.numberOfChildren));
