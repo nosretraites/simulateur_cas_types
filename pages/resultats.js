@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/form.module.scss';
-import * as csv from "csvtojson"
-import fetch from 'isomorphic-unfetch';
 import TwitterButton from '../components/TwitterButton.js';
 import Cell from '../components/Cell.js';
 import ProfileCard from '../components/ProfileCard.js';
+import Summary from '../components/Summary';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { computeSituation } from '../utils/calculationUtils';
 
 const listOfNamesMan = ["Nathan", "Lucas", "Léo", "Gabriel", "Timéo", "Enzo", "Louis", "Raphaël", "Arthur", "Hugo", "Jules", "Ethan", "Adam", "Nolan", "Tom", "Noah", "Théo", "Sacha", "Maël", "Mathis", "Abdela", "Mohamed", "Yassin", "Jean-Karim", "Björn"];
 const listOfNamesWoman = ["Emma", "Lola", "Chloé", "Inès", "Léa", "Manon", "Jade", "Louise", "Léna", "Lina", "Zoé", "Lilou", "Camille", "Sarah", "Eva", "Alice", "Maëlys", "Louna", "Romane", "Juliette", "Sophie", "Inaya", "Aliya", "Noûr", "Elodie"];
@@ -19,8 +19,13 @@ export default function Resultats() {
   const { query, isReady } = router;
   const [birthDate, setBirthDate] = useState(1969);
   const [careerStartAge, setCareerStartAge] = useState(21);
-  const [gender, setGender] = useState(1);
   const [numberOfChildren, setNumberOfChildren] = useState(0);
+  const [isMainParent, setMainParent] = useState(false);
+  const [yearOfCareerInterruption, setYearOfCareerInterruption] = useState(0);
+  const [isPublicCareer, setIsPublicCareer] = useState('');
+  const [countOfChildrenBefore2004, setCountOfChildrenBefore2004] = useState(0);
+  const [seeMore, setSeeMore] = useState(false);
+
   const [cellArray, setCellArray] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedName, setSelectedName] = useState("");
@@ -28,74 +33,55 @@ export default function Resultats() {
 
 
   const initFromQueryParams = () => {
-    const { birthDate, careerStartAge, gender, numberOfChildren } = query;
-    if (birthDate !== undefined) {
-      setBirthDate(birthDate);
+    if (query.birthDate !== undefined) {
+      setBirthDate(Number(query.birthDate));
     }
-    if (careerStartAge !== undefined) {
-      setCareerStartAge(careerStartAge);
+    if (query.careerStartAge !== undefined) {
+      setCareerStartAge(Number(query.careerStartAge));
     }
-    if (gender !== undefined) {
-      setGender(gender);
+    if (query.numberOfChildren !== undefined) {
+      setNumberOfChildren(Number(query.numberOfChildren));
     }
-    if (numberOfChildren !== undefined) {
-      setNumberOfChildren(numberOfChildren);
+    if (query.isMainParent !== undefined) {
+      setMainParent(Boolean(query.isMainParent));
     }
-    fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren });
+    if (query.numberOfChildren !== undefined) {
+      setNumberOfChildren(Number(query.numberOfChildren));
+    }
+
+    if (query.yearOfCareerInterruption !== undefined) {
+      setYearOfCareerInterruption(Number(query.yearOfCareerInterruption));
+    }
+
+    if (query.isPublicCareer !== undefined) {
+      setIsPublicCareer(Boolean(query.isPublicCareer==="true"));
+    }
+
+    if (query.countOfChildrenBefore2004 !== undefined) {
+      setCountOfChildrenBefore2004(Number(query.countOfChildrenBefore2004));
+    }
   }
 
   useEffect(() => {
-      if (isReady) {
-        initFromQueryParams();
-      }
-  }, [isReady, query]);
-
-  async function fetchDatas({ birthDate, careerStartAge, gender, numberOfChildren }) {
-    const apiUrl = `https://raw.githubusercontent.com/nosretraites/simulateur_cas_types_data/main/data/${birthDate.toString()}.csv`;
-    const response = await fetch(apiUrl);
-
-    if (response.status === 200) {
-
-      const body = await response.text();
-
-      return csv().fromString(body).then((data) => {
-
-        const reducer = data.reduce((acc, val) => {
-          const {
-            Naissance,
-            Debut,
-            Sexe,
-            Enfants
-          } = val;
-
-          const birthDateArray = acc[Naissance] || {};
-          const careerStartArray = birthDateArray[Debut] || {};
-          const genderArray = careerStartArray[Sexe] || {};
-          const numberOfChildrenArray = genderArray[Enfants] || [];
-
-          numberOfChildrenArray.push(val);
-
-          genderArray[Enfants] = numberOfChildrenArray;
-          careerStartArray[Sexe] = genderArray
-          birthDateArray[Debut] = careerStartArray
-          acc[Naissance] = birthDateArray;
-          return acc
-        }, {});
-
-        const slice = reducer[birthDate] && reducer[birthDate][careerStartAge] && reducer[birthDate][careerStartAge][gender] && reducer[birthDate][careerStartAge][gender][numberOfChildren];
-        setCellArray(slice || [])
-      }).then(() => {
-        setIsLoaded(true)
-
-      });
-
+    if (isReady) {
+      initFromQueryParams();
     }
+  }, [isReady, query]);
+  useEffect(() => {
+    if (isReady) {
+      computeResults();
+    }
+  }, [isReady, birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004]);
 
+  function computeResults() {
+    const results = computeSituation({ birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004 });
+    setCellArray(results);
+    setIsLoaded(true)
   }
 
 
   function pickAWinner() {
-    if (gender === "1") {
+    if (!isMainParent) {
       let nameNumberMan = Math.floor(Math.random() * listOfNamesMan.length);
       setSelectedName(listOfNamesMan[nameNumberMan]);
       const numberPicto = Math.floor(Math.random() * listOfPictosMan.length);
@@ -108,36 +94,58 @@ export default function Resultats() {
     }
   }
 
+  function toggleSeeMoreButton() {
+    setSeeMore(!seeMore);
+  }
+
   useEffect(() => {
     pickAWinner();
-  }, [gender])
+  }, [isMainParent])
 
   if (isLoaded) {
     return (
       <div>
-       <ProfileCard selectedName={selectedName} selectedPicto={selectedPicto} gender={gender} birthDate={query.birthDate} numberOfChildren={numberOfChildren} careerStartAge={careerStartAge} data={cellArray} />
-        <table width={"100%"}>
-          <thead>
-            <tr>
-              <th className={styles.Box}>La retraite à</th>
-              <th className={styles.Box}>Avec la loi actuelle</th>
-              <th className={styles.Box}>Avec le projet Macron</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cellArray.map((cellData, i) => (
-              <Cell data={cellData} key={i} />
-            ))}
-          </tbody>
-        </table>
-        <Link href="/informations">
-          <a className={`inlineButton`} >Précisions sur les calculs</a>
-        </Link>
+        <ProfileCard selectedName={selectedName}
+          selectedPicto={selectedPicto}
+          isMainParent={isMainParent}
+          birthDate={birthDate}
+          numberOfChildren={numberOfChildren}
+          careerStartAge={careerStartAge}
+          yearOfCareerInterruption={yearOfCareerInterruption}
+          isPublicCareer={isPublicCareer}
+          countOfChildrenBefore2004={countOfChildrenBefore2004}
+          data={cellArray} />
+        <Summary data={cellArray} selectedName={selectedName}></Summary>
+        <button type="button" className={'inlineButton'} onClick={toggleSeeMoreButton}>{seeMore ? 'Voir moins de détails' : 'Voir plus de détails'}</button>
+        {seeMore ?
+          <>
+            <table width={"100%"}>
+              <thead>
+                <tr>
+                  <th className={styles.Box}>La retraite à</th>
+                  <th className={styles.Box}>Avec la loi actuelle</th>
+                  <th className={styles.Box}>Avec le projet Macron</th>
+                  <th className={styles.Box}>Avec un projet mixte</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cellArray.map((cellData, i) => (
+                  <Cell data={cellData} key={i} />
+                ))}
+              </tbody>
+            </table>
+            <Link href="/informations">
+              <a className={`inlineButton`} >Précisions sur les calculs</a>
+            </Link>
+          </>
+          : <></>}
+
 
         <div className={styles.SharedIcon}>
 
-          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} gender={gender} selectedName={selectedName} numberOfChildren={numberOfChildren}/>
+          <TwitterButton birthDate={birthDate} result={cellArray} careerStartAge={careerStartAge} isMainParent={isMainParent} selectedName={selectedName} numberOfChildren={numberOfChildren} />
         </div>
+
 
       </div>
 
