@@ -94,6 +94,7 @@ export default function Home() {
 
 
   return (
+    <article>
     <form className={styles.formElement} onSubmit={onSubmitForm}>
       <h2>Quel effet aurait la retraite à 65 ans (réforme Macron) ?</h2>
       <br />
@@ -128,7 +129,7 @@ export default function Home() {
         : ""}
       {isMainParent === 'true' ?
         <fieldset className={styles.fieldsetElement} required onChange={handlePublicCareerChange}>
-          <legend>Êtes vous fonctionnaire ?</legend>
+          <legend>Êtes vous employé de la Fonction publique d'État?</legend>
           <input type="radio" id="isPublicCareer-true" defaultChecked={isPublicCareer == "true"} name="isPublicCareer" value="true"></input>
           <label htmlFor="isPublicCareer-true">Oui</label>
           <input type="radio" id="isPublicCareer-false" defaultChecked={isPublicCareer == "false"} name="isPublicCareer" value="false"></input>
@@ -149,5 +150,6 @@ export default function Home() {
         <a className={`inlineButton ${styles.informationButton}`} >Plus d&apos;informations sur le simulateur</a>
       </Link>
     </form>
+    </article>
   )
 }

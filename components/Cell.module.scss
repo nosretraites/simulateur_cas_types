@@ -1,3 +1,5 @@
+
+$border: solid 1px rgb(214, 223, 230);
 .RedMark {
     color: red;
 }
@@ -8,12 +10,12 @@
 
 .Box {
     background-color: white;
-    border-radius: 4px;
     padding: 10px 10px;
+    border: $border;
 }
 
 .BoxCenter {
     background-color: white;
-    border-radius: 4px;
     text-align: center;
+    border: $border;
 }

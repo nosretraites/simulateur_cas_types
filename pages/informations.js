@@ -4,6 +4,7 @@ import Link from 'next/link';
 export default function Informations() {
 
     return (
+      <article>
       <div className={styles.informationPage}>
         <p>Ce générateur de cas-type est une <strong>version bêta, simplifiée,</strong> d’autres fonctionnalités et précisions seront développées par la suite.</p>
         <p>Le profil présenté est celui d’une <strong>personne salariée du privé sans interruption de carrière</strong> (ce qui n’est pas le cas de tout le monde dans la vraie vie).</p>
@@ -18,6 +19,7 @@ export default function Informations() {
           <a type="button" className={`blockButton`}>Retourner au simulateur</a>
         </Link>
       </div>
+      </article>
     )
 
 }
