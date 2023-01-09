@@ -105,7 +105,7 @@ export default function Resultats() {
   if (isLoaded) {
     return (
       <div>
-        <article>
+        {/* <article> */}
           <ProfileCard selectedName={selectedName}
             selectedPicto={selectedPicto}
             isMainParent={isMainParent}
@@ -115,11 +115,11 @@ export default function Resultats() {
             yearOfCareerInterruption={yearOfCareerInterruption}
             isPublicCareer={isPublicCareer}
             countOfChildrenBefore2004={countOfChildrenBefore2004}
-            data={cellArray} />
-          <Summary data={cellArray} selectedName={selectedName}></Summary>
+            data={cellArray}>
+                <Summary data={cellArray} selectedName={selectedName}></Summary>
           <button type="button" className={'inlineButton'} onClick={toggleSeeMoreButton}>{seeMore ? 'Voir moins de détails' : 'Voir plus de détails'}</button>
           {seeMore ?
-            <>
+            <div className={styles.Details}>
               <table width={"100%"}>
                 <thead>
                   <tr>
@@ -138,10 +138,12 @@ export default function Resultats() {
               <Link href="/informations">
                 <a className={`inlineButton`} >Précisions sur les calculs</a>
               </Link>
-            </>
+            </div>
             : <></>}
+              </ProfileCard>
+        
 
-        </article>
+        {/* </article> */}
 
 
         <TwitterButton birthDate={birthDate}
