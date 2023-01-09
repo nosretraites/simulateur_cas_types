@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function Footer(props) {
 
@@ -39,9 +40,9 @@ export default function Footer(props) {
       <div className='footerMandatory'>
         <ul>
           <li>
-            <a href='/legals'>
+            <Link href='/legals'>
               Mentions légales
-            </a>
+            </Link>
           </li>
           <li>
             <a href='https://blogs.mediapart.fr/collectif-nos-retraites/blog/110622/retraite-65-ans-quest-ce-qui-changerait-avec-le-projet-macron' target="_blank" rel="noreferrer">Retrouvez nos cas-types commentés sur notre blog médiapart</a>
