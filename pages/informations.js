@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 export default function Informations() {
 
-    return (
-      <article>
+  return (
+    <article>
       <div className={styles.informationPage}>
         <p>Ce générateur de cas-type est une <strong>version bêta, simplifiée,</strong> d’autres fonctionnalités et précisions seront développées par la suite.</p>
         <p>Le profil présenté est celui d’une <strong>personne salariée du privé sans interruption de carrière</strong> (ce qui n’est pas le cas de tout le monde dans la vraie vie).</p>
@@ -15,11 +15,13 @@ export default function Informations() {
           <li>Nous avons appliqué les majorations de durée d’assurance pour enfant en appliquant la règle suivante en vigueur dans le privé : chaque accouchement ou adoption donne droit à 4 trimestres, et chaque enfant élevé donne également droit à 4 trimestres. Ces trimestres ne comptent que pour atteindre le taux plein (et ne donnent pas accès à la surcote ni au départ anticipé pour carrière longue).</li>
         </ul>
         <p>Pour simplifier, nous avons attribué toutes les majorations de durée d’assurance à la même personne (la personne qui accouche ou qui a pris les congés d’adoption), mais en pratique, une partie peut être partagé entre les deux parents.</p>
+        <p>A noter que la surcote se calcule ainsi : +1,25% par trimestre validé en plus de ceux qui nous ont permis d'atteindre le taux plein.</p>
+        <p>La décote fonctionne sur le même principe : -1,25% par trimestre  manquant jusqu'à la durée requise ou jusqu'à 67 ans ( le minimum des deux).</p>
         <Link href="/">
           <a type="button" className={`blockButton`}>Retourner au simulateur</a>
         </Link>
       </div>
-      </article>
-    )
+    </article>
+  )
 
 }
