@@ -79,11 +79,11 @@ export default function Summary(props) {
         const macDepartureAge =  possibleRetirementMacData.base.isCarriereLongue ? possibleRetirementMacData.AgeCL_mac: possibleRetirementMacData.AOD_mac;
         const macDepartureAgeString =  getAgeAndMonthString(macDepartureAge);
 
-        strings.push(<span>Actuellement, {selectedName} pourrait partir à la retraite dès {currentDepartureAgeString}.</span>);
+        strings.push(<p>Actuellement, {selectedName} pourrait partir à la retraite dès {currentDepartureAgeString}.</p>);
 
         // Si différence d'année de départ avec la réforme, l'afficher
         if (currentDepartureAge < macDepartureAge) {
-            strings.push(<span>Avec la réforme Macron , <strong>elle devrait attendre jusqu'à {macDepartureAgeString} pour avoir le droit de partir.</strong></span>);
+            strings.push(<p>Avec la réforme Macron , <strong>elle devrait attendre jusqu'à {macDepartureAgeString} pour avoir le droit de partir.</strong></p>);
         }
         // Sinon, afficher la potentiel différence de surcote/décôte
         else {
@@ -93,7 +93,7 @@ export default function Summary(props) {
                 strings.push(<span> <strong> Avec la réforme Macron, elle pourra partir au même âge mais perdra {Math.round(delta)}% de surcôte (bonus).</strong></span>);
             }
         }
-        return <p>{strings}</p>;
+        return <div className={styles.firstSentence}>{strings}</div>;
     }
 
     function SecondSentence() {

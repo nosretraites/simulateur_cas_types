@@ -1,6 +1,7 @@
 import styles from './TwitterButton.module.scss';
 import computeData from './computeData';
 import { useEffect, useState } from 'react';
+import html2canvas from 'html2canvas';
 
 export default function TwitterButton(props) {
 
@@ -71,14 +72,20 @@ export default function TwitterButton(props) {
         return <>{strings}</>;
     }
 
+    function generateCanvas(){
+        html2canvas(document.body).then(function(canvas) {
+            console.log(canvas.getImageData());
+        });
+    }
 
-    return (
+
+    return (    
         <div className={styles.mockupTweetWrapper}>
                 <svg className={styles.topLeft} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
                 <svg className={styles.botRight} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
 
             <h3 className={styles.title}>
-                <span>Je partage mes résultats<br/>sur Twitter</span>
+                <span>Je partage mes résultats</span>
             </h3>
             <div className={styles.mockupTweet}>
                 <img src={props.selectedPicto} width={"48px"} />
