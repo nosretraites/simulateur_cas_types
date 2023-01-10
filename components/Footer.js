@@ -10,7 +10,7 @@ export default function Footer(props) {
   return (
     <footer className="footer">
       <div className='footerSocials'>
-      <h5>réseaux sociaux</h5>
+        <h5>réseaux sociaux</h5>
 
         <ul>
           <li>
@@ -35,6 +35,16 @@ export default function Footer(props) {
               </svg>
             </a>
           </li>
+          <li>
+            <a href='https://www.facebook.com/collectifretraites/'
+              title="Suivez nous sur Facebook"
+              target="_blank" rel="noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="icon icon-tabler icon-tabler-brand-facebook" width="1em" height="1em" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+              </svg>
+            </a>
+          </li>
         </ul>
       </div>
       <div className='footerMandatory'>
@@ -49,8 +59,6 @@ export default function Footer(props) {
           </li>
         </ul>
       </div>
-      {/* <div><a href='https://twitter.com/nosretraites' target="_blank" rel="noreferrer">Suivez nous sur <img src="twitter-icon.svg" width={"50px"} /></a></div> */}
-      {/* <div><a href='https://blogs.mediapart.fr/collectif-nos-retraites/blog/110622/retraite-65-ans-quest-ce-qui-changerait-avec-le-projet-macron' target="_blank" rel="noreferrer">Retrouvez nos cas-types commentés sur notre blog médiapart</a></div> */}
     </footer>
   )
 }
