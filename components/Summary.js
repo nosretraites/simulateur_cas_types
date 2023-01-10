@@ -115,14 +115,14 @@ export default function Summary(props) {
             return delta > 0 ? <>n'aura une surcote que de {Math.round(delta)}%.</> : <>aura une décote de {Math.round(Math.abs(delta))}%.</>
         }
         // Décote surcote actuelle
-        strings.push(<span>Actuellement, si {selectedName} travaille jusqu'à {REFORM_AGE} ans, elle {getSurcoteDecoteString(reformAgeData.base)}</span>);
+        strings.push(<span>Actuellement, si {selectedName} travaille jusqu'à {REFORM_AGE} ans, {props.isMainParent?"elle":"il"} {getSurcoteDecoteString(reformAgeData.base)}</span>);
         // si on peut partir, Décote surcote Macron
         if (possibleRetirementMacData.AgeLiq <= REFORM_AGE) {
-            strings.push(<span> <strong> Avec la réforme Macron, elle {getSurcoteDecoteMacronString(reformAgeData.macron)}</strong></span>);
+            strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent?"elle":"il"} {getSurcoteDecoteMacronString(reformAgeData.macron)}</strong></span>);
         }
         // Si on peut pas partir
         else {
-            strings.push(<span> <strong> Avec la réforme Macron, elle ne pourra pas partir avant {possibleRetirementMacData.AgeLiq} ans.</strong></span>);
+            strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent?"elle":"il"} ne pourra pas partir avant {possibleRetirementMacData.AgeLiq} ans.</strong></span>);
         }
 
         return <p>{strings}</p>;
