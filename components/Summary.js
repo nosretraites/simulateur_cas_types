@@ -83,14 +83,14 @@ export default function Summary(props) {
 
         // Si différence d'année de départ avec la réforme, l'afficher
         if (currentDepartureAge < macDepartureAge) {
-            strings.push(<p>Avec la réforme Macron , <strong>elle devra attendre jusqu'à {macDepartureAgeString} pour avoir le droit de partir.</strong></p>);
+            strings.push(<p>Avec la réforme Macron , <strong>{props.isMainParent?"elle":"il"} devra attendre jusqu'à {macDepartureAgeString} pour avoir le droit de partir.</strong></p>);
         }
         // Sinon, afficher la potentiel différence de surcote/décôte
         else {
             const { base, macron } = possibleRetirementMacData;
             const delta = (base.surcote - base.decote) - (macron.surcote - macron.decote);
             if (delta > 0) {
-                strings.push(<span> <strong> Avec la réforme Macron, elle pourra partir au même âge mais perdra {Math.round(delta)}% de surcôte (bonus).</strong></span>);
+                strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent?"elle":"il"} pourra partir au même âge mais perdra {Math.round(delta)}% de surcôte (bonus).</strong></span>);
             }
         }
         return <div className={styles.firstSentence}>{strings}</div>;

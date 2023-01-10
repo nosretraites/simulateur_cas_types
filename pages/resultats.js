@@ -106,17 +106,17 @@ export default function Resultats() {
     return (
       <div>
         {/* <article> */}
-          <ProfileCard selectedName={selectedName}
-            selectedPicto={selectedPicto}
-            isMainParent={isMainParent}
-            birthDate={birthDate}
-            numberOfChildren={numberOfChildren}
-            careerStartAge={careerStartAge}
-            yearOfCareerInterruption={yearOfCareerInterruption}
-            isPublicCareer={isPublicCareer}
-            countOfChildrenBefore2004={countOfChildrenBefore2004}
-            data={cellArray}>
-                <Summary data={cellArray} selectedName={selectedName}></Summary>
+        <ProfileCard selectedName={selectedName}
+          selectedPicto={selectedPicto}
+          isMainParent={isMainParent}
+          birthDate={birthDate}
+          numberOfChildren={numberOfChildren}
+          careerStartAge={careerStartAge}
+          yearOfCareerInterruption={yearOfCareerInterruption}
+          isPublicCareer={isPublicCareer}
+          countOfChildrenBefore2004={countOfChildrenBefore2004}
+          data={cellArray}>
+          <Summary data={cellArray} selectedName={selectedName} isMainParent={isMainParent}></Summary>
           <button type="button" className={'inlineButton'} onClick={toggleSeeMoreButton}>{seeMore ? 'Voir moins de détails' : 'Voir plus de détails'}</button>
           {seeMore ?
             <div className={styles.Details}>
@@ -140,8 +140,8 @@ export default function Resultats() {
               </Link>
             </div>
             : <></>}
-              </ProfileCard>
-        
+        </ProfileCard>
+
 
         {/* </article> */}
 
@@ -149,7 +149,7 @@ export default function Resultats() {
         <TwitterButton birthDate={birthDate}
           result={cellArray}
           careerStartAge={careerStartAge} isMainParent={isMainParent}
-           selectedName={selectedName} selectedPicto={selectedPicto}
+          selectedName={selectedName} selectedPicto={selectedPicto}
           numberOfChildren={numberOfChildren} />
 
 

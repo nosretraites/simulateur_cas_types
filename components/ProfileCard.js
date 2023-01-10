@@ -24,7 +24,7 @@ export default function ProfileCard(props) {
 
                     <img src={selectedPicto} className={styles.selectedPicto} />
                     <p className={styles.Name}>{selectedName}</p>
-                    <p>Né·e en {birthDate} {!isMainParent ? "" : parseInt(numberOfChildren) !== 0 ? parseInt(numberOfChildren) === 1 ? "- 1 enfant" : "- " + parseInt(numberOfChildren) + " enfants" : ""}</p>
+                    <p>Né{isMainParent ? "e" : ""} en {birthDate} {!isMainParent ? "" : parseInt(numberOfChildren) !== 0 ? parseInt(numberOfChildren) === 1 ? "- 1 enfant" : "- " + parseInt(numberOfChildren) + " enfants" : ""}</p>
                     <p>Début de carrière à {careerStartAge} ans</p>
                     <Link href={{ pathname: '/', query: { birthDate, careerStartAge, isMainParent, numberOfChildren, yearOfCareerInterruption, isPublicCareer, countOfChildrenBefore2004 } }}>
                         <a className="inlineButton">Retourner au formulaire</a>
