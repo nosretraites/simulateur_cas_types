@@ -1,7 +1,7 @@
 import styles from './TwitterButton.module.scss';
 import computeData from './computeData';
 import { useEffect, useState } from 'react';
-import html2canvas from 'html2canvas';
+import Canvas from './Canvas';
 
 export default function TwitterButton(props) {
 
@@ -72,12 +72,6 @@ export default function TwitterButton(props) {
         return <>{strings}</>;
     }
 
-    function generateCanvas(){
-        html2canvas(document.body).then(function(canvas) {
-            console.log(canvas.getImageData());
-        });
-    }
-
 
     return (    
         <div className={styles.mockupTweetWrapper}>
@@ -89,12 +83,12 @@ export default function TwitterButton(props) {
             </h3>
             <div className={styles.mockupTweet}>
                 <img src={props.selectedPicto} width={"48px"} />
-
                 <div className={styles.mockupTweetContent}>
                     <p className={styles.header}>
                         <span className={styles.profileName}>{props.selectedName}</span><span className={styles.profileHandle}>@{props.selectedName} · 1min</span>
                     </p>
-                    <FormattedTwitterMessage />
+                    <Canvas></Canvas>
+                    {/* <FormattedTwitterMessage /> */}
                 </div>
             </div>
             <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterMessage)}`}
