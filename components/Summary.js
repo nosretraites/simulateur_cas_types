@@ -13,14 +13,20 @@ export default function Summary(props) {
     const [reformAgeData, setReformAgeData] = useState();
     const [loaded, setLoaded] = useState(false);
     const { selectedName, data } = props;
-
+    const [firstSentence, setFirstSentence] = useState();
+    const [secondSentence, setSecondSentence] = useState();
 
     useEffect(() => {
         async function init() {
             await setVariables(data);
-        }
+        };
         init();
-    }, [data]);
+    }, [data]);    
+    useEffect(() => {
+        if(!(possibleRetirementNowData &&fullRetirementMacData)) return;
+        setFirstSentence(computeFirstSentence());
+        setSecondSentence(computeSecondSentence());
+    }, [possibleRetirementNowData,fullRetirementMacData]);
 
     function getAgeAndMonthString(year) {
         const string = `${Math.floor(year)} ans`
@@ -71,7 +77,7 @@ export default function Summary(props) {
         setLoaded(true);
     }
 
-    function FirstSentence() {
+    function computeFirstSentence() {
         // Départ à la retraite possible actuel
         let strings = [];
 
@@ -116,7 +122,7 @@ export default function Summary(props) {
         return <div className={styles.firstSentence}>{strings}</div>;
     }
 
-    function SecondSentence() {
+    function computeSecondSentence() {
         let strings = [];
 
         const deltaSurcote = (reformAgeData.base.surcote - reformAgeData.base.decote) - (reformAgeData.macron.isPossible ? reformAgeData.macron.surcote - reformAgeData.macron.decote : -100);
@@ -153,8 +159,9 @@ export default function Summary(props) {
     if (loaded) {
         return (
             <div className={styles.Summary}>
-                <FirstSentence />
-                <SecondSentence />
+                {firstSentence}
+                {secondSentence}
+
             </div>
         )
     }

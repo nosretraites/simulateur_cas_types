@@ -63,6 +63,12 @@
   // }
 }
 
+.SocialsButtonsRow{
+  margin-top: 1rem;
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-end;
+}
 .shareButton {
   align-self: flex-end;
   display: inline-flex;

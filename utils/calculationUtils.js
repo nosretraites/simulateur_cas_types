@@ -40,6 +40,10 @@ export function computeSituation(userInputs) {
         CL.now = careerStartAge < 20 && DC >= parameters.DTP_now;
         CL.mac = careerStartAge < 20 && DC >= parameters.DTP_mac;
 
+        // 44 ans à cotiser pour les CL avant 18 ans
+        const DTP_mac18 = 44 *4;
+        CL.mac18 = careerStartAge < 18 && DC >= DTP_mac18;
+
 
         // CALCUL DE LA MAJORATION DE DURÉE D'ASSURANCE POUR ENFANT
         // Privé et Public

@@ -5,20 +5,20 @@ import html2canvas from 'html2canvas';
 
 export default function TwitterButton(props) {
 
+
     const [twitterMessage, setTwitterMessage] = useState("");
     // currentDepartureAge
     // macDepartureAge
     // lowerWage
     const [socialsData, setSocialsData] = useState();
     useEffect(() => {
-        if(!props.socialsData)return;
+        if (!props.socialsData) return;
         setSocialsData(props.socialsData);
         twitterContentGenerator();
     }, [props])
 
     function twitterContentGenerator() {
-        console.log("twitterContentGenerator",socialsData);
-        if(!(socialsData && socialsData.currentDepartureAge && socialsData.currentDepartureAge))return "";
+        if (!(socialsData && socialsData.currentDepartureAge && socialsData.currentDepartureAge)) return "";
         let string =
             `J'ai simulé les conséquences de la réforme sur le simulateur @nosretraites` + '\n\n' +
             `Aujourd'hui, je peux partir à la retraite à ${socialsData.macDepartureAge}.` +
@@ -29,23 +29,16 @@ export default function TwitterButton(props) {
     };
 
     function FormattedTwitterMessage() {
-        if(!(socialsData && socialsData.currentDepartureAge && socialsData.currentDepartureAge))return<></>;
+        if (!(socialsData && socialsData.currentDepartureAge && socialsData.currentDepartureAge)) return <></>;
         return <div className={styles.contentWrapper}>
             <p>J'ai simulé les conséquences de la réforme sur le simulateur <span className={styles.link}>@nosretraites</span></p>
             <p>
-                <span>Aujourd'hui, je peux partir à la retraite à {socialsData.macDepartureAge}.</span>
-                <span>Avec la réforme, je devrais partir à {socialsData.currentDepartureAge}{socialsData.lowerWage ? ' avec une retraite plus faible' : ''}.</span>
+                <span>Aujourd'hui, je peux partir à la retraite à {socialsData.currentDepartureAge}.</span>
+                <span>Avec la réforme, je devrais partir à {socialsData.macDepartureAge}{socialsData.lowerWage ? ' avec une retraite plus faible' : ''}.</span>
             </p>
             <p className={styles.link}>https://nosretraites-simulateur-cas-types.netlify.app</p>
         </div>
     }
-
-    function generateCanvas() {
-        html2canvas(document.body).then(function (canvas) {
-            console.log(canvas.getImageData());
-        });
-    }
-
 
     return (
         <div className={styles.mockupTweetWrapper}>
@@ -65,10 +58,15 @@ export default function TwitterButton(props) {
                     <FormattedTwitterMessage />
                 </div>
             </div>
-            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterMessage)}`}
-                className={styles.shareButton} data-size="large" target="_blank" rel="noreferrer">
-                Partager sur Twitter
-            </a>
+            <div className={styles.SocialsButtonsRow}>
+                {/* <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=large&width=132&height=28&appId" width="132" height="28" style="border:none;overflow:hidden" scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> */}
+                {/* <div className="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore" rel="noreferrer">Partager</a></div> */}
+                <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterMessage)}`}
+                    className={styles.shareButton} data-size="large" target="_blank" rel="noreferrer">
+                    Partager sur Twitter
+                </a>
+            </div>
+
         </div>
     )
 }
