@@ -47,7 +47,6 @@ export default function Cell({ data }) {
     // Compute the cell content for all reforms
     setDisplayMacronMessage(getReformCellContent("macron"));
     setDisplayBaseMessage(getReformCellContent("base"));
-    setDisplayMixteMessage(getReformCellContent("mix"));
   }, [data])
 
 
@@ -57,7 +56,6 @@ export default function Cell({ data }) {
       <td className={styles.BoxCenter}>{age}</td>
       <td className={styles.Box}>{displayBaseMessage}</td>
       <td className={styles.Box}>{displayMacronMessage}</td>
-      <td className={styles.Box}>{displayMixteMessage}</td>
     </tr>
   )
 }

@@ -126,7 +126,6 @@ export default function Resultats() {
                     <th className={styles.Box}>La retraite à</th>
                     <th className={styles.Box}>Avec la loi actuelle</th>
                     <th className={styles.Box}>Avec le projet Macron</th>
-                    <th className={styles.Box}>Avec un projet mixte</th>
                   </tr>
                 </thead>
                 <tbody>

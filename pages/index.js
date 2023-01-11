@@ -110,7 +110,7 @@ export default function Home() {
 
       <div className={styles.inputElement}>
         <label htmlFor="yearOfCareerInterruption">Nombre d&lsquo;années non validées</label>
-        <input id="yearOfCareerInterruption" required min="0" max="40" type="number" value={yearOfCareerInterruption} onChange={handleCareerInterruptionChange} />
+        <input id="yearOfCareerInterruption" required min="0" max="40" step="0.25" type="number" value={yearOfCareerInterruption} onChange={handleCareerInterruptionChange} />
       </div>
 
       <div className={styles.inputElement}>

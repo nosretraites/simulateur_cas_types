@@ -90,7 +90,7 @@ export default function Summary(props) {
             const { base, macron } = possibleRetirementMacData;
             const delta = (base.surcote - base.decote) - (macron.surcote - macron.decote);
             if (delta > 0) {
-                strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent?"elle":"il"} pourra partir au même âge mais perdra {Math.round(delta)}% de surcôte (bonus).</strong></span>);
+                strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent?"elle":"il"} pourra partir au même âge mais perdra {Math.round(delta)}% de surcôte.</strong></span>);
             }
         }
         return <div className={styles.firstSentence}>{strings}</div>;

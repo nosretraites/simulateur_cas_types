@@ -12,13 +12,13 @@ export function computeSituation(userInputs) {
     const situationArray = [];
 
     const CURRENT_LEGISLATION_SUFFIX = "now";
-    const MACRON_LEGISLATION_SUFFIX = "mix";
+    const MACRON_LEGISLATION_SUFFIX = "mac";
 
     // On ne garde que les paramètres liés à l'année de naissance
     const parameters = legalParameters[birthDate];
 
     //On crée un tableau avec tous les âges de liquidations possibles de 60 à 67          // 60 et pas 58 (même si idéalement 58 serait une bonne idée)
-    const possibleRetirementAges = [60, 61, 62, 63, 64, 65, 66, 67];
+    const possibleRetirementAges = [58,59,60, 61, 62, 63, 64, 65, 66, 67];
 
 
     // Retour les possibilités de retraite pour les deux législations (actuel & Macron) pour un age de départ donné
@@ -119,7 +119,6 @@ export function computeSituation(userInputs) {
         // Calcul des résultats pour les 2 législations
         returnObj.base = computeForLegislation('now');
         returnObj.macron = computeForLegislation('mac');
-        returnObj.mix = computeForLegislation('mix');
 
         return returnObj;
     }

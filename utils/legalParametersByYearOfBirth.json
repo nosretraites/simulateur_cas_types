@@ -7,9 +7,8 @@
         "AOD_mac": 60,
         "DTP_mac": 162,
         "AgeCL_mac": 58,
-        "AOD_mix": 60,
-        "DTP_mix": 162,
-        "AgeCL_mix": 58
+        "AgeCL_mac16": 54,
+        "AgeCL_mac18": 58
     },
     "1951": {
         "AOD_now": 60.3333333333333,
@@ -19,9 +18,8 @@
         "AOD_mac": 60.3333333333333,
         "DTP_mac": 163,
         "AgeCL_mac": 58.3333333333333,
-        "AOD_mix": 60.3333333333333,
-        "DTP_mix": 163,
-        "AgeCL_mix": 58.3333333333333
+        "AgeCL_mac16": 54.3333333333333,
+        "AgeCL_mac18": 58.3333333333333
     },
     "1952": {
         "AOD_now": 60.75,
@@ -31,9 +29,8 @@
         "AOD_mac": 60.75,
         "DTP_mac": 164,
         "AgeCL_mac": 58.75,
-        "AOD_mix": 60.75,
-        "DTP_mix": 164,
-        "AgeCL_mix": 58.75
+        "AgeCL_mac16": 54.75,
+        "AgeCL_mac18": 58.75
     },
     "1953": {
         "AOD_now": 61.1666666666667,
@@ -43,9 +40,8 @@
         "AOD_mac": 61.1666666666667,
         "DTP_mac": 165,
         "AgeCL_mac": 59.1666666666667,
-        "AOD_mix": 61.1666666666667,
-        "DTP_mix": 165,
-        "AgeCL_mix": 59.1666666666667
+        "AgeCL_mac16": 55.1666666666667,
+        "AgeCL_mac18": 59.1666666666667
     },
     "1954": {
         "AOD_now": 61.5833333333333,
@@ -55,9 +51,8 @@
         "AOD_mac": 61.5833333333333,
         "DTP_mac": 165,
         "AgeCL_mac": 59.5833333333333,
-        "AOD_mix": 61.5833333333333,
-        "DTP_mix": 165,
-        "AgeCL_mix": 59.5833333333333
+        "AgeCL_mac16": 55.5833333333333,
+        "AgeCL_mac18": 59.5833333333333
     },
     "1955": {
         "AOD_now": 62,
@@ -67,9 +62,8 @@
         "AOD_mac": 62,
         "DTP_mac": 166,
         "AgeCL_mac": 60,
-        "AOD_mix": 62,
-        "DTP_mix": 166,
-        "AgeCL_mix": 60
+        "AgeCL_mac16": 56,
+        "AgeCL_mac18": 60
     },
     "1956": {
         "AOD_now": 62,
@@ -79,9 +73,8 @@
         "AOD_mac": 62,
         "DTP_mac": 166,
         "AgeCL_mac": 60,
-        "AOD_mix": 62,
-        "DTP_mix": 166,
-        "AgeCL_mix": 60
+        "AgeCL_mac16": 56,
+        "AgeCL_mac18": 60
     },
     "1957": {
         "AOD_now": 62,
@@ -91,9 +84,8 @@
         "AOD_mac": 62,
         "DTP_mac": 166,
         "AgeCL_mac": 60,
-        "AOD_mix": 62,
-        "DTP_mix": 166,
-        "AgeCL_mix": 60
+        "AgeCL_mac16": 56,
+        "AgeCL_mac18": 60
     },
     "1958": {
         "AOD_now": 62,
@@ -103,9 +95,8 @@
         "AOD_mac": 62,
         "DTP_mac": 167,
         "AgeCL_mac": 60,
-        "AOD_mix": 62,
-        "DTP_mix": 167,
-        "AgeCL_mix": 60
+        "AgeCL_mac16": 56,
+        "AgeCL_mac18": 60
     },
     "1959": {
         "AOD_now": 62,
@@ -115,9 +106,8 @@
         "AOD_mac": 62,
         "DTP_mac": 167,
         "AgeCL_mac": 60,
-        "AOD_mix": 62,
-        "DTP_mix": 167,
-        "AgeCL_mix": 60
+        "AgeCL_mac16": 56,
+        "AgeCL_mac18": 60
     },
     "1960": {
         "AOD_now": 62,
@@ -127,608 +117,557 @@
         "AOD_mac": 62,
         "DTP_mac": 167,
         "AgeCL_mac": 60,
-        "AOD_mix": 62,
-        "DTP_mix": 167,
-        "AgeCL_mix": 60
+        "AgeCL_mac16": 56,
+        "AgeCL_mac18": 60
     },
     "1961": {
         "AOD_now": 62,
         "DTP_now": 168,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 62.3333333333333,
-        "DTP_mac": 168,
-        "AgeCL_mac": 60.3333333333333,
-        "AOD_mix": 62.25,
-        "DTP_mix": 168,
-        "AgeCL_mix": 60.25
+        "AOD_mac": 62.25,
+        "DTP_mac": 169,
+        "AgeCL_mac": 60.25,
+        "AgeCL_mac16": 56.25,
+        "AgeCL_mac18": 58.25
     },
     "1962": {
         "AOD_now": 62,
         "DTP_now": 168,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 62.6666666666667,
-        "DTP_mac": 168,
-        "AgeCL_mac": 60.6666666666667,
-        "AOD_mix": 62.5,
-        "DTP_mix": 169,
-        "AgeCL_mix": 60.5
+        "AOD_mac": 62.5,
+        "DTP_mac": 169,
+        "AgeCL_mac": 60.5,
+        "AgeCL_mac16": 56.5,
+        "AgeCL_mac18": 58.5
     },
     "1963": {
         "AOD_now": 62,
         "DTP_now": 168,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 63,
-        "DTP_mac": 168,
-        "AgeCL_mac": 61,
-        "AOD_mix": 62.75,
-        "DTP_mix": 170,
-        "AgeCL_mix": 60.75
+        "AOD_mac": 62.75,
+        "DTP_mac": 170,
+        "AgeCL_mac": 60.75,
+        "AgeCL_mac16": 56.75,
+        "AgeCL_mac18": 58.75
     },
     "1964": {
         "AOD_now": 62,
         "DTP_now": 169,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 63.3333333333333,
-        "DTP_mac": 169,
-        "AgeCL_mac": 61.3333333333333,
-        "AOD_mix": 63,
-        "DTP_mix": 171,
-        "AgeCL_mix": 61
+        "AOD_mac": 63,
+        "DTP_mac": 171,
+        "AgeCL_mac": 61,
+        "AgeCL_mac16": 57,
+        "AgeCL_mac18": 59
     },
     "1965": {
         "AOD_now": 62,
         "DTP_now": 169,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 63.6666666666667,
-        "DTP_mac": 169,
-        "AgeCL_mac": 61.6666666666667,
-        "AOD_mix": 63.25,
-        "DTP_mix": 172,
-        "AgeCL_mix": 61.25
+        "AOD_mac": 63.25,
+        "DTP_mac": 172,
+        "AgeCL_mac": 61.25,
+        "AgeCL_mac16": 57.25,
+        "AgeCL_mac18": 59.25
     },
     "1966": {
         "AOD_now": 62,
         "DTP_now": 169,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 64,
-        "DTP_mac": 169,
-        "AgeCL_mac": 62,
-        "AOD_mix": 63.5,
-        "DTP_mix": 169,
-        "AgeCL_mix": 61.5
+        "AOD_mac": 63.5,
+        "DTP_mac": 172,
+        "AgeCL_mac": 61.5,
+        "AgeCL_mac16": 57.5,
+        "AgeCL_mac18": 59.5
     },
     "1967": {
         "AOD_now": 62,
         "DTP_now": 170,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 64.3333333333333,
-        "DTP_mac": 170,
-        "AgeCL_mac": 62.3333333333333,
-        "AOD_mix": 63.75,
-        "DTP_mix": 170,
-        "AgeCL_mix": 61.75
+        "AOD_mac": 63.75,
+        "DTP_mac": 172,
+        "AgeCL_mac": 61.75,
+        "AgeCL_mac16": 57.75,
+        "AgeCL_mac18": 59.75
     },
     "1968": {
         "AOD_now": 62,
         "DTP_now": 170,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 64.6666666666667,
-        "DTP_mac": 170,
-        "AgeCL_mac": 62.6666666666667,
-        "AOD_mix": 64,
-        "DTP_mix": 170,
-        "AgeCL_mix": 62
+        "AOD_mac": 64,
+        "DTP_mac": 172,
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1969": {
         "AOD_now": 62,
         "DTP_now": 170,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
-        "DTP_mac": 170,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 170,
-        "AgeCL_mix": 62
+        "AOD_mac": 64,
+        "DTP_mac": 172,
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1970": {
         "AOD_now": 62,
         "DTP_now": 171,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
-        "DTP_mac": 171,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 171,
-        "AgeCL_mix": 62
+        "AOD_mac": 64,
+        "DTP_mac": 172,
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1971": {
         "AOD_now": 62,
         "DTP_now": 171,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
-        "DTP_mac": 171,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 171,
-        "AgeCL_mix": 62
+        "AOD_mac": 64,
+        "DTP_mac": 172,
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1972": {
         "AOD_now": 62,
         "DTP_now": 171,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
-        "DTP_mac": 171,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 171,
-        "AgeCL_mix": 62
+        "AOD_mac": 64,
+        "DTP_mac": 172,
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1973": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1974": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1975": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1976": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1977": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1978": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1979": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1980": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1981": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1982": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1983": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1984": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1985": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1986": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1987": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1988": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1989": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1990": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1991": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1992": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1993": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1994": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1995": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1996": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1997": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1998": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "1999": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2000": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2001": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2002": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2003": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2004": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2005": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2006": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2007": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2008": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2009": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     },
     "2010": {
         "AOD_now": 62,
         "DTP_now": 172,
         "AgeCL_now": 60,
         "ATP": 67,
-        "AOD_mac": 65,
+        "AOD_mac": 64,
         "DTP_mac": 172,
-        "AgeCL_mac": 63,
-        "AOD_mix": 64,
-        "DTP_mix": 172,
-        "AgeCL_mix": 62
+        "AgeCL_mac": 62,
+        "AgeCL_mac16": 58,
+        "AgeCL_mac18": 60
     }
 }
