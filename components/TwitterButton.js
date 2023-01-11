@@ -5,84 +5,52 @@ import html2canvas from 'html2canvas';
 
 export default function TwitterButton(props) {
 
-    const [twitterMessage, setTwitterMessage] = useState("")
-
+    const [twitterMessage, setTwitterMessage] = useState("");
+    // currentDepartureAge
+    // macDepartureAge
+    // lowerWage
+    const [socialsData, setSocialsData] = useState();
     useEffect(() => {
-        twitterContentGenerator()
+        if(!props.socialsData)return;
+        setSocialsData(props.socialsData);
+        twitterContentGenerator();
     }, [props])
 
     function twitterContentGenerator() {
+        console.log("twitterContentGenerator",socialsData);
+        if(!(socialsData && socialsData.currentDepartureAge && socialsData.currentDepartureAge))return "";
+        let string =
+            `J'ai simulé les conséquences de la réforme sur le simulateur @nosretraites` + '\n\n' +
+            `Aujourd'hui, je peux partir à la retraite à ${socialsData.macDepartureAge}.` +
+            ` Avec la réforme, je devrais partir à ${socialsData.currentDepartureAge}${socialsData.lowerWage ? ' avec une retraite plus faible' : ''}.` + '\n\n' +
+            `https://nosretraites-simulateur-cas-types.netlify.app`;
 
-        let finalStr = "Âge| Avant | Après\n"
-        let string = `J'ai simulé la réforme des retraites Macron.\n${!props.isMainParent ? "👴" : props.numberOfChildren === "0" ? "🧓" : props.numberOfChildren === "1" ? "👩‍👧" : "👩‍👦‍👦"} né${props.isMainParent ? "e" : ""} en ${props.birthDate}, début de carrière ${props.careerStartAge} ans :\n\n`
-        let mention = "\n@nosretraites";
-        for (let index = 0; index < props.result.length; index++) {
-            const element = props.result[index];
-            if (index !== 0 && index !== props.result.length) {
-                finalStr += "\n"
-            }
-            if (element.AgeLiq === "61") {
-                finalStr += `${element.AgeLiq} |`;
-            } else {
-                finalStr += `${element.AgeLiq} |`;
-            }
-
-            const { base, macron } = computeData(element);
-
-            //Cell Base
-            finalStr += `${(!base.isPossible) ? '❌😣' : (base.isDecote) ? '✅😕' : (base.isFullTime ? '✅🙂' : '✅🙂')}|`;
-
-            //Cell Macron
-            finalStr += `${(!macron.isPossible) ? (macron.worst ? '❌😨' : '❌😣') : ((base.isDecote) ? '✅😕' : ((macron.worst) ? '✅😑' : '✅🙂'))}`;
-        }
-
-        string += finalStr += mention += "\nhttps://nosretraites-simulateur-cas-types.netlify.app"
         setTwitterMessage(string);
     };
 
     function FormattedTwitterMessage() {
-        const strings = [];
-        strings.push(<div key="intro">
-            <p>J'ai simulé la réforme des retraites Macron.</p>
-            <p>{!props.isMainParent ? "👴" : props.numberOfChildren === "0" ? "🧓" : props.numberOfChildren === "1" ? "👩‍👧" : "👩‍👦‍👦"} né{props.isMainParent ? "e" : ""} en {props.birthDate}, début de carrière {props.careerStartAge} ans :</p>
-            <br />
-        </div>);
-        strings.push(<p key="tableHeader">Âge | Avant | Après</p>);
-
-        for (let index = 0; index < props.result.length; index++) {
-            const element = props.result[index];
-
-            const { base, macron } = computeData(element);
-
-            //Cell Base
-            const baseCell = `${(!base.isPossible) ? '❌😣' : (base.isDecote) ? '✅😕' : (base.isFullTime ? '✅🙂' : '✅🙂')}`;
-
-            //Cell Macron
-            const macronCell = `${(!macron.isPossible) ? (macron.worst ? '❌😨' : '❌😣') : ((base.isDecote) ? '✅😕' : ((macron.worst) ? '✅😑' : '✅🙂'))}`;
-
-            strings.push(<p key={index}>
-                {element.AgeLiq}   | {baseCell} | {macronCell}
+        if(!(socialsData && socialsData.currentDepartureAge && socialsData.currentDepartureAge))return<></>;
+        return <div className={styles.contentWrapper}>
+            <p>J'ai simulé les conséquences de la réforme sur le simulateur <span className={styles.link}>@nosretraites</span></p>
+            <p>
+                <span>Aujourd'hui, je peux partir à la retraite à {socialsData.macDepartureAge}.</span>
+                <span>Avec la réforme, je devrais partir à {socialsData.currentDepartureAge}{socialsData.lowerWage ? ' avec une retraite plus faible' : ''}.</span>
             </p>
-            )
-        }
-        strings.push(<br key="filler" />);
-        strings.push(<p className={styles.link} key="mention">@nosretraites</p>);
-        strings.push(<p className={styles.link} key="link">https://nosretraites-simulateur-cas-types.netlify.app</p>);
-
-        return <>{strings}</>;
+            <p className={styles.link}>https://nosretraites-simulateur-cas-types.netlify.app</p>
+        </div>
     }
 
-    function generateCanvas(){
-        html2canvas(document.body).then(function(canvas) {
+    function generateCanvas() {
+        html2canvas(document.body).then(function (canvas) {
             console.log(canvas.getImageData());
         });
     }
 
 
-    return (    
+    return (
         <div className={styles.mockupTweetWrapper}>
-                <svg className={styles.topLeft} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
-                <svg className={styles.botRight} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+            <svg className={styles.topLeft} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" /></svg>
+            <svg className={styles.botRight} xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" /></svg>
 
             <h3 className={styles.title}>
                 <span>Je partage mes résultats</span>

@@ -5,6 +5,7 @@ import styles from './Summary.module.scss';
 export default function Summary(props) {
     const REFORM_AGE = 64;
 
+
     const [possibleRetirementNowData, setPossibleRetirementNowData] = useState();
     const [fullRetirementNowData, setFullRetirementNowData] = useState();
     const [possibleRetirementMacData, setPossibleRetirementMacData] = useState();
@@ -21,7 +22,7 @@ export default function Summary(props) {
         init();
     }, [data]);
 
-    function getAgeAndMonthString(year){
+    function getAgeAndMonthString(year) {
         const string = `${Math.floor(year)} ans`
         if (year % 1 === 0) {
             return string;
@@ -74,25 +75,44 @@ export default function Summary(props) {
         // Départ à la retraite possible actuel
         let strings = [];
 
-        const currentDepartureAge =  possibleRetirementNowData.base.CL_EffectiveDate ? possibleRetirementNowData.base.CL_EffectiveDate: possibleRetirementNowData.AOD_now;
-        const currentDepartureAgeString =  getAgeAndMonthString(currentDepartureAge);
-        const macDepartureAge =  possibleRetirementMacData.macron.CL_EffectiveDate ? possibleRetirementMacData.macron.CL_EffectiveDate: possibleRetirementMacData.AOD_mac;
-        const macDepartureAgeString =  getAgeAndMonthString(macDepartureAge);
+
+        const currentDepartureAge = possibleRetirementNowData.base.CL_EffectiveDate ? possibleRetirementNowData.base.CL_EffectiveDate : possibleRetirementNowData.AOD_now;
+        const currentDepartureAgeString = getAgeAndMonthString(currentDepartureAge);
+        const macDepartureAge = possibleRetirementMacData.macron.CL_EffectiveDate ? possibleRetirementMacData.macron.CL_EffectiveDate : possibleRetirementMacData.AOD_mac;
+        const macDepartureAgeString = getAgeAndMonthString(macDepartureAge);
+
+        //  data to send back to the socials section
+        const callbackData = {
+            currentDepartureAge: currentDepartureAgeString,
+            macDepartureAge: macDepartureAgeString,
+            lowerWage: false
+        }
 
         strings.push(<p>Actuellement, {selectedName} peut partir à la retraite dès {currentDepartureAgeString}.</p>);
 
         // Si différence d'année de départ avec la réforme, l'afficher
         if (currentDepartureAge < macDepartureAge) {
-            strings.push(<p>Avec la réforme Macron , <strong>{props.isMainParent?"elle":"il"} devra attendre jusqu'à {macDepartureAgeString} pour avoir le droit de partir.</strong></p>);
+            strings.push(<p>Avec la réforme Macron , <strong>{props.isMainParent ? "elle" : "il"} devra attendre jusqu'à {macDepartureAgeString} pour avoir le droit de partir.</strong></p>);
         }
         // Sinon, afficher la potentiel différence de surcote/décôte
         else {
             const { base, macron } = possibleRetirementMacData;
             const delta = (base.surcote - base.decote) - (macron.surcote - macron.decote);
+
             if (delta > 0) {
-                strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent?"elle":"il"} pourra partir au même âge mais perdra {Math.round(delta)}% de surcôte.</strong></span>);
+
+                // Update the callback data
+                callbackData.lowerWage = true;
+
+
+                strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent ? "elle" : "il"} pourra partir au même âge mais perdra {Math.round(delta)}% de surcôte.</strong></span>);
             }
         }
+
+        if (props && props.socialDataCallback) {
+            props.socialDataCallback(callbackData);
+        }
+
         return <div className={styles.firstSentence}>{strings}</div>;
     }
 
@@ -115,14 +135,14 @@ export default function Summary(props) {
             return delta > 0 ? <>n'aura qu'une surcote de {Math.round(delta)}%.</> : <>aura une décote de {Math.round(Math.abs(delta))}%.</>
         }
         // Décote surcote actuelle
-        strings.push(<span>Actuellement, si {selectedName} travaille jusqu'à {REFORM_AGE} ans, {props.isMainParent?"elle":"il"} {getSurcoteDecoteString(reformAgeData.base)}</span>);
+        strings.push(<span>Actuellement, si {selectedName} travaille jusqu'à {REFORM_AGE} ans, {props.isMainParent ? "elle" : "il"} {getSurcoteDecoteString(reformAgeData.base)}</span>);
         // si on peut partir, Décote surcote Macron
         if (possibleRetirementMacData.AgeLiq <= REFORM_AGE) {
-            strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent?"elle":"il"} {getSurcoteDecoteMacronString(reformAgeData.macron)}</strong></span>);
+            strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent ? "elle" : "il"} {getSurcoteDecoteMacronString(reformAgeData.macron)}</strong></span>);
         }
         // Si on peut pas partir
         else {
-            strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent?"elle":"il"} ne pourra pas partir avant {possibleRetirementMacData.AgeLiq} ans.</strong></span>);
+            strings.push(<span> <strong> Avec la réforme Macron, {props.isMainParent ? "elle" : "il"} ne pourra pas partir avant {possibleRetirementMacData.AgeLiq} ans.</strong></span>);
         }
 
         return <p>{strings}</p>;
@@ -133,8 +153,8 @@ export default function Summary(props) {
     if (loaded) {
         return (
             <div className={styles.Summary}>
-                <FirstSentence/>
-                <SecondSentence/>
+                <FirstSentence />
+                <SecondSentence />
             </div>
         )
     }

@@ -32,6 +32,9 @@ export default function Resultats() {
   const [selectedPicto, setSelectedPicto] = useState("");
 
 
+  const [socialsData, setSocialsData] = useState();
+
+
   const initFromQueryParams = () => {
     if (query.birthDate !== undefined) {
       setBirthDate(Number(query.birthDate));
@@ -98,6 +101,10 @@ export default function Resultats() {
     setSeeMore(!seeMore);
   }
 
+  function handleSocialDataCallback(data){
+    setSocialsData(data);    
+  }
+
   useEffect(() => {
     pickAWinner();
   }, [isMainParent])
@@ -116,7 +123,7 @@ export default function Resultats() {
           isPublicCareer={isPublicCareer}
           countOfChildrenBefore2004={countOfChildrenBefore2004}
           data={cellArray}>
-          <Summary data={cellArray} selectedName={selectedName} isMainParent={isMainParent}></Summary>
+          <Summary data={cellArray} selectedName={selectedName} isMainParent={isMainParent} socialDataCallback={handleSocialDataCallback}></Summary>
           <button type="button" className={'inlineButton'} onClick={toggleSeeMoreButton}>{seeMore ? 'Voir moins de détails' : 'Voir plus de détails'}</button>
           {seeMore ?
             <div className={styles.Details}>
@@ -147,6 +154,7 @@ export default function Resultats() {
 
         <TwitterButton birthDate={birthDate}
           result={cellArray}
+          socialsData={socialsData}
           careerStartAge={careerStartAge} isMainParent={isMainParent}
           selectedName={selectedName} selectedPicto={selectedPicto}
           numberOfChildren={numberOfChildren} />
