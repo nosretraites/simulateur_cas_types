@@ -15,10 +15,10 @@ export default function Cell({ data }) {
 
   useEffect(() => {
     // Different types of cell content
-    const noRetirment = <span className={styles.RedMark}>❌ Retraite interdite</span>;
-    const allowRetirment = <span className={styles.GreenMark}>✅ Taux plein</span>;
-    const decoteMessage = (value) => <span className={styles.GreenMark}>✅ decote -{displayTwoDecimalsMax(value)}%</span>;
-    const surcoteMessage = (value) => <span className={styles.GreenMark}>✅ surcote +{displayTwoDecimalsMax(value)}%</span>;
+    const noRetirment = <div className={styles.RedMark}><span>❌</span><span> Retraite interdite</span></div>;
+    const allowRetirment = <div className={styles.GreenMark}><span>✅</span><span> Taux plein</span></div>;
+    const decoteMessage = (value) => <div className={styles.GreenMark}><span>✅</span><span> Decote -{displayTwoDecimalsMax(value)}%</span></div>;
+    const surcoteMessage = (value) => <div className={styles.GreenMark}><span>✅</span><span> Surcote +{displayTwoDecimalsMax(value)}%</span></div>;
 
     // Init age text
     setAge(`${data.AgeLiq} ans`)
