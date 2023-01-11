@@ -74,9 +74,9 @@ export default function Summary(props) {
         // Départ à la retraite possible actuel
         let strings = [];
 
-        const currentDepartureAge =  possibleRetirementNowData.base.isCarriereLongue ? possibleRetirementNowData.AgeCL_now: possibleRetirementNowData.AOD_now;
+        const currentDepartureAge =  possibleRetirementNowData.base.CL_EffectiveDate ? possibleRetirementNowData.base.CL_EffectiveDate: possibleRetirementNowData.AOD_now;
         const currentDepartureAgeString =  getAgeAndMonthString(currentDepartureAge);
-        const macDepartureAge =  possibleRetirementMacData.base.isCarriereLongue ? possibleRetirementMacData.AgeCL_mac: possibleRetirementMacData.AOD_mac;
+        const macDepartureAge =  possibleRetirementMacData.macron.CL_EffectiveDate ? possibleRetirementMacData.macron.CL_EffectiveDate: possibleRetirementMacData.AOD_mac;
         const macDepartureAgeString =  getAgeAndMonthString(macDepartureAge);
 
         strings.push(<p>Actuellement, {selectedName} peut partir à la retraite dès {currentDepartureAgeString}.</p>);

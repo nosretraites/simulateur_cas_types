@@ -18,7 +18,7 @@ export function computeSituation(userInputs) {
     const parameters = legalParameters[birthDate];
 
     //On crée un tableau avec tous les âges de liquidations possibles de 60 à 67          // 60 et pas 58 (même si idéalement 58 serait une bonne idée)
-    const possibleRetirementAges = [58,59,60, 61, 62, 63, 64, 65, 66, 67];
+    const possibleRetirementAges = [58, 59, 60, 61, 62, 63, 64, 65, 66, 67];
 
 
     // Retour les possibilités de retraite pour les deux législations (actuel & Macron) pour un age de départ donné
@@ -35,11 +35,10 @@ export function computeSituation(userInputs) {
         DV = DC;
 
         // *Le départ pour carrière longue est autorisé si l'age de début de carrière est de 19 ans et si la durée de cotisation est supérieure à la durée pour taux plein
-        let CL ={};
+        let CL = {};
 
         CL.now = careerStartAge < 20 && DC >= parameters.DTP_now;
         CL.mac = careerStartAge < 20 && DC >= parameters.DTP_mac;
-        CL.mix = careerStartAge < 20 && DC >= parameters.DTP_mix;
 
 
         // CALCUL DE LA MAJORATION DE DURÉE D'ASSURANCE POUR ENFANT
@@ -70,7 +69,7 @@ export function computeSituation(userInputs) {
         const computeForLegislation = (suffix = 'now') => {
             let isPossible = false;
             let isTauxPlein = false;
-            let isCarriereLongue = false;
+            let CL_EffectiveDate = 0;
             let decote = 0;
             let surcote = 0;
 
@@ -83,7 +82,14 @@ export function computeSituation(userInputs) {
             }
             if (CL[suffix] && retirementAge >= parameters[`AgeCL_${suffix}`]) {
                 isPossible = true;
-                isCarriereLongue = true;
+
+                // Meven: Sert uniquement pour le résumé textuel
+                //Si on aurait été déjà été à la retraite sans dispositif CL, ne pas préciser que c'est une CL
+                if (retirementAge < parameters[`AOD_${suffix}`]) {
+                    // Nombre de trimestres fait en plus du nb de trimestres min
+                    const surplusTrimestre = DC - parameters[`DTP_${suffix}`];
+                    CL_EffectiveDate = retirementAge - (surplusTrimestre / 4);
+                }
             }
             //////////// PAs  sur de ce que dit cette condition on peut l'enlever je pense
             // if (CL[suffix] && careerStartAge < 15 && retirementAge > parameters[`AgeCL_${suffix}`] - 1) {
@@ -93,7 +99,7 @@ export function computeSituation(userInputs) {
 
             // Décote
             if (isPossible) {
-                decote = Math.min(parameters[`DTP_${suffix}`] - DV, (parameters.ATP - retirementAge) * 4, 12) *1.25;
+                decote = Math.min(parameters[`DTP_${suffix}`] - DV, (parameters.ATP - retirementAge) * 4, 12) * 1.25;
                 if (decote < 0) decote = 0;
             }
 
@@ -110,7 +116,7 @@ export function computeSituation(userInputs) {
                 }
             }
 
-            return { isPossible, isTauxPlein, isCarriereLongue, decote, surcote };
+            return { isPossible, isTauxPlein, CL_EffectiveDate, decote, surcote };
 
         }
 
