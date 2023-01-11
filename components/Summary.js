@@ -112,7 +112,7 @@ export default function Summary(props) {
         const getSurcoteDecoteMacronString = (data) => {
             const delta = data.surcote - data.decote;
             if (delta === 0) return <>perdra cette surcote.</>
-            return delta > 0 ? <>n'aura une surcote que de {Math.round(delta)}%.</> : <>aura une décote de {Math.round(Math.abs(delta))}%.</>
+            return delta > 0 ? <>n'aura qu'une surcote de {Math.round(delta)}%.</> : <>aura une décote de {Math.round(Math.abs(delta))}%.</>
         }
         // Décote surcote actuelle
         strings.push(<span>Actuellement, si {selectedName} travaille jusqu'à {REFORM_AGE} ans, {props.isMainParent?"elle":"il"} {getSurcoteDecoteString(reformAgeData.base)}</span>);
