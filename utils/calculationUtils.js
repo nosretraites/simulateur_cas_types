@@ -40,9 +40,12 @@ export function computeSituation(userInputs) {
         CL.now = careerStartAge < 20 && DC >= parameters.DTP_now;
         CL.mac = careerStartAge < 20 && DC >= parameters.DTP_mac;
 
-        // 44 ans à cotiser pour les CL avant 18 ans
-        const DTP_mac18 = 44 *4;
+        // 1 annuité de majoration pour les CL avant 18 ans
+         const DTP_mac18 = parameters.DTP_mac + 4;
+         // A partir de la génération 1961 && age minimum de départ, 60 ans
+         if(birthDate > 1960 && retirementAge >= 60){
         CL.mac18 = careerStartAge < 18 && DC >= DTP_mac18;
+         }
 
 
         // CALCUL DE LA MAJORATION DE DURÉE D'ASSURANCE POUR ENFANT
@@ -61,12 +64,6 @@ export function computeSituation(userInputs) {
             }
         }
 
-        /////////////         On peut enlever ces trois lignes
-        // // Si ce système donne une durée validée supérieure à DTP, alors la durée validée est égal au max de la durée requise (DTP) et de la durée cotisée
-        // if (DV >= parameters.DTP) {
-        //     DV = Math.max(parameters.DTP, DC);
-        // }
-
         // Ensuite on donne pour chaque âge une réponse pour les 4 variables de sorties, dans les deux législations
         // Autorisé à partir si l'âge de liquidation est supérieur à l'AOD ou si carrière longue et âge supérieur à l'âge carrière longue avec un cas spé pour carrière démarrée avant 16 ans
 
@@ -84,15 +81,30 @@ export function computeSituation(userInputs) {
             else {
                 isPossible = true;
             }
-            if (CL[suffix] && retirementAge >= parameters[`AgeCL_${suffix}`]) {
+
+            // GESTION DES CL 18 seulement pour la nouvelle réforme
+            if (suffix === "mac" && CL.mac18) {
                 isPossible = true;
 
                 // Meven: Sert uniquement pour le résumé textuel
                 //Si on aurait été déjà été à la retraite sans dispositif CL, ne pas préciser que c'est une CL
                 if (retirementAge < parameters[`AOD_${suffix}`]) {
                     // Nombre de trimestres fait en plus du nb de trimestres min
+                    const surplusTrimestre = DC - DTP_mac18;
+                    // Départ minimum 60 ans
+                    CL_EffectiveDate = Math.max(60,retirementAge - (surplusTrimestre / 4));
+                }
+            }
+            // GESTION DES CL CLASSIQUES
+            else if (CL[suffix] && retirementAge >= parameters[`AgeCL_${suffix}`]) {
+                isPossible = true;
+
+                // Meven: Sert uniquement pour le résumé textuel
+                //Si on aurait été déjà été à la retraite sans dispositif CL, ne pas préciser que c'est une CL
+                if (retirementAge <= parameters[`AOD_${suffix}`]) {
+                    // Nombre de trimestres fait en plus du nb de trimestres min
                     const surplusTrimestre = DC - parameters[`DTP_${suffix}`];
-                    CL_EffectiveDate = retirementAge - (surplusTrimestre / 4);
+                    CL_EffectiveDate =  Math.max(parameters[`AgeCL_${suffix}`],retirementAge - (surplusTrimestre / 4));
                 }
             }
             //////////// PAs  sur de ce que dit cette condition on peut l'enlever je pense

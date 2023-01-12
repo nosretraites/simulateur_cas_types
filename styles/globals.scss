@@ -50,6 +50,9 @@ body{
 }
 
 @media screen and (max-width: 640px) {
+  body{
+    padding-bottom: 25rem;
+  }
   .globalMain{
       padding: 20px 10px;
   }
