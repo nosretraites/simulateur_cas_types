@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document';
-import Footer from '../components/Footer';
 
 export default function Document() {
   return (
@@ -12,18 +11,9 @@ export default function Document() {
       </Head>
       <title>Simulateur Collectif Nos retraites</title>
       <body>
-        <header className="globalHeader">
-          <h1 className='title'>Simulateur de retraite</h1>
-          <h3 className="subtitle">
-            du Collectif Nos retraites
-          </h3>
-        </header>
-        <main role="main" className="globalMain">
           <Main />
           <NextScript />
-        </main>
       </body>
-      <Footer/>
     </Html>
   )
 }

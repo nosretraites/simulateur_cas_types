@@ -33,6 +33,7 @@ body{
 .globalHeader{
   text-align: center;
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .globalMain{
@@ -50,11 +51,14 @@ body{
 }
 
 @media screen and (max-width: 640px) {
-  body{
-    padding-bottom: 25rem;
-  }
   .globalMain{
       padding: 20px 10px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  body{
+    padding-bottom: 25rem;
   }
 }
 

@@ -19,6 +19,22 @@
     color: var(--bg-color);
   }
 }
+@media screen and (max-width: 800px) {
+  .footer{
+   flex-direction: column;
+   text-align: center;
+  }
+  .footerSocials{
+    flex-direction: column;
+  }
+
+  .footerMandatory {
+    li{
+      margin-top: 2rem;
+    }
+}
+}
+
 
 .footerSocials {
   display: flex;
@@ -44,6 +60,10 @@
 .footerMandatory {
   ul {
     margin: 0;
+    padding: 0;
     list-style: none;
+    li:first-child{
+      margin-bottom: 1rem;
+    }
   }
 }
