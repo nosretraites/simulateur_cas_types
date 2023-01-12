@@ -27,7 +27,6 @@ export default function Summary(props) {
 
     useEffect(() => {
         async function init() {
-            console.log(data);
         await setVariables(data);
         };
         init();
@@ -80,9 +79,6 @@ export default function Summary(props) {
             setPossibleRetirementMacData(possibleRetirementMacDataTmp);
             setFullRetirementMacData(fullRetirementMacDataTmp);
             setReformAgeData(reformAgeTmp);
-
-            console.log("fullRetirementNowData ",fullRetirementNowDataTmp);
-            console.log("fullRetirementMacDataTmp ",fullRetirementMacDataTmp);
         };
         setLoaded(true);
         const key=(Math.random() + 1).toString(36).substring(7);
