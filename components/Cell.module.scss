@@ -1,19 +1,25 @@
+$border: solid 1px rgb(214, 223, 230);
 .RedMark {
-    color: red;
+  color: red;
 }
 
 .GreenMark {
-    color: Green;
+  color: Green;
 }
 
 .Box {
-    background-color: white;
-    border-radius: 4px;
-    padding: 10px 10px;
+  background-color: white;
+  padding: 10px 10px;
+  border: $border;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .BoxCenter {
-    background-color: white;
-    border-radius: 4px;
-    text-align: center;
+  background-color: white;
+  text-align: center;
+  border: $border;
 }

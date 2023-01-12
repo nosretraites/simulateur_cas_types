@@ -1,15 +1,30 @@
+html {
+  /* 1rem = 10px */
+  font-size: 62.5%;
+  // width: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  position: relative;
+
+}
+
 html,
 body {
+  min-height: 100vh;
+  overflow-x: hidden;
   padding: 0em;
   margin: 0em;
   font-family: 'Roboto', sans-serif;
-  background-color: #f9f9f7;
+  background-color: white;
 }
 body{
-  min-width: 100vw;
-  min-height: 100vh;
-  overflow-x: hidden;
+
+  // overflow-x: hidden;
   padding: 30px 0 50px 0;
+  padding-bottom: 15rem;
+
   background-color: var(--bg-color);
   color: var(--gray-dark-color);
 }
@@ -18,22 +33,32 @@ body{
 .globalHeader{
   text-align: center;
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .globalMain{
   width: fit-content;
   max-width: min(1000px, 100%);
   margin: 0 auto;
-  padding: 60px 80px;
-  background: rgb(235, 234, 234);
 
-  box-shadow: 0px 5px 15px -10px rgba(black,0.5);
-  border-radius: 4px;
+  article{
+    padding: 60px 80px;
+    background: white;
+  
+    box-shadow: 0 1rem 2rem 0rem rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+  }
 }
 
 @media screen and (max-width: 640px) {
   .globalMain{
       padding: 20px 10px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  body{
+    padding-bottom: 25rem;
   }
 }
 
@@ -43,19 +68,6 @@ body{
   }
   
 }
-
-.twitter-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 25px;
-  gap: 25px;
-  color: black;
-  font-weight: bold;
-  font-size: large;
-  text-decoration: underline;
-}
-
 
 // header {
 //   background-color: var(--bg-color);
@@ -70,7 +82,8 @@ body{
 
 
 table {
-  border-spacing: 5px;
+  border-spacing: 0px;
+  border-collapse: collapse;
 }
 
 .cell {
@@ -80,7 +93,8 @@ table {
 }
 
 th {
-  background-color: #d4dce6;
+  // background-color: #d4dce6;
+  background-color: rgb(214, 223, 230);
   font-weight: unset;
   padding: 0.2em 0.5em;
   text-align: center;

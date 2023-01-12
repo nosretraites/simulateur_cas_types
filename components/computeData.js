@@ -1,19 +1,4 @@
-export default function computeData(element) {
-  const data = {
-    base: {
-      isPossible: parseFloat(element.Possible) ? true : false,
-      isFullTime: parseFloat(element.Tauxplein) ? true : false,
-      isDecote: parseFloat(element.Decote),
-      isSurcote: parseFloat(element.Surcote),
-    },
-    macron: {
-      isPossible: parseFloat(element.Possible_Mac) ? true : false,
-      isFullTime: parseFloat(element.Tauxplein_Mac) ? true : false,
-      isDecote: parseFloat(element.Decote_Mac),
-      isSurcote: parseFloat(element.Surcote_Mac),
-    }
-  }
-
+export default function computeData(data) {
 
   let worst = false
   // Évitement d'une succession de ternaires car les messages
@@ -21,14 +6,12 @@ export default function computeData(element) {
   if (!data.macron.isPossible && data.base.isPossible) {
       worst = true
   } else if (data.macron.isPossible && data.base.isPossible) {
-      if (!data.macron.isFullTime && data.base.isFullTime) {
+      if (!data.macron.isTauxPlein && data.base.isTauxPlein) {
           worst = true
-      } else if (data.macron.isDecote > data.base.isDecote) {
+      } else if (data.macron.decote > data.base.decote) {
           worst = true
-      } else if (data.macron.isFullTime && data.base.isFullTime) {
-          if (data.macron.isSurcote < data.base.isSurcote) {
+      } else if (data.macron.surcote < data.base.surcote) {
             worst = true
-        }
       }
   }
   data.macron.worst = worst;
