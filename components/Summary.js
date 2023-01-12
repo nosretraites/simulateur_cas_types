@@ -119,7 +119,6 @@ export default function Summary(props) {
         }
 
         if (props && props.socialDataCallback) {
-            console.log(callbackData);
             props.socialDataCallback(callbackData);
         }
 
