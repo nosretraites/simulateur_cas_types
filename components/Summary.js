@@ -178,11 +178,11 @@ export default function Summary(props) {
         const macDepartureAge = fullRetirementMacData.macron.CL_EffectiveDate ? fullRetirementMacData.macron.CL_EffectiveDate : fullRetirementMacData.AgeLiq;
         const macDepartureAgeString = getAgeAndMonthString(macDepartureAge);
         if(currentDepartureAge >= macDepartureAge){
-            return <p>Dans les deux cas, il pourra partir à taux plein à {currentDepartureAgeString}.</p>
+            return <p>Dans les deux cas, {props.isMainParent ? "elle" : "il"} pourra partir à taux plein à {currentDepartureAgeString}.</p>
         }
 
         if(currentDepartureAge < macDepartureAge){
-            return <p>Actuellement, il peut partir à taux plein à {currentDepartureAge}. Après la réforme, il devra attendre {macDepartureAgeString}.</p>
+            return <p>Actuellement, {props.isMainParent ? "elle" : "il"} peut partir à taux plein à {currentDepartureAgeString}. Après la réforme, {props.isMainParent ? "elle" : "il"} devra attendre {macDepartureAgeString}.</p>
         }
     }
 
