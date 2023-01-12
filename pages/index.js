@@ -129,11 +129,11 @@ export default function Home() {
         : ""}
       {isMainParent === 'true' ?
         <fieldset className={styles.fieldsetElement} required onChange={handlePublicCareerChange}>
-          <legend>Êtes vous employé de la Fonction publique d'État?</legend>
+          <legend>Êtes vous employé de la Fonction publique ?</legend>
           <input type="radio" id="isPublicCareer-true" defaultChecked={isPublicCareer == "true"} name="isPublicCareer" value="true"></input>
-          <label htmlFor="isPublicCareer-true">Oui</label>
+          <label htmlFor="isPublicCareer-true">Public (Etat)</label>
           <input type="radio" id="isPublicCareer-false" defaultChecked={isPublicCareer == "false"} name="isPublicCareer" value="false"></input>
-          <label htmlFor="isPublicCareer-false">Non</label>
+          <label htmlFor="isPublicCareer-false">Privé</label>
         </fieldset>
         : ""}
 

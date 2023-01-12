@@ -11,22 +11,29 @@ export default function Summary(props) {
     const [possibleRetirementMacData, setPossibleRetirementMacData] = useState();
     const [fullRetirementMacData, setFullRetirementMacData] = useState();
     const [reformAgeData, setReformAgeData] = useState();
+    const [refreshKey, setRefreshKey] = useState();
     const [loaded, setLoaded] = useState(false);
     const { selectedName, data } = props;
     const [firstSentence, setFirstSentence] = useState();
     const [secondSentence, setSecondSentence] = useState();
+    const [tauxPleinSentence, setTauxPleinSentence] = useState();
+
+    useEffect(() => {
+        if(! (possibleRetirementNowData && possibleRetirementMacData && fullRetirementNowData && fullRetirementMacData)) return;
+        setFirstSentence(computeFirstSentence());
+        setSecondSentence(computeSecondSentence());
+        setTauxPleinSentence(computeTauxPleinSentence());
+    },[refreshKey]);
 
     useEffect(() => {
         async function init() {
-            await setVariables(data);
+            console.log(data);
+        await setVariables(data);
         };
         init();
-    }, [data]);    
-    useEffect(() => {
-        if(!(possibleRetirementNowData &&fullRetirementMacData)) return;
-        setFirstSentence(computeFirstSentence());
-        setSecondSentence(computeSecondSentence());
-    }, [possibleRetirementNowData,fullRetirementMacData]);
+    }, [props.data]);    
+
+
 
     function getAgeAndMonthString(year) {
         const string = `${Math.floor(year)} ans`
@@ -53,13 +60,13 @@ export default function Summary(props) {
             if (!possibleRetirementNowDataTmp && row.base.isPossible) {
                 possibleRetirementNowDataTmp = row;
             }
-            if (!fullRetirementNowDataTmp && row.base.isTauxPlein) {
+            if (!fullRetirementNowDataTmp && (row.base.isTauxPlein || row.base.surcote)) {
                 fullRetirementNowDataTmp = row;
             }
             if (!possibleRetirementMacDataTmp && row.macron.isPossible) {
                 possibleRetirementMacDataTmp = row;
             }
-            if (!fullRetirementMacDataTmp && row.macron.isTauxPlein) {
+            if (!fullRetirementMacDataTmp && (row.macron.isTauxPlein || row.macron.surcote)) {
                 fullRetirementMacDataTmp = row;
             }
 
@@ -73,8 +80,13 @@ export default function Summary(props) {
             setPossibleRetirementMacData(possibleRetirementMacDataTmp);
             setFullRetirementMacData(fullRetirementMacDataTmp);
             setReformAgeData(reformAgeTmp);
+
+            console.log("fullRetirementNowData ",fullRetirementNowDataTmp);
+            console.log("fullRetirementMacDataTmp ",fullRetirementMacDataTmp);
         };
         setLoaded(true);
+        const key=(Math.random() + 1).toString(36).substring(7);
+        setRefreshKey(key);
     }
 
     function computeFirstSentence() {
@@ -157,12 +169,30 @@ export default function Summary(props) {
         return <p>{strings}</p>;
     }
 
+    
+    function computeTauxPleinSentence() {
+        if(!(fullRetirementNowData && fullRetirementMacData)) return;
+        let strings = [];
+        const currentDepartureAge = fullRetirementNowData.base.CL_EffectiveDate ? fullRetirementNowData.base.CL_EffectiveDate : fullRetirementNowData.AgeLiq;
+        const currentDepartureAgeString = getAgeAndMonthString(currentDepartureAge);
+        const macDepartureAge = fullRetirementMacData.macron.CL_EffectiveDate ? fullRetirementMacData.macron.CL_EffectiveDate : fullRetirementMacData.AgeLiq;
+        const macDepartureAgeString = getAgeAndMonthString(macDepartureAge);
+        if(currentDepartureAge >= macDepartureAge){
+            return <p>Dans les deux cas, il pourra partir à taux plein à {currentDepartureAgeString}.</p>
+        }
+
+        if(currentDepartureAge < macDepartureAge){
+            return <p>Actuellement, il peut partir à taux plein à {currentDepartureAge}. Après la réforme, il devra attendre {macDepartureAgeString}.</p>
+        }
+    }
+
 
 
     if (loaded) {
         return (
             <div className={styles.Summary}>
                 {firstSentence}
+                {tauxPleinSentence}
                 {secondSentence}
 
             </div>

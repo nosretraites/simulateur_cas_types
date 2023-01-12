@@ -2,11 +2,11 @@
   font-size: 18px;
   text-align: left;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   p{
     margin: 0;
-  }
-  .firstSentence{
-    margin-bottom: 2rem;
   }
   strong {
     font-weight: 500;
