@@ -115,7 +115,7 @@ export function computeSituation(userInputs) {
 
             // Décote
             if (isPossible) {
-                decote = Math.min(parameters[`DTP_${suffix}`] - DV, (parameters.ATP - retirementAge) * 4, 12) * 1.25;
+                decote = Math.min(parameters[`DTP_${suffix}`] - DV, (parameters.ATP - retirementAge) * 4, 20) * 1.25;
                 if (decote < 0) decote = 0;
             }
 
