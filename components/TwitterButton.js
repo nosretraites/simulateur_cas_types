@@ -21,8 +21,8 @@ export default function TwitterButton(props) {
         if (!(socialsData && socialsData.currentDepartureAge && socialsData.currentDepartureAge)) return "";
         let string =
             `J'ai simulé les conséquences de la réforme sur le simulateur @nosretraites` + '\n\n' +
-            `Aujourd'hui, je peux partir à la retraite à ${socialsData.macDepartureAge}.` +
-            ` Avec la réforme, je devrais partir à ${socialsData.currentDepartureAge}${socialsData.lowerWage ? ' avec une retraite plus faible' : ''}.` + '\n\n' +
+            `Aujourd'hui, je peux partir à la retraite à ${socialsData.currentDepartureAge}.` +
+            ` Avec la réforme, je devrais partir à ${socialsData.macDepartureAge}${socialsData.lowerWage ? ' avec une retraite plus faible' : ''}.` + '\n\n' +
             `https://nosretraites-simulateur-cas-types.netlify.app`;
 
         setTwitterMessage(string);
