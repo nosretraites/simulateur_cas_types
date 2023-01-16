@@ -6,15 +6,24 @@ $border: solid 1px rgb(214, 223, 230);
 .GreenMark {
   color: Green;
 }
+.OrangeMark {
+  color: rgb(255, 123, 0);
+}
 
 .Box {
   background-color: white;
   padding: 10px 10px;
   border: $border;
+  font-weight: 500;
+
   div {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
+  }
+  svg{
+    font-size: 2.5rem;
+    vertical-align: middle;
   }
 }
 
