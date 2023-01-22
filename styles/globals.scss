@@ -42,7 +42,7 @@ body{
   margin: 0 auto;
 
   article{
-    padding: 60px 80px;
+    padding: 5% 10%;
     background: white;
   
     box-shadow: 0 1rem 2rem 0rem rgba(0, 0, 0, 0.1);
@@ -50,9 +50,12 @@ body{
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 500px) {
   .globalMain{
-      padding: 20px 10px;
+      padding: 2rem 1rem;
+      article{
+        padding: 2% 5%;
+      }
   }
 }
 
@@ -69,18 +72,6 @@ body{
   
 }
 
-// header {
-//   background-color: var(--bg-color);
-//   padding: 1em;
-//   color:var(--title-color);
-// }
-
-// article {
-//   padding: 1em;
-// }
-
-
-
 table {
   border-spacing: 0px;
   border-collapse: collapse;
@@ -93,7 +84,6 @@ table {
 }
 
 th {
-  // background-color: #d4dce6;
   background-color: rgb(214, 223, 230);
   font-weight: unset;
   padding: 0.2em 0.5em;
