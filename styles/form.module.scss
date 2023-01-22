@@ -58,7 +58,7 @@
 
 .inputElement{
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 20rem;
 
     gap: 20px;
 
@@ -83,11 +83,9 @@
     }
     input,select{
         padding: 5px 10px;
-        width: 200px;
     }
     label{
         font-weight: 500;
-        max-width: 300px;
     }
 }
 
@@ -119,7 +117,7 @@
 }
 
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 500px) {
     .inputElement{
         grid-template-columns: 1fr;
         gap: 10px;
@@ -127,7 +125,7 @@
         align-items: center;
         justify-content: center;
 
-        input, select{
+        input, select, label{
             width: auto;
             min-width: 200px;
             margin: 0 auto;
@@ -141,16 +139,3 @@
     }
 }
 
-@media screen and (min-width: 640px) and  (max-width: 1080px) {
-
-    
-}
-
-@media screen and (min-width: 1080px) {
-    .inputElement{
-        label{
-            width: 300px;
-        }
-    }
-    
-}
